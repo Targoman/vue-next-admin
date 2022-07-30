@@ -66,7 +66,7 @@ export default defineComponent({
 		loadingSignIn: Boolean,
 	},
 	setup(props, context) {
-		const { t } = useI18n();
+		// const { t } = useI18n();
 		const storesThemeConfig = useThemeConfig();
 		const { themeConfig } = storeToRefs(storesThemeConfig);
 		const route = useRoute();
@@ -110,8 +110,8 @@ export default defineComponent({
 				router.push('/');
 			}
 
-			const signInText = t('signInText');
-			ElMessage.success(`${currentTimeInfo}，${signInText}`);
+			// const signInText = t('signInText');
+			// ElMessage.success(`${currentTimeInfo}，${signInText}`);
 			NextLoading.start();
 		};
 		return {
@@ -156,3 +156,4 @@ export default defineComponent({
 	}
 }
 </style>
+<i18n src="./i18n.json" />
