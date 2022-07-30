@@ -9,7 +9,6 @@
 			@close="onDrawerClose"
 		>
 			<el-scrollbar class="layout-breadcrumb-seting-bar">
-				<!-- 全局主题 -->
 				<el-divider content-position="left">{{ $t('message.layout.oneTitle') }}</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex">
 					<div class="layout-breadcrumb-seting-bar-flex-label">primary</div>
@@ -24,7 +23,6 @@
 					</div>
 				</div>
 
-				<!-- 顶栏设置 -->
 				<el-divider content-position="left">{{ $t('message.layout.twoTopTitle') }}</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ $t('message.layout.twoTopBar') }}</div>

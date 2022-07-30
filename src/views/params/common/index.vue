@@ -81,9 +81,8 @@ export default defineComponent({
 			state.tagsViewNameIsI18n = !state.tagsViewNameIsI18n;
 			if (state.tagsViewNameIsI18n) {
 				state.tagsViewName = JSON.stringify({
-					'zh-cn': '测试用',
+					fa: 'صفحه تست',
 					en: 'test page',
-					'zh-tw': '測試用',
 				});
 			} else {
 				state.tagsViewName = '我是普通路由测试tagsViewName(非国际化)';
