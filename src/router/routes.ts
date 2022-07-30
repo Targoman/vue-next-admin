@@ -21,6 +21,8 @@ import { RouteRecordRaw } from 'vue-router';
  * @description 各字段请查看 `/@/views/system/menu/component/addMenu.vue 下的 ruleForm`
  * @returns 返回路由菜单数据
  */
+export const auth = '/auth/';
+export const rxLangPath = '/:lang(\\w{2})*';
 export const dynamicRoutes: Array<RouteRecordRaw> = [
 	{
 		path: '/',
@@ -35,6 +37,21 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				path: '/home',
 				name: 'home',
 				component: () => import('/@/views/home/index.vue'),
+				meta: {
+					title: 'message.router.home',
+					isLink: '',
+					isHide: false,
+					isKeepAlive: true,
+					isAffix: true,
+					isIframe: false,
+					roles: ['admin', 'common'],
+					icon: 'iconfont icon-shouye',
+				},
+			},
+			{
+				path: '/test',
+				name: 'test',
+				component: () => import('/@/views/home/test.vue'),
 				meta: {
 					title: 'message.router.home',
 					isLink: '',
@@ -1172,10 +1189,6 @@ export const staticRoutes: Array<RouteRecordRaw> = [
 			title: 'Login',
 		},
 	},
-	/**
-	 * 提示：写在这里的为全屏界面，不建议写在这里
-	 * 请写在 `dynamicRoutes` 路由数组中
-	 */
 	{
 		path: '/visualizingDemo1',
 		name: 'visualizingDemo1',
