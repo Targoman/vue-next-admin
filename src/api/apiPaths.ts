@@ -1,7 +1,6 @@
 export const apiPaths = {
 	// AUTH
 	validateJwt: 'Account/Auth/validateJWT',
-
 	// FINANCIAL.TS:
 	account: '/Account',
 	userWallet: 'Account/UserWallets',
@@ -42,7 +41,7 @@ export const apiPaths = {
 	userWalletsTransfer: 'Account/UserWallets/transfer',
 
 	// API.TS:
-	apiUrl: process.env.VUE_APP_BASE_API_URL!,
+	apiUrl: 'https://newapi.targoman.ir/rest/v1',
 
 	// ADVERT.TS:
 	advert: 'Advert',

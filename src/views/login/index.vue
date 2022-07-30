@@ -13,7 +13,7 @@
 				<div v-if="!isScan">
 					<el-tabs v-model="tabsActiveName">
 						<el-tab-pane :label="$t('message.label.one1')" name="account">
-							<Account @signIn="alert(1)" />
+							<Account @signIn="submit($event)" />
 						</el-tab-pane>
 						<el-tab-pane :label="$t('message.label.two2')" name="mobile">
 							<Mobile />
@@ -40,6 +40,7 @@ import { NextLoading } from '/@/utils/loading';
 import Account from '/@/views/login/component/account.vue';
 import Mobile from '/@/views/login/component/mobile.vue';
 import Scan from '/@/views/login/component/scan.vue';
+import { submit } from '/@/api/login/index';
 
 interface LoginState {
 	tabsActiveName: string;
@@ -62,12 +63,19 @@ export default defineComponent({
 		onMounted(() => {
 			NextLoading.done();
 		});
+
 		return {
 			logoMini,
 			loginIconTwo,
 			getThemeConfig,
 			...toRefs(state),
 		};
+	},
+	methods: {
+		submit(data: { userName: string; password: string }) {
+			console.log(data);
+			submit(data.userName, data.password);
+		},
 	},
 });
 </script>

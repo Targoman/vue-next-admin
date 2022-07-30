@@ -94,8 +94,8 @@ export default defineComponent({
 		});
 		// 登录
 		const onSignIn = async () => {
-			console.log(props, context);
-			context.emit('signIn');
+			context.emit('signIn', state.ruleForm);
+
 			// state.loading.signIn = true;
 			// Session.set('token', Math.random().toString(36).substr(0));
 			// Cookies.set('userName', state.ruleForm.userName);
@@ -107,9 +107,7 @@ export default defineComponent({
 			// 	signInSuccess();
 			// }
 		};
-		// 登录成功后的跳转
 		const signInSuccess = () => {
-			// 初始化登录成功时间问候语
 			let currentTimeInfo = currentTime.value;
 			if (route.query?.redirect) {
 				router.push({
@@ -119,7 +117,7 @@ export default defineComponent({
 			} else {
 				router.push('/');
 			}
-			//  loading
+
 			state.loading.signIn = true;
 			const signInText = t('message.signInText');
 			ElMessage.success(`${currentTimeInfo}，${signInText}`);
