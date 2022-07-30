@@ -1,7 +1,7 @@
 <template>
 	<el-form size="large" class="login-content-form">
 		<el-form-item class="login-animation1">
-			<el-input type="text" :placeholder="$t('mobile.placeholder1')" v-model="ruleForm.userName" clearable autocomplete="off">
+			<el-input type="text" :placeholder="$t('placeholder1')" v-model="ruleForm.userName" clearable autocomplete="off">
 				<template #prefix>
 					<i class="iconfont icon-dianhua el-input__icon"></i>
 				</template>
@@ -9,7 +9,7 @@
 		</el-form-item>
 		<el-form-item class="login-animation2">
 			<el-col :span="15">
-				<el-input type="text" maxlength="4" :placeholder="$t('mobile.placeholder2')" v-model="ruleForm.code" clearable autocomplete="off">
+				<el-input type="text" maxlength="4" :placeholder="$t('placeholder2')" v-model="ruleForm.code" clearable autocomplete="off">
 					<template #prefix>
 						<el-icon class="el-input__icon"><ele-Position /></el-icon>
 					</template>
@@ -17,15 +17,15 @@
 			</el-col>
 			<el-col :span="1"></el-col>
 			<el-col :span="8">
-				<el-button class="login-content-code">{{ $t('mobile.codeText') }}</el-button>
+				<el-button class="login-content-code">{{ $t('codeText') }}</el-button>
 			</el-col>
 		</el-form-item>
 		<el-form-item class="login-animation3">
 			<el-button round type="primary" class="login-content-submit">
-				<span>{{ $t('mobile.btnText') }}</span>
+				<span>{{ $t('btnText') }}</span>
 			</el-button>
 		</el-form-item>
-		<div class="font12 mt30 login-animation4 login-msg">{{ $t('mobile.msgText') }}</div>
+		<div class="font12 mt30 login-animation4 login-msg">{{ $t('msgText') }}</div>
 	</el-form>
 </template>
 
@@ -82,3 +82,22 @@ export default defineComponent({
 	}
 }
 </style>
+<i18n>
+{
+	"en": {
+			"placeholder1": "Please input mobile phone number",
+			"placeholder2": "Please enter the verification code",
+			"codeText": "Get code",
+			"btnText": "Sign in",
+			"msgText": "Warm tip: it is recommended to use Google, Microsoft edge, version 79.0.1072.62 and above browsers, and 360 browser, please use speed mode"
+	},
+	"fa": {
+			"placeholder1": "شماره تلفن را وارد کنید",
+			"placeholder2": "请输入验证码",
+			"codeText": "获取验证码",
+			"btnText": "ورود",
+			"msgText": "* 温馨提示：建议使用谷歌、Microsoft Edge，版本 79.0.1072.62 及以上浏览器，360浏览器请使用极速模式"
+
+	}
+}
+</i18n>

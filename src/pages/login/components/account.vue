@@ -1,19 +1,14 @@
 <template>
 	<el-form size="large" class="login-content-form">
 		<el-form-item class="login-animation1">
-			<el-input type="text" :placeholder="$t('account.accountPlaceholder1')" v-model="ruleForm.userName" clearable autocomplete="off">
+			<el-input type="text" :placeholder="$t('accountPlaceholder1')" v-model="ruleForm.userName" clearable autocomplete="off">
 				<template #prefix>
 					<el-icon class="el-input__icon"><ele-User /></el-icon>
 				</template>
 			</el-input>
 		</el-form-item>
 		<el-form-item class="login-animation2">
-			<el-input
-				:type="isShowPassword ? 'text' : 'password'"
-				:placeholder="$t('account.accountPlaceholder2')"
-				v-model="ruleForm.password"
-				autocomplete="off"
-			>
+			<el-input :type="isShowPassword ? 'text' : 'password'" :placeholder="$t('accountPlaceholder2')" v-model="ruleForm.password" autocomplete="off">
 				<template #prefix>
 					<el-icon class="el-input__icon"><ele-Unlock /></el-icon>
 				</template>
@@ -29,7 +24,7 @@
 		</el-form-item>
 		<el-form-item class="login-animation3">
 			<el-col :span="15">
-				<el-input type="text" maxlength="4" :placeholder="$t('account.accountPlaceholder3')" v-model="ruleForm.code" clearable autocomplete="off">
+				<el-input type="text" maxlength="4" :placeholder="$t('accountPlaceholder3')" v-model="ruleForm.code" clearable autocomplete="off">
 					<template #prefix>
 						<el-icon class="el-input__icon"><ele-Position /></el-icon>
 					</template>
@@ -42,7 +37,7 @@
 		</el-form-item>
 		<el-form-item class="login-animation4">
 			<el-button type="primary" class="login-content-submit" round @click="onSignIn" :loading="loadingSignIn">
-				<span>{{ $t('account.accountBtnText') }}</span>
+				<span>{{ $t('accountBtnText') }}</span>
 			</el-button>
 		</el-form-item>
 	</el-form>
@@ -156,4 +151,20 @@ export default defineComponent({
 	}
 }
 </style>
-<i18n src="./i18n.json" />
+<i18n>
+{
+	"en": {
+		"accountPlaceholder1": "The user name admin or not is common",
+		"accountPlaceholder2": "Password: 123456",
+		"accountPlaceholder3": "Please enter the verification code",
+		"accountBtnText": "Sign in"
+	},
+	"fa": {
+		"accountPlaceholder1": "用户名 admin 或不输均为 common",
+		"accountPlaceholder2": "رمز：123456",
+		"accountPlaceholder3": "请输入验证码",
+		"accountBtnText": "登 录"
+	
+	}
+}
+</i18n>
