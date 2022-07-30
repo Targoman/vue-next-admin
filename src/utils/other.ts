@@ -17,6 +17,10 @@ export function elSvg(app: App) {
 	app.component('SvgIcon', SvgIcon);
 }
 
+/**
+ * 设置浏览器标题国际化
+ * @method const title = useTitle(); ==> title()
+ */
 export function useTitle() {
 	const stores = useThemeConfig(pinia);
 	const { themeConfig } = storeToRefs(stores);
@@ -42,7 +46,7 @@ export function setTagsViewNameI18n(item: any) {
 	let tagsViewName: any = '';
 	const { query, params, meta } = item;
 	if (query?.tagsViewName || params?.tagsViewName) {
-		if (/\/zh-cn|en\//.test(query?.tagsViewName) || /\/(zh-cn|en)\//.test(params?.tagsViewName)) {
+		if (/\/fa|en\//.test(query?.tagsViewName) || /\/(fa|en)\//.test(params?.tagsViewName)) {
 			// 国际化
 			const urlTagsParams = (query?.tagsViewName && JSON.parse(query?.tagsViewName)) || (params?.tagsViewName && JSON.parse(params?.tagsViewName));
 			tagsViewName = urlTagsParams[i18n.global.locale];
@@ -149,17 +153,6 @@ export function handleEmpty(list: any) {
 	return arr;
 }
 
-/**
- * 统一批量导出
- * @method elSvg 导出全局注册 element plus svg 图标
- * @method useTitle 设置浏览器标题国际化
- * @method setTagsViewNameI18n 设置 自定义 tagsView 名称、 自定义 tagsView 名称国际化
- * @method lazyImg 图片懒加载
- * @method globalComponentSize() element plus 全局组件大小
- * @method deepClone 对象深克隆
- * @method isMobile 判断是否是移动端
- * @method handleEmpty 判断数组对象中所有属性是否为空，为空则删除当前行对象
- */
 const other = {
 	elSvg: (app: App) => {
 		elSvg(app);
