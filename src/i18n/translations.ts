@@ -1,8 +1,13 @@
 // 定义内容
 export default {
 	en: {
+		dashboard: 'Dashboard',
+		profile: 'Profile',
+		cart: 'Cart',
+		wallet: 'Wallet',
+		specification: 'Specification',
+		transactions: 'Transactions',
 		router: {
-			home: 'home',
 			system: 'system',
 			systemMenu: 'systemMenu',
 			systemRole: 'systemRole',
@@ -180,8 +185,15 @@ export default {
 		},
 	},
 	fa: {
+		profile: 'پروفایل',
+		dashboard: 'پیشخوان',
+		cart: 'سبدخرید',
+		wallet: 'کیف پول',
+		specification: 'مشخصات',
+		transactions: 'تراکنش‌ها',
+		withdrawal: 'برداشت‌ها',
+		transfers: 'انتقال‌‌ها',
 		router: {
-			home: 'خانه',
 			system: '系统设置',
 			systemMenu: '菜单管理',
 			systemRole: '角色管理',

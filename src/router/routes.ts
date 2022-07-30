@@ -28,7 +28,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 		path: '/',
 		name: '/',
 		component: () => import('/@/layout/index.vue'),
-		redirect: '/home',
+		redirect: '/test',
 		meta: {
 			isKeepAlive: true,
 		},
@@ -38,7 +38,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				name: 'home',
 				component: () => import('/@/views/home/index.vue'),
 				meta: {
-					title: 'message.router.home',
+					title: 'dashboard',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -53,7 +53,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				name: 'test',
 				component: () => import('/@/views/home/test.vue'),
 				meta: {
-					title: 'message.router.home',
+					title: 'profile',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -64,12 +64,106 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				},
 			},
 			{
+				path: '/test2',
+				name: 'test2',
+				component: () => import('/@/views/home/test.vue'),
+				meta: {
+					title: 'cart',
+					isLink: '',
+					isHide: false,
+					isKeepAlive: true,
+					isAffix: true,
+					isIframe: false,
+					roles: ['admin', 'common'],
+					icon: 'iconfont icon-shouye',
+				},
+			},
+
+			{
+				path: '/wallet',
+				name: 'wallet',
+				component: () => import('/@/views/home/test.vue'),
+				meta: {
+					title: 'wallet',
+					isLink: '',
+					isHide: false,
+					isKeepAlive: true,
+					isAffix: false,
+					isIframe: false,
+					roles: ['admin', 'common'],
+					icon: 'iconfont icon-quanxian',
+				},
+				children: [
+					{
+						path: '/wallet/specification',
+						name: 'walletSpecification',
+						component: () => import('/@/views/home/test.vue'),
+						meta: {
+							title: 'specification',
+							isLink: '',
+							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							roles: ['admin', 'common'],
+							icon: '',
+						},
+					},
+					{
+						path: '/wallet/transactions',
+						name: 'walletTransactions',
+						component: () => import('/@/views/home/test.vue'),
+						meta: {
+							title: 'transactions',
+							isLink: '',
+							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							roles: ['admin', 'common'],
+							icon: '',
+						},
+					},
+					{
+						path: '/wallet/transfers',
+						name: 'walletTransfers',
+						component: () => import('/@/views/home/test.vue'),
+						meta: {
+							title: 'transfers',
+							isLink: '',
+							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							roles: ['admin', 'common'],
+							icon: '',
+						},
+					},
+					{
+						path: '/wallet/withdrawal',
+						name: 'walletWithdrawal',
+						component: () => import('/@/views/home/test.vue'),
+						meta: {
+							title: 'withdrawal',
+							isLink: '',
+							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							roles: ['admin', 'common'],
+							icon: '',
+						},
+					},
+				],
+			},
+
+			{
 				path: '/system',
 				name: 'system',
 				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/system/menu',
 				meta: {
-					title: 'message.router.system',
+					title: 'router.system',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -84,7 +178,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'systemMenu',
 						component: () => import('/@/views/system/menu/index.vue'),
 						meta: {
-							title: 'message.router.systemMenu',
+							title: 'router.systemMenu',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -99,7 +193,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'systemRole',
 						component: () => import('/@/views/system/role/index.vue'),
 						meta: {
-							title: 'message.router.systemRole',
+							title: 'router.systemRole',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -114,7 +208,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'systemUser',
 						component: () => import('/@/views/system/user/index.vue'),
 						meta: {
-							title: 'message.router.systemUser',
+							title: 'router.systemUser',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -129,7 +223,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'systemDept',
 						component: () => import('/@/views/system/dept/index.vue'),
 						meta: {
-							title: 'message.router.systemDept',
+							title: 'router.systemDept',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -144,7 +238,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'systemDic',
 						component: () => import('/@/views/system/dic/index.vue'),
 						meta: {
-							title: 'message.router.systemDic',
+							title: 'router.systemDic',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -162,7 +256,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/limits/frontEnd',
 				meta: {
-					title: 'message.router.limits',
+					title: 'router.limits',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -178,7 +272,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						component: () => import('/@/layout/routerView/parent.vue'),
 						redirect: '/limits/frontEnd/page',
 						meta: {
-							title: 'message.router.limitsFrontEnd',
+							title: 'router.limitsFrontEnd',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -193,7 +287,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 								name: 'limitsFrontEndPage',
 								component: () => import('/@/views/limits/frontEnd/page/index.vue'),
 								meta: {
-									title: 'message.router.limitsFrontEndPage',
+									title: 'router.limitsFrontEndPage',
 									isLink: '',
 									isHide: false,
 									isKeepAlive: true,
@@ -208,7 +302,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 								name: 'limitsFrontEndBtn',
 								component: () => import('/@/views/limits/frontEnd/btn/index.vue'),
 								meta: {
-									title: 'message.router.limitsFrontEndBtn',
+									title: 'router.limitsFrontEndBtn',
 									isLink: '',
 									isHide: false,
 									isKeepAlive: true,
@@ -225,7 +319,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'limitsBackEnd',
 						component: () => import('/@/layout/routerView/parent.vue'),
 						meta: {
-							title: 'message.router.limitsBackEnd',
+							title: 'router.limitsBackEnd',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -240,7 +334,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 								name: 'limitsBackEndEndPage',
 								component: () => import('/@/views/limits/backEnd/page/index.vue'),
 								meta: {
-									title: 'message.router.limitsBackEndEndPage',
+									title: 'router.limitsBackEndEndPage',
 									isLink: '',
 									isHide: false,
 									isKeepAlive: true,
@@ -260,7 +354,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/menu/menu1',
 				meta: {
-					title: 'message.router.menu',
+					title: 'router.menu',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -276,7 +370,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						component: () => import('/@/layout/routerView/parent.vue'),
 						redirect: '/menu/menu1/menu11',
 						meta: {
-							title: 'message.router.menu1',
+							title: 'router.menu1',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -291,7 +385,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 								name: 'menu11',
 								component: () => import('/@/views/menu/menu1/menu11/index.vue'),
 								meta: {
-									title: 'message.router.menu11',
+									title: 'router.menu11',
 									isLink: '',
 									isHide: false,
 									isKeepAlive: true,
@@ -307,7 +401,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 								component: () => import('/@/layout/routerView/parent.vue'),
 								redirect: '/menu/menu1/menu12/menu121',
 								meta: {
-									title: 'message.router.menu12',
+									title: 'router.menu12',
 									isLink: '',
 									isHide: false,
 									isKeepAlive: true,
@@ -322,7 +416,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 										name: 'menu121',
 										component: () => import('/@/views/menu/menu1/menu12/menu121/index.vue'),
 										meta: {
-											title: 'message.router.menu121',
+											title: 'router.menu121',
 											isLink: '',
 											isHide: false,
 											isKeepAlive: true,
@@ -337,7 +431,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 										name: 'menu122',
 										component: () => import('/@/views/menu/menu1/menu12/menu122/index.vue'),
 										meta: {
-											title: 'message.router.menu122',
+											title: 'router.menu122',
 											isLink: '',
 											isHide: false,
 											isKeepAlive: true,
@@ -354,7 +448,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 								name: 'menu13',
 								component: () => import('/@/views/menu/menu1/menu13/index.vue'),
 								meta: {
-									title: 'message.router.menu13',
+									title: 'router.menu13',
 									isLink: '',
 									isHide: false,
 									isKeepAlive: true,
@@ -371,7 +465,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'menu2',
 						component: () => import('/@/views/menu/menu2/index.vue'),
 						meta: {
-							title: 'message.router.menu2',
+							title: 'router.menu2',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -389,7 +483,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/fun/tagsView',
 				meta: {
-					title: 'message.router.funIndex',
+					title: 'router.funIndex',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -404,7 +498,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'funTagsView',
 						component: () => import('/@/views/fun/tagsView/index.vue'),
 						meta: {
-							title: 'message.router.funTagsView',
+							title: 'router.funTagsView',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -419,7 +513,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'funCountup',
 						component: () => import('/@/views/fun/countup/index.vue'),
 						meta: {
-							title: 'message.router.funCountup',
+							title: 'router.funCountup',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -434,7 +528,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'funWangEditor',
 						component: () => import('/@/views/fun/wangEditor/index.vue'),
 						meta: {
-							title: 'message.router.funWangEditor',
+							title: 'router.funWangEditor',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -449,7 +543,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'funCropper',
 						component: () => import('/@/views/fun/cropper/index.vue'),
 						meta: {
-							title: 'message.router.funCropper',
+							title: 'router.funCropper',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -464,7 +558,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'funQrcode',
 						component: () => import('/@/views/fun/qrcode/index.vue'),
 						meta: {
-							title: 'message.router.funQrcode',
+							title: 'router.funQrcode',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -479,7 +573,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'funEchartsMap',
 						component: () => import('/@/views/fun/echartsMap/index.vue'),
 						meta: {
-							title: 'message.router.funEchartsMap',
+							title: 'router.funEchartsMap',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -494,7 +588,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'funPrintJs',
 						component: () => import('/@/views/fun/printJs/index.vue'),
 						meta: {
-							title: 'message.router.funPrintJs',
+							title: 'router.funPrintJs',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -509,7 +603,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'funClipboard',
 						component: () => import('/@/views/fun/clipboard/index.vue'),
 						meta: {
-							title: 'message.router.funClipboard',
+							title: 'router.funClipboard',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -524,7 +618,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'funGridLayout',
 						component: () => import('/@/views/fun/gridLayout/index.vue'),
 						meta: {
-							title: 'message.router.funGridLayout',
+							title: 'router.funGridLayout',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -539,7 +633,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'funSplitpanes',
 						component: () => import('/@/views/fun/splitpanes/index.vue'),
 						meta: {
-							title: 'message.router.funSplitpanes',
+							title: 'router.funSplitpanes',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -557,7 +651,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/pages/filtering',
 				meta: {
-					title: 'message.router.pagesIndex',
+					title: 'router.pagesIndex',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -572,7 +666,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesFiltering',
 						component: () => import('/@/views/pages/filtering/index.vue'),
 						meta: {
-							title: 'message.router.pagesFiltering',
+							title: 'router.pagesFiltering',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -593,9 +687,9 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 								name: 'pagesFilteringDetails',
 								component: () => import('/@/views/pages/filtering/details.vue'),
 								meta: {
-									title: 'message.router.pagesFilteringDetails',
+									title: 'router.pagesFilteringDetails',
 									isLink: '',
-									isHide: true,
+									isHide: false,
 									isKeepAlive: false,
 									isAffix: false,
 									isIframe: false,
@@ -610,9 +704,9 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesFilteringDetails1',
 						component: () => import('/@/views/pages/filtering/details1.vue'),
 						meta: {
-							title: 'message.router.pagesFilteringDetails1',
+							title: 'router.pagesFilteringDetails1',
 							isLink: '',
-							isHide: true,
+							isHide: false,
 							isKeepAlive: false,
 							isAffix: false,
 							isIframe: false,
@@ -625,7 +719,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesIocnfont',
 						component: () => import('/@/views/pages/iocnfont/index.vue'),
 						meta: {
-							title: 'message.router.pagesIocnfont',
+							title: 'router.pagesIocnfont',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -640,7 +734,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesElement',
 						component: () => import('/@/views/pages/element/index.vue'),
 						meta: {
-							title: 'message.router.pagesElement',
+							title: 'router.pagesElement',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -655,7 +749,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesAwesome',
 						component: () => import('/@/views/pages/awesome/index.vue'),
 						meta: {
-							title: 'message.router.pagesAwesome',
+							title: 'router.pagesAwesome',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -670,7 +764,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesFormAdapt',
 						component: () => import('/@/views/pages/formAdapt/index.vue'),
 						meta: {
-							title: 'message.router.pagesFormAdapt',
+							title: 'router.pagesFormAdapt',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -685,7 +779,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesTableRules',
 						component: () => import('/@/views/pages/tableRules/index.vue'),
 						meta: {
-							title: 'message.router.pagesTableRules',
+							title: 'router.pagesTableRules',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -700,7 +794,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesFormI18n',
 						component: () => import('/@/views/pages/formI18n/index.vue'),
 						meta: {
-							title: 'message.router.pagesFormI18n',
+							title: 'router.pagesFormI18n',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -715,7 +809,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesFormRules',
 						component: () => import('/@/views/pages/formRules/index.vue'),
 						meta: {
-							title: 'message.router.pagesFormRules',
+							title: 'router.pagesFormRules',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -730,7 +824,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesListAdapt',
 						component: () => import('/@/views/pages/listAdapt/index.vue'),
 						meta: {
-							title: 'message.router.pagesListAdapt',
+							title: 'router.pagesListAdapt',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -745,7 +839,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesWaterfall',
 						component: () => import('/@/views/pages/waterfall/index.vue'),
 						meta: {
-							title: 'message.router.pagesWaterfall',
+							title: 'router.pagesWaterfall',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -760,7 +854,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesSteps',
 						component: () => import('/@/views/pages/steps/index.vue'),
 						meta: {
-							title: 'message.router.pagesSteps',
+							title: 'router.pagesSteps',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -775,7 +869,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesPreview',
 						component: () => import('/@/views/pages/preview/index.vue'),
 						meta: {
-							title: 'message.router.pagesPreview',
+							title: 'router.pagesPreview',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -790,7 +884,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesWaves',
 						component: () => import('/@/views/pages/waves/index.vue'),
 						meta: {
-							title: 'message.router.pagesWaves',
+							title: 'router.pagesWaves',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -805,7 +899,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesTree',
 						component: () => import('/@/views/pages/tree/index.vue'),
 						meta: {
-							title: 'message.router.pagesTree',
+							title: 'router.pagesTree',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -820,7 +914,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesDrag',
 						component: () => import('/@/views/pages/drag/index.vue'),
 						meta: {
-							title: 'message.router.pagesDrag',
+							title: 'router.pagesDrag',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -835,7 +929,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesLazyImg',
 						component: () => import('/@/views/pages/lazyImg/index.vue'),
 						meta: {
-							title: 'message.router.pagesLazyImg',
+							title: 'router.pagesLazyImg',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -850,7 +944,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesDynamicForm',
 						component: () => import('/@/views/pages/dynamicForm/index.vue'),
 						meta: {
-							title: 'message.router.pagesDynamicForm',
+							title: 'router.pagesDynamicForm',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -865,7 +959,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'pagesWorkflow',
 						component: () => import('/@/views/pages/workflow/index.vue'),
 						meta: {
-							title: 'message.router.pagesWorkflow',
+							title: 'router.pagesWorkflow',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -883,7 +977,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/make/selector',
 				meta: {
-					title: 'message.router.makeIndex',
+					title: 'router.makeIndex',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -898,7 +992,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'makeSelector',
 						component: () => import('/@/views/make/selector/index.vue'),
 						meta: {
-							title: 'message.router.makeSelector',
+							title: 'router.makeSelector',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -913,7 +1007,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'makeNoticeBar',
 						component: () => import('/@/views/make/noticeBar/index.vue'),
 						meta: {
-							title: 'message.router.makeNoticeBar',
+							title: 'router.makeNoticeBar',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -928,7 +1022,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'makeSvgDemo',
 						component: () => import('/@/views/make/svgDemo/index.vue'),
 						meta: {
-							title: 'message.router.makeSvgDemo',
+							title: 'router.makeSvgDemo',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -946,7 +1040,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/params/common',
 				meta: {
-					title: 'message.router.paramsIndex',
+					title: 'router.paramsIndex',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -961,7 +1055,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'paramsCommon',
 						component: () => import('/@/views/params/common/index.vue'),
 						meta: {
-							title: 'message.router.paramsCommon',
+							title: 'router.paramsCommon',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -976,9 +1070,9 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'paramsCommonDetails',
 						component: () => import('/@/views/params/common/details.vue'),
 						meta: {
-							title: 'message.router.paramsCommonDetails',
+							title: 'router.paramsCommonDetails',
 							isLink: '',
-							isHide: true,
+							isHide: false,
 							isKeepAlive: true,
 							isAffix: false,
 							isIframe: false,
@@ -991,7 +1085,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'paramsDynamic',
 						component: () => import('/@/views/params/dynamic/index.vue'),
 						meta: {
-							title: 'message.router.paramsDynamic',
+							title: 'router.paramsDynamic',
 							isLink: '',
 							isHide: false,
 							isKeepAlive: true,
@@ -1010,9 +1104,9 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'paramsDynamicDetails',
 						component: () => import('/@/views/params/dynamic/details.vue'),
 						meta: {
-							title: 'message.router.paramsDynamicDetails',
+							title: 'router.paramsDynamicDetails',
 							isLink: '',
-							isHide: true,
+							isHide: false,
 							isKeepAlive: true,
 							isAffix: false,
 							isIframe: false,
@@ -1028,7 +1122,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/visualizing/visualizingLinkDemo1',
 				meta: {
-					title: 'message.router.visualizingIndex',
+					title: 'router.visualizingIndex',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -1043,7 +1137,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'visualizingLinkDemo1',
 						component: () => import('/@/layout/routerView/link.vue'),
 						meta: {
-							title: 'message.router.visualizingLinkDemo1',
+							title: 'router.visualizingLinkDemo1',
 							isLink: `${import.meta.env.VITE_API_URL}#/visualizingDemo1`,
 							isHide: false,
 							isKeepAlive: false,
@@ -1058,7 +1152,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						name: 'visualizingLinkDemo2',
 						component: () => import('/@/layout/routerView/link.vue'),
 						meta: {
-							title: 'message.router.visualizingLinkDemo2',
+							title: 'router.visualizingLinkDemo2',
 							isLink: `${import.meta.env.VITE_API_URL}#/visualizingDemo2`,
 							isHide: false,
 							isKeepAlive: false,
@@ -1075,7 +1169,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				name: 'chartIndex',
 				component: () => import('/@/views/chart/index.vue'),
 				meta: {
-					title: 'message.router.chartIndex',
+					title: 'router.chartIndex',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -1090,7 +1184,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				name: 'personal',
 				component: () => import('/@/views/personal/index.vue'),
 				meta: {
-					title: 'message.router.personal',
+					title: 'router.personal',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -1105,7 +1199,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				name: 'tools',
 				component: () => import('/@/views/tools/index.vue'),
 				meta: {
-					title: 'message.router.tools',
+					title: 'router.tools',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -1129,8 +1223,8 @@ export const notFoundAndNoPower = [
 		name: 'notFound',
 		component: () => import('/@/views/error/404.vue'),
 		meta: {
-			title: 'message.staticRoutes.notFound',
-			isHide: true,
+			title: 'staticRoutes.notFound',
+			isHide: false,
 		},
 	},
 	{
@@ -1138,8 +1232,8 @@ export const notFoundAndNoPower = [
 		name: 'noPower',
 		component: () => import('/@/views/error/401.vue'),
 		meta: {
-			title: 'message.staticRoutes.noPower',
-			isHide: true,
+			title: 'staticRoutes.noPower',
+			isHide: false,
 		},
 	},
 ];
@@ -1158,7 +1252,7 @@ export const staticRoutes: Array<RouteRecordRaw> = [
 		name: 'visualizingDemo1',
 		component: () => import('/@/views/visualizing/demo1.vue'),
 		meta: {
-			title: 'message.router.visualizingLinkDemo1',
+			title: 'router.visualizingLinkDemo1',
 		},
 	},
 	{
@@ -1166,7 +1260,7 @@ export const staticRoutes: Array<RouteRecordRaw> = [
 		name: 'visualizingDemo2',
 		component: () => import('/@/views/visualizing/demo2.vue'),
 		meta: {
-			title: 'message.router.visualizingLinkDemo2',
+			title: 'router.visualizingLinkDemo2',
 		},
 	},
 ];
