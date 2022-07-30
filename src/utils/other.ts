@@ -9,11 +9,6 @@ import { i18n } from '/@/i18n/index';
 import { Local } from '/@/utils/storage';
 import SvgIcon from '/@/components/svgIcon/index.vue';
 
-/**
- * 导出全局注册 element plus svg 图标
- * @param app vue 实例
- * @description 使用：https://element-plus.gitee.io/zh-CN/component/icon.html
- */
 export function elSvg(app: App) {
 	const icons = svg as any;
 	for (const i in icons) {
@@ -22,10 +17,6 @@ export function elSvg(app: App) {
 	app.component('SvgIcon', SvgIcon);
 }
 
-/**
- * 设置浏览器标题国际化
- * @method const title = useTitle(); ==> title()
- */
 export function useTitle() {
 	const stores = useThemeConfig(pinia);
 	const { themeConfig } = storeToRefs(stores);
@@ -51,7 +42,7 @@ export function setTagsViewNameI18n(item: any) {
 	let tagsViewName: any = '';
 	const { query, params, meta } = item;
 	if (query?.tagsViewName || params?.tagsViewName) {
-		if (/\/zh-cn|en|zh-tw\//.test(query?.tagsViewName) || /\/(zh-cn|en|zh-tw)\//.test(params?.tagsViewName)) {
+		if (/\/zh-cn|en\//.test(query?.tagsViewName) || /\/(zh-cn|en)\//.test(params?.tagsViewName)) {
 			// 国际化
 			const urlTagsParams = (query?.tagsViewName && JSON.parse(query?.tagsViewName)) || (params?.tagsViewName && JSON.parse(params?.tagsViewName));
 			tagsViewName = urlTagsParams[i18n.global.locale];
