@@ -33,49 +33,35 @@ export default defineComponent({
 		const state = reactive({
 			i18nLocale: null,
 		});
-		// 获取全局组件大小
 		const getGlobalComponentSize = computed(() => {
 			return other.globalComponentSize();
 		});
-		// 布局配置弹窗打开
 		const openSetingsDrawer = () => {
 			setingsRef.value.openDrawer();
 		};
-		// 设置初始化，防止刷新时恢复默认
 		onBeforeMount(() => {
-			// 设置批量第三方 icon 图标
 			setIntroduction.cssCdn();
-			// 设置批量第三方 js
 			setIntroduction.jsCdn();
 		});
-		// 页面加载时
 		onMounted(() => {
 			nextTick(() => {
-				// 监听布局配置弹窗点击打开
-				proxy.mittBus.on('openSetingsDrawer', () => {
-					openSetingsDrawer();
-				});
-				// 设置 i18n，App.vue 中的 el-config-provider
+				proxy.mittBus.on('openSetingsDrawer', () => {});
 				proxy.mittBus.on('getI18nConfig', (locale: string) => {
 					(state.i18nLocale as string | null) = locale;
 				});
-				// 获取缓存中的布局配置
 				if (Local.get('themeConfig')) {
 					storesThemeConfig.setThemeConfig(Local.get('themeConfig'));
 					document.documentElement.style.cssText = Local.get('themeConfigStyle');
 				}
-				// 获取缓存中的全屏配置
 				if (Session.get('isTagsViewCurrenFull')) {
 					stores.setCurrenFullscreen(Session.get('isTagsViewCurrenFull'));
 				}
 			});
 		});
-		// 页面销毁时，关闭监听布局配置/i18n监听
 		onUnmounted(() => {
 			proxy.mittBus.off('openSetingsDrawer', () => {});
 			proxy.mittBus.off('getI18nConfig', () => {});
 		});
-		// 监听路由的变化，设置网站标题
 		watch(
 			() => route.path,
 			() => {
