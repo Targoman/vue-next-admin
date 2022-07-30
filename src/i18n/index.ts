@@ -9,7 +9,7 @@ import enLocale from 'element-plus/lib/locale/lang/en';
 
 import translations from './translations';
 
-import login from '/@/pages/login/i18n.ts';
+// import login from '/@/pages/login/i18n.ts';
 import pagesFormI18nEn from '/@/i18n/pages/formI18n/en';
 
 export const i18nStore = defineStore('i18n', {
@@ -26,12 +26,12 @@ export const i18nStore = defineStore('i18n', {
 const messages = {
 	[faLocale.name]: {
 		...translations.fa,
-		...login.fa,
+		// ...login.fa,
 		...pagesFormI18nEn,
 	},
 	[enLocale.name]: {
 		...translations.en,
-		...login.en,
+		// ...login.en,
 		...pagesFormI18nEn,
 	},
 };

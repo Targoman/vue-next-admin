@@ -1,6 +1,7 @@
 import vue from '@vitejs/plugin-vue';
-import { resolve } from 'path';
+import path, { resolve } from 'path';
 import { defineConfig, loadEnv, ConfigEnv } from 'vite';
+import vueI18n from '@intlify/vite-plugin-vue-i18n';
 
 const pathResolve = (dir: string): any => {
 	return resolve(__dirname, '.', dir);
@@ -14,7 +15,14 @@ const alias: Record<string, string> = {
 const viteConfig = defineConfig((mode: ConfigEnv) => {
 	const env = loadEnv(mode.mode, process.cwd());
 	return {
-		plugins: [vue()],
+		plugins: [
+			vue(),
+			vueI18n({
+				// if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
+				// compositionOnly: false,
+				include: path.resolve(__dirname, './path/to/src/locales/**'),
+			}),
+		],
 		root: process.cwd(),
 		resolve: { alias },
 		base: mode.command === 'serve' ? './' : env.VITE_PUBLIC_PATH,
@@ -25,14 +33,6 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
 		server: {
 			host: '0.0.0.0',
 			port: env.VITE_PORT as unknown as number,
-			// proxy: {
-			// 	'/gitee': {
-			// 		target: 'https://gitee.com',
-			// 		ws: true,
-			// 		changeOrigin: true,
-			// 		rewrite: (path) => path.replace(/^\/gitee/, ''),
-			// 	},
-			// },
 		},
 		build: {
 			outDir: 'dist',

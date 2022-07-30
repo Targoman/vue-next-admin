@@ -12,10 +12,10 @@
 				<h4 class="login-content-title ml15">{{ getThemeConfig.globalTitle }}后台模板</h4>
 				<div v-if="!isScan">
 					<el-tabs v-model="tabsActiveName">
-						<el-tab-pane :label="$t('message.label.one1')" name="account">
+						<el-tab-pane :label="$t('label.one1')" name="account">
 							<Account @signIn="submit($event)" :loadingSignIn="loading" />
 						</el-tab-pane>
-						<el-tab-pane :label="$t('message.label.two2')" name="mobile">
+						<el-tab-pane :label="$t('label.two2')" name="mobile">
 							<Mobile />
 						</el-tab-pane>
 					</el-tabs>
@@ -206,3 +206,4 @@ export default defineComponent({
 	}
 }
 </style>
+<i18n src="./i18n.json" />
