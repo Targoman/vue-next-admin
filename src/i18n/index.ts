@@ -1,4 +1,4 @@
-import { createI18n } from 'vue-i18n';
+import Vuei18n, { createI18n } from 'vue-i18n';
 
 import pinia from '/@/stores/index';
 import { ISO639 } from './ISO639';
@@ -11,6 +11,8 @@ import translations from './translations';
 
 // import login from '/@/pages/login/i18n.ts';
 import pagesFormI18nEn from '/@/i18n/pages/formI18n/en';
+import i18next from 'i18next';
+import { vueI18n } from '@intlify/vite-plugin-vue-i18n';
 
 export const i18nStore = defineStore('i18n', {
 	state: () => ({
@@ -61,3 +63,25 @@ export const i18n = createI18n({
 export const getLocale = () => {
 	return i18n.global.locale;
 };
+// export function makeTranslator(translations: any) {
+// 	const I18N = new VueI18n(this._vueModule);
+// 	for (const key in translations) {
+// 		I18N.setLocaleMessage(key, translations[key as keyof typeof translations]);
+// 	}
+// 	return (key: VueI18n.Path, values?: VueI18n.Values) => I18N.t(key, this._vueModule.locale, values);
+// }
+export function makeTranslator(translations: any) {
+	const i18n = createI18n({
+		silentTranslationWarn: true,
+		missingWarn: false,
+		silentFallbackWarn: true,
+		fallbackWarn: false,
+		locale: themeConfig.value.globalI18n,
+		fallbackLocale: enLocale.name,
+		translations,
+	});
+	for (const key in translations) {
+		i18n.global.setLocaleMessage(key, translations[key as keyof typeof translations]);
+	}
+	return (key: any, values?: any) => i18n.global.t(key, themeConfig.value.globalI18n, values);
+}
