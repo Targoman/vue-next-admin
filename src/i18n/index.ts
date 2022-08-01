@@ -70,7 +70,7 @@ export const getLocale = () => {
 // 	}
 // 	return (key: VueI18n.Path, values?: VueI18n.Values) => I18N.t(key, this._vueModule.locale, values);
 // }
-export function makeTranslator(translations: any) {
+export function makeTranslator(translations?: any) {
 	const i18n = createI18n({
 		silentTranslationWarn: true,
 		missingWarn: false,
@@ -78,7 +78,7 @@ export function makeTranslator(translations: any) {
 		fallbackWarn: false,
 		locale: themeConfig.value.globalI18n,
 		fallbackLocale: enLocale.name,
-		translations,
+		messages: translations ? translations : messages,
 	});
 	for (const key in translations) {
 		i18n.global.setLocaleMessage(key, translations[key as keyof typeof translations]);
