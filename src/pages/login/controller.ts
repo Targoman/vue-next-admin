@@ -6,9 +6,15 @@ import ApiClient from '/@/api/modules/api';
 import md5 from 'md5';
 import randomSalt from '/@/api/modules/salt';
 import { ExAPIAccessDenied, ExAPIBadRequest, ExAPIUnauthorized, ExAPIPreconditionRequired, ExAPINetwork } from '/@/api/exceptions/APIExceptions';
-import request from '/@/utils/request';
 import { Session } from '/@/utils/storage';
 import Cookies from 'js-cookie';
+import { makeTranslator } from '/@/i18n';
+import t from './i18n.json';
+
+const $t = makeTranslator(t);
+setInterval(() => {
+	console.log($t('signInText'));
+}, 1000);
 
 export async function submit(emailOrMobile: string, password: string) {
 	// if (this.emailOrMobile && this.password) {
