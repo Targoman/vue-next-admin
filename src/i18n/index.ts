@@ -1,5 +1,5 @@
-import Vuei18n, { createI18n } from 'vue-i18n';
-
+import { createI18n } from 'vue-i18n';
+import { toRef, unref } from 'vue';
 import pinia from '/@/stores/index';
 import { ISO639 } from './ISO639';
 import { storeToRefs, defineStore } from 'pinia';
@@ -11,8 +11,6 @@ import translations from './translations';
 
 // import login from '/@/pages/login/i18n.ts';
 import pagesFormI18nEn from '/@/i18n/pages/formI18n/en';
-import i18next from 'i18next';
-import { vueI18n } from '@intlify/vite-plugin-vue-i18n';
 
 export const i18nStore = defineStore('i18n', {
 	state: () => ({
@@ -37,18 +35,9 @@ const messages = {
 		...pagesFormI18nEn,
 	},
 };
-console.log(messages);
 
 const stores = useThemeConfig(pinia);
 const { themeConfig } = storeToRefs(stores);
-
-export const rtlLanguages: Array<ISO639> = [ISO639.Persian, ISO639.Arabic, ISO639.Hebrew];
-function isRTLLang(): boolean {
-	for (const rtlLang in rtlLanguages) {
-		if (rtlLanguages[rtlLang] == getLocale()) return true;
-	}
-	return false;
-}
 
 export const i18n = createI18n({
 	silentTranslationWarn: true,
@@ -59,17 +48,8 @@ export const i18n = createI18n({
 	fallbackLocale: enLocale.name,
 	messages,
 });
+console.log(i18n);
 
-export const getLocale = () => {
-	return i18n.global.locale;
-};
-// export function makeTranslator(translations: any) {
-// 	const I18N = new VueI18n(this._vueModule);
-// 	for (const key in translations) {
-// 		I18N.setLocaleMessage(key, translations[key as keyof typeof translations]);
-// 	}
-// 	return (key: VueI18n.Path, values?: VueI18n.Values) => I18N.t(key, this._vueModule.locale, values);
-// }
 export function makeTranslator(translations?: any) {
 	const i18n = createI18n({
 		silentTranslationWarn: true,
@@ -84,4 +64,21 @@ export function makeTranslator(translations?: any) {
 		i18n.global.setLocaleMessage(key, translations[key as keyof typeof translations]);
 	}
 	return (key: any, values?: any) => i18n.global.t(key, themeConfig.value.globalI18n, values);
+}
+export const getLocale = () => {
+	return themeConfig.value.globalI18n;
+};
+
+console.log('stores ', stores);
+console.log('themeConfig', themeConfig);
+console.log('themeConfig', unref(themeConfig));
+console.log('themeConfig', themeConfig.value);
+
+export const rtlLanguages: Array<ISO639> = [ISO639.Persian, ISO639.Arabic, ISO639.Hebrew];
+function isRTLLang(): boolean {
+	console.log(getLocale());
+	for (const rtlLang in rtlLanguages) {
+		if (rtlLanguages[rtlLang] == getLocale()) return true;
+	}
+	return false;
 }

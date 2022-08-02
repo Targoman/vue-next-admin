@@ -19,7 +19,7 @@ import setIntroduction from '/@/utils/setIconfont';
 import LockScreen from '/@/layout/lockScreen/index.vue';
 import Setings from '/@/layout/navBars/breadcrumb/setings.vue';
 import CloseFull from '/@/layout/navBars/breadcrumb/closeFull.vue';
-import { i18nStore } from './i18n';
+import { i18nStore, getLocale } from './i18n';
 
 export default defineComponent({
 	name: 'app',
@@ -32,7 +32,7 @@ export default defineComponent({
 		const storesThemeConfig = useThemeConfig();
 		const { themeConfig } = storeToRefs(storesThemeConfig);
 		const state = reactive({
-			i18nLocale: null,
+			i18nLocale: null as null | string,
 		});
 		const getGlobalComponentSize = computed(() => {
 			return other.globalComponentSize();
@@ -63,6 +63,13 @@ export default defineComponent({
 					stores.setCurrenFullscreen(Session.get('isTagsViewCurrenFull'));
 				}
 			});
+			console.log(i18nStore().$state.isRTL);
+			// state.i18nLocale = 'fa';
+
+			i18nStore().rtlManager();
+			// setInterval(() => {
+			// 	console.log(i18nStore().$state.isRTL);
+			// }, 1000);
 		});
 		onUnmounted(() => {
 			proxy.mittBus.off('openSetingsDrawer', () => {});

@@ -125,7 +125,7 @@ export default defineComponent({
 			else num = '';
 			return num;
 		});
-		// 全屏点击时
+
 		const onScreenfullClick = () => {
 			if (!screenfull.isEnabled) {
 				ElMessage.warning('暂不不支持全屏');
@@ -137,11 +137,10 @@ export default defineComponent({
 				else state.isScreenfull = false;
 			});
 		};
-		// 布局配置 icon 点击时
+		// icon
 		const onLayoutSetingClick = () => {
 			proxy.mittBus.emit('openSetingsDrawer');
 		};
-		// 下拉菜单点击时
 		const onHandleCommandClick = (path: string) => {
 			if (path === 'logOut') {
 				ElMessageBox({
@@ -232,6 +231,7 @@ export default defineComponent({
 				initComponentSize();
 			}
 		});
+
 		return {
 			userInfos,
 			onLayoutSetingClick,
