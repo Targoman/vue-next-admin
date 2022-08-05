@@ -6,9 +6,9 @@
 			</div>
 			<template #dropdown>
 				<el-dropdown-menu>
-					<el-dropdown-item command="large" :disabled="disabledSize === 'large'">{{ $t('message.user.dropdownLarge') }}</el-dropdown-item>
-					<el-dropdown-item command="default" :disabled="disabledSize === 'default'">{{ $t('message.user.dropdownDefault') }}</el-dropdown-item>
-					<el-dropdown-item command="small" :disabled="disabledSize === 'small'">{{ $t('message.user.dropdownSmall') }}</el-dropdown-item>
+					<el-dropdown-item command="large" :disabled="disabledSize === 'large'">{{ $t('large') }}</el-dropdown-item>
+					<el-dropdown-item command="default" :disabled="disabledSize === 'default'">{{ $t('default') }}</el-dropdown-item>
+					<el-dropdown-item command="small" :disabled="disabledSize === 'small'">{{ $t('small') }}</el-dropdown-item>
 				</el-dropdown-menu>
 			</template>
 		</el-dropdown>

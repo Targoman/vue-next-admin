@@ -1,8 +1,14 @@
 {
 	"en": {
-		"signInText": "welcome back!"
+		"large": "Large",
+		"default": "Default",
+		"small": "Small",
+		"searchPlaceholder": "search:"
 	},
 	"fa": {
-		"signInText": "خوش آمدید"
+		"large": "بزرگ",
+		"default": "پیش‌فرض",
+		"small": "کوچک",
+		"searchPlaceholder": "جستجو:"
 	}
 }
