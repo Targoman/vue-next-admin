@@ -72,7 +72,7 @@
 			</span>
 			<template #dropdown>
 				<el-dropdown-menu>
-					<el-dropdown-item command="/home">{{ $t('message.user.dropdown1') }}</el-dropdown-item>
+					<el-dropdown-item command="/home">{{ $t('signInText') }}</el-dropdown-item>
 					<el-dropdown-item command="wareHouse">{{ $t('message.user.dropdown6') }}</el-dropdown-item>
 					<el-dropdown-item command="/personal">{{ $t('message.user.dropdown2') }}</el-dropdown-item>
 					<el-dropdown-item command="/404">{{ $t('message.user.dropdown3') }}</el-dropdown-item>
@@ -90,7 +90,6 @@ import { ref, getCurrentInstance, computed, reactive, toRefs, onMounted, defineC
 import { useRouter } from 'vue-router';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import screenfull from 'screenfull';
-import { useI18n } from 'vue-i18n';
 import { storeToRefs } from 'pinia';
 import { useUserInfo } from '/@/stores/userInfo';
 import { useThemeConfig } from '/@/stores/themeConfig';
@@ -98,13 +97,16 @@ import other from '/@/utils/other';
 import { Session, Local } from '/@/utils/storage';
 import UserNews from '/@/layout/navBars/breadcrumb/userNews.vue';
 import Search from '/@/layout/navBars/breadcrumb/search.vue';
-import { i18nStore } from '/@/i18n';
+
+import t from './i18n.json';
+import { i18nStore, makeTranslator } from '/@/i18n';
+const $t = makeTranslator(t);
 
 export default defineComponent({
 	name: 'layoutBreadcrumbUser',
 	components: { UserNews, Search },
 	setup() {
-		const { t } = useI18n();
+		// const { t } = useI18n();
 		const { proxy } = <any>getCurrentInstance();
 		const router = useRouter();
 		const stores = useUserInfo();
@@ -126,6 +128,10 @@ export default defineComponent({
 			return num;
 		});
 
+		// setInterval(() => {
+		// 	ElMessage.warning($t('signInText'));
+		// }, 5000);
+
 		const onScreenfullClick = () => {
 			if (!screenfull.isEnabled) {
 				ElMessage.warning('暂不不支持全屏');
@@ -146,16 +152,16 @@ export default defineComponent({
 				ElMessageBox({
 					closeOnClickModal: false,
 					closeOnPressEscape: false,
-					title: t('message.user.logOutTitle'),
-					message: t('message.user.logOutMessage'),
+					title: $t('message.user.logOutTitle'),
+					message: $t('message.user.logOutMessage'),
 					showCancelButton: true,
-					confirmButtonText: t('message.user.logOutConfirm'),
-					cancelButtonText: t('message.user.logOutCancel'),
+					confirmButtonText: $t('message.user.logOutConfirm'),
+					cancelButtonText: $t('message.user.logOutCancel'),
 					buttonSize: 'default',
 					beforeClose: (action, instance, done) => {
 						if (action === 'confirm') {
 							instance.confirmButtonLoading = true;
-							instance.confirmButtonText = t('message.user.logOutExit');
+							instance.confirmButtonText = $t('message.user.logOutExit');
 							setTimeout(() => {
 								done();
 								setTimeout(() => {
@@ -295,3 +301,4 @@ export default defineComponent({
 	}
 }
 </style>
+<i18n src="./i18n.json" />
