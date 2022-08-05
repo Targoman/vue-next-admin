@@ -38,17 +38,19 @@ const messages = {
 
 const stores = useThemeConfig(pinia);
 const { themeConfig } = storeToRefs(stores);
+export const getLocale = () => {
+	return themeConfig.value.globalI18n;
+};
 
 export const i18n = createI18n({
 	silentTranslationWarn: true,
 	missingWarn: false,
 	silentFallbackWarn: true,
 	fallbackWarn: false,
-	locale: themeConfig.value.globalI18n,
+	locale: getLocale(),
 	fallbackLocale: enLocale.name,
 	messages,
 });
-console.log(i18n);
 
 export function makeTranslator(translations?: any) {
 	const i18n = createI18n({
@@ -56,23 +58,15 @@ export function makeTranslator(translations?: any) {
 		missingWarn: false,
 		silentFallbackWarn: true,
 		fallbackWarn: false,
-		locale: themeConfig.value.globalI18n,
+		locale: getLocale(),
 		fallbackLocale: enLocale.name,
 		messages: translations ? translations : messages,
 	});
 	for (const key in translations) {
 		i18n.global.setLocaleMessage(key, translations[key as keyof typeof translations]);
 	}
-	return (key: any, values?: any) => i18n.global.t(key, themeConfig.value.globalI18n, values);
+	return (key: any, values?: any) => i18n.global.t(key, getLocale(), values);
 }
-export const getLocale = () => {
-	return themeConfig.value.globalI18n;
-};
-
-console.log('stores ', stores);
-console.log('themeConfig', themeConfig);
-console.log('themeConfig', unref(themeConfig));
-console.log('themeConfig', themeConfig.value);
 
 export const rtlLanguages: Array<ISO639> = [ISO639.Persian, ISO639.Arabic, ISO639.Hebrew];
 function isRTLLang(): boolean {

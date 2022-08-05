@@ -1,6 +1,6 @@
 <template>
 	<el-config-provider :size="getGlobalComponentSize" :locale="i18nLocale">
-		<router-view :dir="rtl ? 'rtl' : 'ltr'" v-show="themeConfig.lockScreenTime > 1" />
+		<router-view :dir="rtl === 'fa' ? 'rtl' : 'ltr'" v-show="themeConfig.lockScreenTime > 1" />
 		<LockScreen v-if="themeConfig.isLockScreen" />
 		<Setings ref="setingsRef" v-show="themeConfig.lockScreenTime > 1" />
 		<CloseFull v-if="!themeConfig.isLockScreen" />
@@ -38,7 +38,7 @@ export default defineComponent({
 			return other.globalComponentSize();
 		});
 		const rtl = computed(() => {
-			return i18nStore().isRTL;
+			return getLocale();
 		});
 		const openSetingsDrawer = () => {
 			setingsRef.value.openDrawer();
@@ -64,12 +64,8 @@ export default defineComponent({
 				}
 			});
 			console.log(i18nStore().$state.isRTL);
-			// state.i18nLocale = 'fa';
 
 			i18nStore().rtlManager();
-			// setInterval(() => {
-			// 	console.log(i18nStore().$state.isRTL);
-			// }, 1000);
 		});
 		onUnmounted(() => {
 			proxy.mittBus.off('openSetingsDrawer', () => {});
