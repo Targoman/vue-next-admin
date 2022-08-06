@@ -206,4 +206,3 @@ export default defineComponent({
 	}
 }
 </style>
-<i18n src="./i18n.json" />

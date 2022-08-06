@@ -192,6 +192,8 @@ export default {
 		transactions: 'تراکنش‌ها',
 		withdrawal: 'برداشت‌ها',
 		transfers: 'انتقال‌‌ها',
+		default: 'پیش',
+
 		router: {
 			system: '系统设置',
 			systemMenu: '菜单管理',

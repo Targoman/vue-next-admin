@@ -82,22 +82,3 @@ export default defineComponent({
 	}
 }
 </style>
-<i18n>
-{
-	"en": {
-			"placeholder1": "Please input mobile phone number",
-			"placeholder2": "Please enter the verification code",
-			"codeText": "Get code",
-			"btnText": "Sign in",
-			"msgText": "Warm tip: it is recommended to use Google, Microsoft edge, version 79.0.1072.62 and above browsers, and 360 browser, please use speed mode"
-	},
-	"fa": {
-			"placeholder1": "شماره تلفن را وارد کنید",
-			"placeholder2": "请输入验证码",
-			"codeText": "获取验证码",
-			"btnText": "ورود",
-			"msgText": "* 温馨提示：建议使用谷歌、Microsoft Edge，版本 79.0.1072.62 及以上浏览器，360浏览器请使用极速模式"
-
-	}
-}
-</i18n>
