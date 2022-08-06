@@ -124,7 +124,7 @@ export const useThemeConfig = defineStore('themeConfig', {
 			globalTitle: 'vue-next-admin',
 			// 网站副标题（登录页顶部文字）
 			globalViceTitle: 'vueNextAdmin',
-			globalI18n: 'en',
+			globalI18n: 'fa',
 			// 默认全局组件大小，可选值"<large|'default'|small>"，默认 'large'
 			globalComponentSize: 'large',
 		},

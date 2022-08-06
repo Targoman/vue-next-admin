@@ -1,0 +1,14 @@
+{
+	"en": {
+		"large": "Large",
+		"default": "Default",
+		"small": "Small",
+		"searchPlaceholder": "search:"
+	},
+	"fa": {
+		"large": "بزرگ",
+		"default": "پیش‌فرض",
+		"small": "کوچک",
+		"searchPlaceholder": "جستجو:"
+	}
+}

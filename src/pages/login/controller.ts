@@ -11,10 +11,10 @@ import Cookies from 'js-cookie';
 import { makeTranslator } from '/@/i18n';
 import t from './i18n.json';
 
-const $t = makeTranslator(t);
-setInterval(() => {
-	console.log($t('signInText'));
-}, 1000);
+export const $t = makeTranslator(t);
+// setInterval(() => {
+// 	console.log($t('signInText'));
+// }, 1000);
 
 export async function submit(emailOrMobile: string, password: string) {
 	// if (this.emailOrMobile && this.password) {

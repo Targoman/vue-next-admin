@@ -4,7 +4,7 @@
 			<el-autocomplete
 				v-model="menuQuery"
 				:fetch-suggestions="menuSearch"
-				:placeholder="$t('message.user.searchPlaceholder')"
+				:placeholder="tl('searchPlaceholder')"
 				ref="layoutMenuAutocompleteRef"
 				@select="onHandleSelect"
 				@blur="onSearchBlur"
@@ -17,7 +17,7 @@
 				<template #default="{ item }">
 					<div>
 						<SvgIcon :name="item.meta.icon" class="mr5" />
-						{{ $t(item.meta.title) }}
+						{{ t(item.meta.title) }}
 					</div>
 				</template>
 			</el-autocomplete>
@@ -28,11 +28,13 @@
 <script lang="ts">
 import { reactive, toRefs, defineComponent, ref, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
-import { useI18n } from 'vue-i18n';
 import { storeToRefs } from 'pinia';
 import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
 
-// 定义接口来定义对象的类型
+import translations from './i18n.json';
+import { i18nStore, makeTranslator } from '/@/i18n';
+import { useI18n } from 'vue-i18n';
+
 interface SearchState {
 	isShowSearch: boolean;
 	menuQuery: string;
@@ -48,10 +50,12 @@ interface Restaurant {
 export default defineComponent({
 	name: 'layoutBreadcrumbSearch',
 	setup() {
+		const tl = makeTranslator(translations);
+		const { t } = useI18n();
+
 		const storesTagsViewRoutes = useTagsViewRoutes();
 		const { tagsViewRoutes } = storeToRefs(storesTagsViewRoutes);
 		const layoutMenuAutocompleteRef = ref();
-		const { t } = useI18n();
 		const router = useRouter();
 		const state = reactive<SearchState>({
 			isShowSearch: false,
@@ -84,7 +88,7 @@ export default defineComponent({
 				return (
 					restaurant.path.toLowerCase().indexOf(queryString.toLowerCase()) > -1 ||
 					restaurant.meta.title.toLowerCase().indexOf(queryString.toLowerCase()) > -1 ||
-					t(restaurant.meta.title).indexOf(queryString.toLowerCase()) > -1
+					tl(restaurant.meta.title).indexOf(queryString.toLowerCase()) > -1
 				);
 			};
 		};
@@ -114,6 +118,8 @@ export default defineComponent({
 			menuSearch,
 			onHandleSelect,
 			onSearchBlur,
+			tl,
+			t,
 			...toRefs(state),
 		};
 	},

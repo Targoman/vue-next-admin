@@ -1,6 +1,6 @@
 <template>
 	<el-config-provider :size="getGlobalComponentSize" :locale="i18nLocale">
-		<router-view :dir="rtl ? 'rtl' : 'ltr'" v-show="themeConfig.lockScreenTime > 1" />
+		<router-view :dir="rtl === 'fa' ? 'rtl' : 'ltr'" v-show="themeConfig.lockScreenTime > 1" />
 		<LockScreen v-if="themeConfig.isLockScreen" />
 		<Setings ref="setingsRef" v-show="themeConfig.lockScreenTime > 1" />
 		<CloseFull v-if="!themeConfig.isLockScreen" />
@@ -19,7 +19,7 @@ import setIntroduction from '/@/utils/setIconfont';
 import LockScreen from '/@/layout/lockScreen/index.vue';
 import Setings from '/@/layout/navBars/breadcrumb/setings.vue';
 import CloseFull from '/@/layout/navBars/breadcrumb/closeFull.vue';
-import { i18nStore } from './i18n';
+import { i18nStore, getLocale } from './i18n';
 
 export default defineComponent({
 	name: 'app',
@@ -32,13 +32,13 @@ export default defineComponent({
 		const storesThemeConfig = useThemeConfig();
 		const { themeConfig } = storeToRefs(storesThemeConfig);
 		const state = reactive({
-			i18nLocale: null,
+			i18nLocale: null as null | string,
 		});
 		const getGlobalComponentSize = computed(() => {
 			return other.globalComponentSize();
 		});
 		const rtl = computed(() => {
-			return i18nStore().isRTL;
+			return getLocale();
 		});
 		const openSetingsDrawer = () => {
 			setingsRef.value.openDrawer();
@@ -63,6 +63,9 @@ export default defineComponent({
 					stores.setCurrenFullscreen(Session.get('isTagsViewCurrenFull'));
 				}
 			});
+			console.log(i18nStore().$state.isRTL);
+
+			i18nStore().rtlManager();
 		});
 		onUnmounted(() => {
 			proxy.mittBus.off('openSetingsDrawer', () => {});
