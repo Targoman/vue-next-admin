@@ -1,20 +1,21 @@
 import { describe, it, expect } from 'vitest';
-import { getLocale } from '.';
+import { getLocale, makeTranslator } from '.';
 import { ISO639 } from './ISO639';
 
-// const two = 2;
-// const truthy = () => true;
+describe('makeTranslator', () => {
+	it('should return function', () => {
+		// it should return function
+		expect(makeTranslator()).toBeTypeOf('function');
+	});
 
-// describe('is truthy', () => {
-// 	it('should return true', () => {
-// 		expect(truthy()).toBeTruthy();
-// 	});
+	it('should return string', () => {
+		// result should be type of string
+		const t = makeTranslator();
+		expect(t('dashboard')).toBeTypeOf('string');
+	});
+});
 
-// 	it('should be 2', () => {
-// 		expect(two).toBe(2);
-// 	});
-// });
-describe('i18n', () => {
+describe('getLocale', () => {
 	it('should return ISO639', () => {
 		// it should be ISO639
 		expect(Object.values(ISO639)).includes(getLocale());
