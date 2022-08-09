@@ -258,7 +258,6 @@ export default defineComponent({
 						width: '100%',
 						height: '100%',
 						textStyle: {
-							fontFamily: 'sans-serif',
 							fontWeight: 'bold',
 							color: function () {
 								return `rgb(${[Math.round(Math.random() * 160), Math.round(Math.random() * 160), Math.round(Math.random() * 160)].join(',')})`;
