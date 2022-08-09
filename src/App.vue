@@ -1,11 +1,18 @@
 <template>
 	<el-config-provider :size="getGlobalComponentSize" :locale="i18nLocale">
-		<div :dir="rtl === 'fa' ? 'rtl' : 'ltr'" :style="rtl === 'fa' ? 'font-family: IRANSans_FaNum_Light' : 'font-family: Nunito'">
-			<router-view v-show="themeConfig.lockScreenTime > 1" />
-			<LockScreen v-if="themeConfig.isLockScreen" />
-			<Setings ref="setingsRef" v-show="themeConfig.lockScreenTime > 1" />
-			<CloseFull v-if="!themeConfig.isLockScreen" />
-		</div>
+		<router-view
+			:dir="rtl === 'fa' ? 'rtl' : 'ltr'"
+			:style="rtl === 'fa' ? 'font-family: IRANSans_FaNum_Light' : 'font-family: Nunito'"
+			v-show="themeConfig.lockScreenTime > 1"
+		/>
+		<Setings
+			:dir="rtl === 'fa' ? 'rtl' : 'ltr'"
+			:style="rtl === 'fa' ? 'font-family: IRANSans_FaNum_Light' : 'font-family: Nunito'"
+			ref="setingsRef"
+			v-show="themeConfig.lockScreenTime > 1"
+		/>
+		<LockScreen v-if="themeConfig.isLockScreen" />
+		<CloseFull v-if="!themeConfig.isLockScreen" />
 	</el-config-provider>
 </template>
 

@@ -62,7 +62,6 @@ router.beforeEach(async (to, from, next) => {
 	const localJWT = jwt.getJwt();
 
 	if (to.path === '/login' && !localJWT) {
-		console.log(1);
 		next();
 	} else {
 		if (!localJWT) {
