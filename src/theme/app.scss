@@ -88,6 +88,13 @@
 	font-weight: 'normal';
 	font-style: 'normal';
 }
+@font-face {
+	font-family: Nunito;
+	src: url('/src/assets/fonts/ttf/Nunito-VariableFont.ttf') format('truetype');
+	font-weight: 'normal';
+	font-style: 'normal';
+}
+
 html,
 body,
 #app {
@@ -95,7 +102,6 @@ body,
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	font-family: IRANSans_FaNum_Light, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
 	-webkit-tap-highlight-color: transparent;

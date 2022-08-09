@@ -1,6 +1,10 @@
 <template>
 	<el-config-provider :size="getGlobalComponentSize" :locale="i18nLocale">
-		<router-view :dir="rtl === 'fa' ? 'rtl' : 'ltr'" v-show="themeConfig.lockScreenTime > 1" />
+		<router-view
+			:dir="rtl === 'fa' ? 'rtl' : 'ltr'"
+			:style="rtl === 'fa' ? 'font-family: IRANSans_FaNum_Light' : 'font-family: Nunito'"
+			v-show="themeConfig.lockScreenTime > 1"
+		/>
 		<LockScreen v-if="themeConfig.isLockScreen" />
 		<Setings ref="setingsRef" v-show="themeConfig.lockScreenTime > 1" />
 		<CloseFull v-if="!themeConfig.isLockScreen" />
