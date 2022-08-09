@@ -1,16 +1,11 @@
 <template>
 	<el-config-provider :size="getGlobalComponentSize" :locale="i18nLocale">
 		<router-view
-			:dir="rtl === 'fa' ? 'rtl' : 'ltr'"
-			:style="rtl === 'fa' ? 'font-family: IRANSans_FaNum_Light' : 'font-family: Nunito'"
+			:dir="locale === 'fa' ? 'rtl' : 'ltr'"
+			:style="locale === 'fa' ? 'font-family: IRANSans_FaNum_Light' : 'font-family: Nunito'"
 			v-show="themeConfig.lockScreenTime > 1"
 		/>
-		<Setings
-			:dir="rtl === 'fa' ? 'rtl' : 'ltr'"
-			:style="rtl === 'fa' ? 'font-family: IRANSans_FaNum_Light' : 'font-family: Nunito'"
-			ref="setingsRef"
-			v-show="themeConfig.lockScreenTime > 1"
-		/>
+		<Setings ref="setingsRef" v-show="themeConfig.lockScreenTime > 1" />
 		<LockScreen v-if="themeConfig.isLockScreen" />
 		<CloseFull v-if="!themeConfig.isLockScreen" />
 	</el-config-provider>
@@ -46,7 +41,7 @@ export default defineComponent({
 		const getGlobalComponentSize = computed(() => {
 			return other.globalComponentSize();
 		});
-		const rtl = computed(() => {
+		const locale = computed(() => {
 			return getLocale();
 		});
 		const openSetingsDrawer = () => {
@@ -90,7 +85,7 @@ export default defineComponent({
 		return {
 			themeConfig,
 			setingsRef,
-			rtl,
+			locale,
 			getGlobalComponentSize,
 			...toRefs(state),
 		};

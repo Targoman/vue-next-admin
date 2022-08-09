@@ -1,6 +1,17 @@
 <template>
-	<div class="layout-breadcrumb-seting">
-		<el-drawer :title="$t('configTitle')" v-model="getThemeConfig.isDrawer" direction="rtl" destroy-on-close size="260px" @close="onDrawerClose">
+	<div
+		class="layout-breadcrumb-seting"
+		:dir="locale === 'fa' ? 'rtl' : 'ltr'"
+		:style="locale === 'fa' ? 'font-family: IRANSans_FaNum_Light' : 'font-family: Nunito'"
+	>
+		<el-drawer
+			:direction="locale === 'fa' ? 'ltr' : 'rtl'"
+			:title="$t('configTitle')"
+			v-model="getThemeConfig.isDrawer"
+			destroy-on-close
+			size="260px"
+			@close="onDrawerClose"
+		>
 			<el-scrollbar class="layout-breadcrumb-seting-bar">
 				<el-divider content-position="left">{{ $t('oneTitle') }}</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex">
@@ -36,7 +47,6 @@
 					</div>
 				</div>
 
-				<!-- 菜单设置 -->
 				<el-divider content-position="left">{{ $t('twoMenuTitle') }}</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ $t('twoMenuBar') }}</div>
@@ -57,7 +67,6 @@
 					</div>
 				</div>
 
-				<!-- 分栏设置 -->
 				<el-divider content-position="left" :style="{ opacity: getThemeConfig.layout !== 'columns' ? 0.5 : 1 }">{{
 					$t('twoColumnsTitle')
 				}}</el-divider>
@@ -97,7 +106,6 @@
 					</div>
 				</div>
 
-				<!-- 界面设置 -->
 				<el-divider content-position="left">{{ $t('threeTitle') }}</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex" :style="{ opacity: getThemeConfig.layout === 'transverse' ? 0.5 : 1 }">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ $t('threeIsCollapse') }}</div>
@@ -161,7 +169,6 @@
 					</div>
 				</div>
 
-				<!-- 界面显示 -->
 				<el-divider content-position="left">{{ $t('fourTitle') }}</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ $t('fourIsShowLogo') }}</div>
@@ -255,7 +262,6 @@
 					</div>
 				</div>
 
-				<!-- 其它设置 -->
 				<el-divider content-position="left">{{ $t('fiveTitle') }}</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ $t('fiveTagsStyle') }}</div>
@@ -310,10 +316,9 @@
 					</div>
 				</div>
 
-				<!-- 布局切换 -->
 				<el-divider content-position="left">{{ $t('sixTitle') }}</el-divider>
 				<div class="layout-drawer-content-flex">
-					<!-- defaults 布局 -->
+					<!-- defaults -->
 					<div class="layout-drawer-content-item" @click="onSetLayout('defaults')">
 						<section class="el-container el-circular" :class="{ 'drawer-layout-active': getThemeConfig.layout === 'defaults' }">
 							<aside class="el-aside" style="width: 20px"></aside>
@@ -328,7 +333,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- classic 布局 -->
+					<!-- classic  -->
 					<div class="layout-drawer-content-item" @click="onSetLayout('classic')">
 						<section class="el-container is-vertical el-circular" :class="{ 'drawer-layout-active': getThemeConfig.layout === 'classic' }">
 							<header class="el-header" style="height: 10px"></header>
@@ -345,7 +350,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- transverse 布局 -->
+					<!-- transverse  -->
 					<div class="layout-drawer-content-item" @click="onSetLayout('transverse')">
 						<section class="el-container is-vertical el-circular" :class="{ 'drawer-layout-active': getThemeConfig.layout === 'transverse' }">
 							<header class="el-header" style="height: 10px"></header>
@@ -361,7 +366,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- columns 布局 -->
+					<!-- columns  -->
 					<div class="layout-drawer-content-item" @click="onSetLayout('columns')">
 						<section class="el-container el-circular" :class="{ 'drawer-layout-active': getThemeConfig.layout === 'columns' }">
 							<aside class="el-aside-dark" style="width: 10px"></aside>
@@ -409,6 +414,7 @@ import { Local } from '/@/utils/storage';
 import Watermark from '/@/utils/wartermark';
 import commonFunction from '/@/utils/commonFunction';
 import other from '/@/utils/other';
+import { getLocale } from '/@/i18n';
 
 export default defineComponent({
 	name: 'layoutBreadcrumbSeting',
@@ -419,6 +425,9 @@ export default defineComponent({
 		const { copyText } = commonFunction();
 		const state = reactive({
 			isMobile: false,
+		});
+		const locale = computed(() => {
+			return getLocale();
 		});
 		// 获取布局配置信息
 		const getThemeConfig = computed(() => {
@@ -637,6 +646,7 @@ export default defineComponent({
 			proxy.mittBus.off('layoutMobileResize', () => {});
 		});
 		return {
+			locale,
 			openDrawer,
 			onColorPickerChange,
 			onBgColorPickerChange,
