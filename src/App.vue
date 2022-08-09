@@ -65,8 +65,6 @@ export default defineComponent({
 					stores.setCurrenFullscreen(Session.get('isTagsViewCurrenFull'));
 				}
 			});
-			console.log(i18nStore().$state.isRTL);
-
 			i18nStore().rtlManager();
 		});
 		onUnmounted(() => {
