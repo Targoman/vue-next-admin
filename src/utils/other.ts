@@ -17,10 +17,6 @@ export function elSvg(app: App) {
 	app.component('SvgIcon', SvgIcon);
 }
 
-/**
- * 设置浏览器标题国际化
- * @method const title = useTitle(); ==> title()
- */
 export function useTitle() {
 	const stores = useThemeConfig(pinia);
 	const { themeConfig } = storeToRefs(stores);

@@ -52,7 +52,6 @@ class Jwt {
 		if (this.jwt) {
 			try {
 				const parsedJwt = this.parse(this.jwt);
-				console.log(parsedJwt);
 				// this.setUserInfo(parsedJwt)
 				return true;
 			} catch {

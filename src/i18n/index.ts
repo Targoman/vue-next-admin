@@ -6,11 +6,7 @@ import { storeToRefs, defineStore } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import faLocale from 'element-plus/lib/locale/lang/fa';
 import enLocale from 'element-plus/lib/locale/lang/en';
-
 import translations from './translations';
-
-// import login from '/@/pages/login/i18n.ts';
-import pagesFormI18nEn from '/@/i18n/pages/formI18n/en';
 
 export const i18nStore = defineStore('i18n', {
 	state: () => ({
@@ -26,13 +22,9 @@ export const i18nStore = defineStore('i18n', {
 const messages = {
 	[faLocale.name]: {
 		...translations.fa,
-		// ...login.fa,
-		...pagesFormI18nEn,
 	},
 	[enLocale.name]: {
 		...translations.en,
-		// ...login.en,
-		...pagesFormI18nEn,
 	},
 };
 
@@ -70,7 +62,6 @@ export function makeTranslator(translations?: any) {
 
 export const rtlLanguages: Array<ISO639> = [ISO639.Persian, ISO639.Arabic, ISO639.Hebrew];
 function isRTLLang(): boolean {
-	console.log(getLocale());
 	for (const rtlLang in rtlLanguages) {
 		if (rtlLanguages[rtlLang] == getLocale()) return true;
 	}

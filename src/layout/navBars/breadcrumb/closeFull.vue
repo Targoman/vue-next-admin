@@ -16,7 +16,6 @@ export default defineComponent({
 	setup() {
 		const stores = useTagsViewRoutes();
 		const { isTagsViewCurrenFull } = storeToRefs(stores);
-		// 关闭当前全屏
 		const onCloseFullscreen = () => {
 			stores.setCurrenFullscreen(false);
 		};

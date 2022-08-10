@@ -24,6 +24,77 @@
 	--next-color-seting-header: #b3c0d1;
 }
 
+@font-face {
+	font-family: IRANSans_FaNum_Black;
+	src: url('/src/assets/fonts/eot/IRANSansWeb(FaNum)_Black.eot');
+	src: url('/src/assets/fonts/eot/IRANSansWeb(FaNum)_Black.eot?#iefix') format('embedded-opentype'),
+		url('/src/assets/fonts/woff2/IRANSansWeb(FaNum)_Black.woff2') format('woff2'),
+		url('/src/assets/fonts/woff/IRANSansWeb(FaNum)_Black.woff') format('woff'),
+		url('/src/assets/fonts/ttf/IRANSansWeb(FaNum)_Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: 'normal';
+}
+
+@font-face {
+	font-family: IRANSans_FaNum_Bold;
+	src: url('/src/assets/fonts/eot/IRANSansWeb(FaNum)_Bold.eot');
+	src: url('/src/assets/fonts/eot/IRANSansWeb(FaNum)_Bold.eot?#iefix') format('embedded-opentype'),
+		url('/src/assets/fonts/woff2/IRANSansWeb(FaNum)_Bold.woff2') format('woff2'),
+		url('/src/assets/fonts/woff/IRANSansWeb(FaNum)_Bold.woff') format('woff'),
+		url('/src/assets/fonts/ttf/IRANSansWeb(FaNum)_Bold.ttf') format('truetype');
+	font-weight: 'bold';
+	font-style: 'normal';
+}
+
+@font-face {
+	font-family: IRANSans_FaNum_Medium;
+	src: url('/src/assets/fonts/eot/IRANSansWeb(FaNum)_Medium.eot');
+	src: url('/src/assets/fonts/eot/IRANSansWeb(FaNum)_Medium.eot?#iefix') format('embedded-opentype'),
+		url('/src/assets/fonts/woff2/IRANSansWeb(FaNum)_Medium.woff2') format('woff2'),
+		url('/src/assets/fonts/woff/IRANSansWeb(FaNum)_Medium.woff') format('woff'),
+		url('/src/assets/fonts/ttf/IRANSansWeb(FaNum)_Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: 'normal';
+}
+
+@font-face {
+	font-family: IRANSans_FaNum_Light;
+	src: url('/src/assets/fonts/eot/IRANSansWeb(FaNum)_Light.eot');
+	src: url('/src/assets/fonts/eot/IRANSansWeb(FaNum)_Light.eot?#iefix') format('embedded-opentype'),
+		url('/src/assets/fonts/woff2/IRANSansWeb(FaNum)_Light.woff2') format('woff2'),
+		url('/src/assets/fonts/woff/IRANSansWeb(FaNum)_Light.woff') format('woff'),
+		url('/src/assets/fonts/ttf/IRANSansWeb(FaNum)_Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: 'normal';
+}
+
+@font-face {
+	font-family: IRANSans_FaNum_UltraLight;
+	src: url('/src/assets/fonts/eot/IRANSansWeb(FaNum)_UltraLight.eot');
+	src: url('/src/assets/fonts/eot/IRANSansWeb(FaNum)_UltraLight.eot?#iefix') format('embedded-opentype'),
+		url('/src/assets/fonts/woff2/IRANSansWeb(FaNum)_UltraLight.woff2') format('woff2'),
+		url('/src/assets/fonts/woff/IRANSansWeb(FaNum)_UltraLight.woff') format('woff'),
+		url('/src/assets/fonts/ttf/IRANSansWeb(FaNum)_UltraLight.ttf') format('truetype');
+	font-weight: 200;
+	font-style: 'normal';
+}
+
+@font-face {
+	font-family: IRANSans_FaNum;
+	src: url('/src/assets/fonts/eot/IRANSansWeb.eot');
+	src: url('/src/assets/fonts/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),
+		url('/src/assets/fonts/woff2/IRANSansWeb(FaNum).woff2') format('woff2'), url('/src/assets/fonts/woff/IRANSansWeb(FaNum).woff') format('woff'),
+		url('/src/assets/fonts/ttf/IRANSansWeb\(FaNum\).ttf') format('truetype');
+	font-weight: 'normal';
+	font-style: 'normal';
+}
+@font-face {
+	font-family: Nunito;
+	src: url('/src/assets/fonts/ttf/Nunito-VariableFont.ttf') format('truetype');
+	font-weight: 'normal';
+	font-style: 'normal';
+}
+
 html,
 body,
 #app {
@@ -31,7 +102,6 @@ body,
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
 	-webkit-tap-highlight-color: transparent;
