@@ -55,7 +55,15 @@
 		"copyText": "replication configuration",
 		"resetText": "restore default",
 		"copyTextSuccess": "Copy succeeded!",
-		"copyTextError": "Copy failed!"
+		"copyTextError": "Copy failed!",
+		"homePage": "home page",
+		"profile": "profile",
+		"404": "404",
+		"401": "401",
+		"LogOut": "Log out",
+		"CodeWarehouse": "Code warehouse"
+			
+
 		
 	
 	},
@@ -115,6 +123,12 @@
 		"copyText": "تکرار پیکربندی",
 		"resetText": "بازیابی پیش فرض",
 		"copyTextSuccess": "کپی با موفقیت انجام شد!",
-		"copyTextError": "کپی نشد!"
+		"copyTextError": "کپی نشد!",
+		"homePage": "صفحه اصلی",
+		"profile": "پروفایل",
+		"404": "404 صفحه",
+		"401": "401 صفحه",
+		"LogOut": "خروج",
+		"CodeWarehouse": "کد"
 	}
 }
