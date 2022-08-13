@@ -23,7 +23,7 @@
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsDark') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isIsDark" size="small" @change="onAddDarkChange"></el-switch>
+						<el-switch v-model="getThemeConfig.isIsDark" size="small" @change="onAddDarkChange"  :class="locale === 'fa' ? 'switch' : ''"></el-switch>
 					</div>
 				</div>
 
@@ -815,5 +815,8 @@ export default defineComponent({
 			margin: 10px 0 0;
 		}
 	}
+.switch{
+    transform: scaleX(-1);
+}
 }
 </style>
