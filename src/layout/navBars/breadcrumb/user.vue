@@ -72,12 +72,14 @@
 			</span>
 			<template #dropdown>
 				<el-dropdown-menu>
-					<el-dropdown-item command="/home">{{ tl('signInText') }}</el-dropdown-item>
-					<el-dropdown-item command="wareHouse">{{ tl('message.user.dropdown6') }}</el-dropdown-item>
-					<el-dropdown-item command="/personal">{{ tl('message.user.dropdown2') }}</el-dropdown-item>
-					<el-dropdown-item command="/404">{{ tl('message.user.dropdown3') }}</el-dropdown-item>
-					<el-dropdown-item command="/401">{{ tl('message.user.dropdown4') }}</el-dropdown-item>
-					<el-dropdown-item divided command="logOut">{{ tl('message.user.dropdown5') }}</el-dropdown-item>
+					
+					<el-dropdown-item command="wareHouse">{{ tl('homePage') }}</el-dropdown-item>
+					<el-dropdown-item command="/personal">{{ tl('profile') }}</el-dropdown-item>
+					<el-dropdown-item command="/404">{{ tl('404') }}</el-dropdown-item>
+					<el-dropdown-item command="/401">{{ tl('401') }}</el-dropdown-item>
+					<el-dropdown-item command="/CodeWarehouse">{{ tl('CodeWarehouse') }}</el-dropdown-item>
+					<el-dropdown-item divided command="logOut">{{ tl('LogOut') }}</el-dropdown-item>
+					
 				</el-dropdown-menu>
 			</template>
 		</el-dropdown>
