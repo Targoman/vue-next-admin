@@ -70,38 +70,29 @@
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">
-									<el-input v-model="personalForm.name" placeholder="请输入昵称" clearable></el-input>
+									<el-input v-model="personalForm.name" :placeholder="tl('namePlaceholder')" clearable></el-input>
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<el-form-item label="邮箱">
-									<el-input v-model="personalForm.email" placeholder="请输入邮箱" clearable></el-input>
+								<el-form-item :label="tl('email')">
+									<el-input v-model="personalForm.email" :placeholder="tl('emailPlaceholder')" clearable></el-input>
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<el-form-item label="签名">
-									<el-input v-model="personalForm.autograph" placeholder="请输入签名" clearable></el-input>
+								<el-form-item :label="tl('occupation')">
+									<el-input v-model="personalForm.occupation" :placeholder="tl('occupationPlaceholder')" clearable></el-input>
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<el-form-item label="职业">
-									<el-select v-model="personalForm.occupation" placeholder="请选择职业" clearable class="w100">
-										<el-option label="计算机 / 互联网 / 通信" value="1"></el-option>
-										<el-option label="生产 / 工艺 / 制造" value="2"></el-option>
-										<el-option label="医疗 / 护理 / 制药" value="3"></el-option>
-									</el-select>
+								<el-form-item :label="tl('phone')">
+									<el-input v-model="personalForm.phone" :placeholder="tl('phonePlaceholder')" clearable></el-input>
 								</el-form-item>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<el-form-item label="手机">
-									<el-input v-model="personalForm.phone" placeholder="请输入手机" clearable></el-input>
-								</el-form-item>
-							</el-col>
-							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<el-form-item label="性别">
-									<el-select v-model="personalForm.sex" placeholder="请选择性别" clearable class="w100">
-										<el-option label="男" value="1"></el-option>
-										<el-option label="女" value="2"></el-option>
+								<el-form-item :label="tl('gender')">
+									<el-select allow-create filterable v-model="personalForm.sex" :placeholder="tl('genderPlaceholder')" clearable class="w100">
+										<el-option :label="tl('female')" value="1"></el-option>
+										<el-option :label="tl('male')" value="2"></el-option>
 									</el-select>
 								</el-form-item>
 							</el-col>
