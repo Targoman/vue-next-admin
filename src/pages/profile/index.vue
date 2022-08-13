@@ -3,7 +3,7 @@
 		<el-row>
 			<!-- 个人信息 -->
 			<el-col :xs="24" :sm="16">
-				<el-card shadow="hover" header="个人信息">
+				<el-card shadow="hover" :header="tl('personalInformation')">
 					<div class="personal-user">
 						<div class="personal-user-left">
 							<el-upload class="h100 personal-user-left-upload" action="https://jsonplaceholder.typicode.com/posts/" multiple :limit="1">
@@ -43,24 +43,10 @@
 				</el-card>
 			</el-col>
 
-			<!-- 消息通知 -->
 			<el-col :xs="24" :sm="8" class="pl15 personal-info">
-				<el-card shadow="hover">
-					<template #header>
-						<span>消息通知</span>
-						<span class="personal-info-more">更多</span>
-					</template>
-					<div class="personal-info-box">
-						<ul class="personal-info-ul">
-							<li v-for="(v, k) in newsInfoList" :key="k" class="personal-info-li">
-								<a :href="v.link" target="_block" class="personal-info-li-title">{{ v.title }}</a>
-							</li>
-						</ul>
-					</div>
-				</el-card>
+				<el-card shadow="hover" :header="tl('accountInfo')">d </el-card>
 			</el-col>
 
-			<!-- 营销推荐 -->
 			<el-col :span="24">
 				<el-card shadow="hover" class="mt15" header="营销推荐">
 					<el-row :gutter="15" class="personal-recommend-row">
@@ -77,14 +63,13 @@
 				</el-card>
 			</el-col>
 
-			<!-- 更新信息 -->
 			<el-col :span="24">
-				<el-card shadow="hover" class="mt15 personal-edit" header="更新信息">
-					<div class="personal-edit-title">基本信息</div>
+				<el-card shadow="hover" class="mt15 personal-edit" :header="tl('updateInformation')">
+					<div class="personal-edit-title">{{ tl('personalInformation') }}</div>
 					<el-form :model="personalForm" size="default" label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<el-form-item label="昵称">
+								<el-form-item :label="tl('name')">
 									<el-input v-model="personalForm.name" placeholder="请输入昵称" clearable></el-input>
 								</el-form-item>
 							</el-col>
@@ -186,11 +171,11 @@
 <script lang="ts">
 import { toRefs, reactive, computed, defineComponent } from 'vue';
 import { formatAxis } from '/@/utils/formatTime';
-import { newsInfoList, recommendList } from './mock';
+import { recommendList } from './mock';
+import { makeTranslator } from '/@/i18n';
+import translations from './i18n.json';
 
-// 定义接口来定义对象的类型
 interface PersonalState {
-	newsInfoList: any;
 	recommendList: any;
 	personalForm: any;
 }
@@ -198,8 +183,8 @@ interface PersonalState {
 export default defineComponent({
 	name: 'personal',
 	setup() {
+		const tl = makeTranslator(translations);
 		const state = reactive<PersonalState>({
-			newsInfoList,
 			recommendList,
 			personalForm: {
 				name: '',
@@ -215,6 +200,7 @@ export default defineComponent({
 			return formatAxis(new Date());
 		});
 		return {
+			tl,
 			currentTime,
 			...toRefs(state),
 		};

@@ -1,0 +1,14 @@
+{
+	"en": {
+		"accountInfo": "Account information",
+		"personalInformation": "Personal information",
+		"updateInformation": "Update information",
+		"name": "name"
+	},
+	"fa": {
+		"accountInfo": "اطلاعات حساب ",
+		"personalInformation": "اطلاعات شخصی",
+		"updateInformation": "بروزرسانی اطلاعات",
+		"name": "نام"
+	}
+}
