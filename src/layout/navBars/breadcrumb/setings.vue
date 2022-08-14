@@ -65,9 +65,10 @@
 				<div class="layout-breadcrumb-seting-bar-flex mt14">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('twoIsMenuBarColorGradual') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isMenuBarColorGradual" size="small" @change="onMenuBarGradualChange"></el-switch>
+						  <Switch :initialValue="getThemeConfig.isMenuBarColorGradual" @change="onMenuBarGradualChange" size="small"></Switch>
+						  <!-- <el-switch v-model="getThemeConfig.isMenuBarColorGradual" size="small" @change="onMenuBarGradualChange"></el-switch> -->
 					</div>
-					<Switch :initialValue="getThemeConfig.isMenuBarColorGradual" @change="onMenuBarGradualChange" size="small"></Switch>
+					
 				</div>
 
 				<el-divider :content-position="locale === 'fa' ? 'right' : 'left'" :style="{ opacity: getThemeConfig.layout !== 'columns' ? 0.5 : 1 }">{{
@@ -100,13 +101,14 @@
 				<div class="layout-breadcrumb-seting-bar-flex mt14" :style="{ opacity: getThemeConfig.layout !== 'columns' ? 0.5 : 1 }">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('twoIsColumnsMenuBarColorGradual') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch
+						<!-- <el-switch
 							v-model="getThemeConfig.isColumnsMenuBarColorGradual"
 							size="small"
 							@change="onColumnsMenuBarGradualChange"
 							:disabled="getThemeConfig.layout !== 'columns'"
-						></el-switch>
+						></el-switch> -->
 					</div>
+					<Switch :initialValue="getThemeConfig.isColumnsMenuBarColorGradual" @change="onColumnsMenuBarGradualChange" size="small" :disabled="getThemeConfig.layout !== 'columns'"></Switch>
 				</div>
 
 				<el-divider :content-position="locale === 'fa' ? 'right' : 'left'">{{ tl('threeTitle') }}</el-divider>
@@ -477,8 +479,10 @@ export default defineComponent({
 			onThemeConfigChange();
 		};
 		// 2、菜单 / 顶栏 --> 分栏菜单背景渐变
-		const onColumnsMenuBarGradualChange = () => {
+		const onColumnsMenuBarGradualChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isColumnsMenuBarColorGradual = value;
 			setGraduaFun('.layout-container .layout-columns-aside', getThemeConfig.value.isColumnsMenuBarColorGradual, getThemeConfig.value.columnsMenuBar);
+			onThemeConfigChange();
 		};
 		// 2、菜单 / 顶栏 --> 背景渐变函数
 		const setGraduaFun = (el: string, bool: boolean, color: string) => {
@@ -830,8 +834,6 @@ export default defineComponent({
 			margin: 10px 0 0;
 		}
 	}
-	.switch {
-		transform: scaleX(-1);
-	}
+	
 }
 </style>

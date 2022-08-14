@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<el-switch v-model="value" :size="size" @change="change" :class="locale === 'fa' ? 'switch' : ''"></el-switch>
+		<el-switch v-model="value" :size="size" :disabled="disabled" @change="change" :class="locale === 'fa' ? 'switch' : ''"></el-switch>
 	</div>
 </template>
 
@@ -13,6 +13,9 @@ export default defineComponent({
 			type: Boolean,
 		},
         size: {
+			type: String,
+		},
+        disabled: {
 			type: String,
 		},
 	},
