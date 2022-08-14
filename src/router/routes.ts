@@ -1381,7 +1381,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 			{
 				path: '/personal',
 				name: 'personal',
-				component: () => import('/@/views/personal/index.vue'),
+				component: () => import('/@/pages/profile/index.vue'),
 				meta: {
 					title: 'router.personal',
 					isLink: '',
