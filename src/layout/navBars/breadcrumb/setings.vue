@@ -23,7 +23,8 @@
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsDark') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isIsDark" size="small" @change="onAddDarkChange"  :class="locale === 'fa' ? 'switch' : ''"></el-switch>
+						<Switch :initialValue="getThemeConfig.isIsDark" @change="onAddDarkChange" size="small"></Switch>
+						<!-- <el-switch v-model="getThemeConfig.isIsDark" size="small" @change="onAddDarkChange" :class="locale === 'fa' ? 'switch' : ''"></el-switch> -->
 					</div>
 				</div>
 
@@ -43,7 +44,8 @@
 				<div class="layout-breadcrumb-seting-bar-flex mt10">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('twoIsTopBarColorGradual') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isTopBarColorGradual" size="small" @change="onTopBarGradualChange"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isTopBarColorGradual" size="small" @change="onTopBarGradualChange"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isTopBarColorGradual" size="small" @change="onTopBarGradualChange"></Switch>
 					</div>
 				</div>
 
@@ -65,6 +67,7 @@
 					<div class="layout-breadcrumb-seting-bar-flex-value">
 						<el-switch v-model="getThemeConfig.isMenuBarColorGradual" size="small" @change="onMenuBarGradualChange"></el-switch>
 					</div>
+					<Switch :initialValue="getThemeConfig.isMenuBarColorGradual" @change="onMenuBarGradualChange" size="small"></Switch>
 				</div>
 
 				<el-divider :content-position="locale === 'fa' ? 'right' : 'left'" :style="{ opacity: getThemeConfig.layout !== 'columns' ? 0.5 : 1 }">{{
@@ -416,8 +419,11 @@ import commonFunction from '/@/utils/commonFunction';
 import other from '/@/utils/other';
 import { getLocale, makeTranslator } from '/@/i18n';
 import translations from './i18n.json';
+import Switch from '/@/components/switchButton.vue';
+
 export default defineComponent({
 	name: 'layoutBreadcrumbSeting',
+	components: { Switch },
 	setup() {
 		const tl = makeTranslator(translations);
 		const { proxy } = <any>getCurrentInstance();
@@ -430,6 +436,7 @@ export default defineComponent({
 		const locale = computed(() => {
 			return getLocale();
 		});
+
 		// 获取布局配置信息
 		const getThemeConfig = computed(() => {
 			return themeConfig.value;
@@ -458,12 +465,16 @@ export default defineComponent({
 			setDispatchThemeConfig();
 		};
 		// 2、菜单 / 顶栏 --> 顶栏背景渐变
-		const onTopBarGradualChange = () => {
+		const onTopBarGradualChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isTopBarColorGradual = value;
 			setGraduaFun('.layout-navbars-breadcrumb-index', getThemeConfig.value.isTopBarColorGradual, getThemeConfig.value.topBar);
+			onThemeConfigChange();
 		};
 		// 2、菜单 / 顶栏 --> 菜单背景渐变
-		const onMenuBarGradualChange = () => {
+		const onMenuBarGradualChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isMenuBarColorGradual = value;
 			setGraduaFun('.layout-container .el-aside', getThemeConfig.value.isMenuBarColorGradual, getThemeConfig.value.menuBar);
+			onThemeConfigChange();
 		};
 		// 2、菜单 / 顶栏 --> 分栏菜单背景渐变
 		const onColumnsMenuBarGradualChange = () => {
@@ -531,10 +542,14 @@ export default defineComponent({
 			setLocalThemeConfig();
 		};
 		// 4、界面显示 --> 深色模式
-		const onAddDarkChange = () => {
+		const onAddDarkChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isIsDark = value;
+			console.log(value);
+			console.log(getThemeConfig.value.isIsDark);
 			const body = document.documentElement as HTMLElement;
 			if (getThemeConfig.value.isIsDark) body.setAttribute('data-theme', 'dark');
 			else body.setAttribute('data-theme', '');
+			onThemeConfigChange();
 		};
 		// 4、界面显示 --> 开启水印
 		const onWartermarkChange = () => {
@@ -815,8 +830,8 @@ export default defineComponent({
 			margin: 10px 0 0;
 		}
 	}
-.switch{
-    transform: scaleX(-1);
-}
+	.switch {
+		transform: scaleX(-1);
+	}
 }
 </style>
