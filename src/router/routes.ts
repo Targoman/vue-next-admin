@@ -1294,10 +1294,6 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							icon: 'iconfont icon-dongtai',
 						},
 					},
-					/**
-					 * tagsViewName 为要设置不同的 "tagsView 名称" 字段
-					 * 如若需设置不同 "tagsView 名称"，tagsViewName 字段必须要有
-					 */
 					{
 						path: '/params/dynamic/details/:t/:id/:tagsViewName',
 						name: 'paramsDynamicDetails',
