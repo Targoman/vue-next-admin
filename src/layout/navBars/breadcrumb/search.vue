@@ -32,7 +32,7 @@ import { storeToRefs } from 'pinia';
 import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
 
 import translations from './i18n.json';
-import { i18nStore, makeTranslator } from '/@/i18n';
+import {  makeTranslator } from '/@/i18n';
 import { useI18n } from 'vue-i18n';
 
 interface SearchState {

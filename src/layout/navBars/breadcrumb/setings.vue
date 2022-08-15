@@ -23,7 +23,8 @@
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsDark') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isIsDark" size="small" @change="onAddDarkChange"></el-switch>
+						<Switch :initialValue="getThemeConfig.isIsDark" @change="onAddDarkChange" size="small"></Switch>
+						<!-- <el-switch v-model="getThemeConfig.isIsDark" size="small" @change="onAddDarkChange" :class="locale === 'fa' ? 'switch' : ''"></el-switch> -->
 					</div>
 				</div>
 
@@ -43,7 +44,8 @@
 				<div class="layout-breadcrumb-seting-bar-flex mt10">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('twoIsTopBarColorGradual') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isTopBarColorGradual" size="small" @change="onTopBarGradualChange"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isTopBarColorGradual" size="small" @change="onTopBarGradualChange"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isTopBarColorGradual" size="small" @change="onTopBarGradualChange"></Switch>
 					</div>
 				</div>
 
@@ -63,7 +65,8 @@
 				<div class="layout-breadcrumb-seting-bar-flex mt14">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('twoIsMenuBarColorGradual') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isMenuBarColorGradual" size="small" @change="onMenuBarGradualChange"></el-switch>
+						<Switch :initialValue="getThemeConfig.isMenuBarColorGradual" @change="onMenuBarGradualChange" size="small"></Switch>
+						<!-- <el-switch v-model="getThemeConfig.isMenuBarColorGradual" size="small" @change="onMenuBarGradualChange"></el-switch> -->
 					</div>
 				</div>
 
@@ -97,13 +100,19 @@
 				<div class="layout-breadcrumb-seting-bar-flex mt14" :style="{ opacity: getThemeConfig.layout !== 'columns' ? 0.5 : 1 }">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('twoIsColumnsMenuBarColorGradual') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch
+						<!-- <el-switch
 							v-model="getThemeConfig.isColumnsMenuBarColorGradual"
 							size="small"
 							@change="onColumnsMenuBarGradualChange"
 							:disabled="getThemeConfig.layout !== 'columns'"
-						></el-switch>
+						></el-switch> -->
 					</div>
+					<Switch
+						:initialValue="getThemeConfig.isColumnsMenuBarColorGradual"
+						@change="onColumnsMenuBarGradualChange"
+						size="small"
+						:disabled="getThemeConfig.layout !== 'columns'"
+					></Switch>
 				</div>
 
 				<el-divider :content-position="locale === 'fa' ? 'right' : 'left'">{{ tl('threeTitle') }}</el-divider>
@@ -416,8 +425,11 @@ import commonFunction from '/@/utils/commonFunction';
 import other from '/@/utils/other';
 import { getLocale, makeTranslator } from '/@/i18n';
 import translations from './i18n.json';
+import Switch from '/@/components/switchButton.vue';
+
 export default defineComponent({
 	name: 'layoutBreadcrumbSeting',
+	components: { Switch },
 	setup() {
 		const tl = makeTranslator(translations);
 		const { proxy } = <any>getCurrentInstance();
@@ -430,6 +442,7 @@ export default defineComponent({
 		const locale = computed(() => {
 			return getLocale();
 		});
+
 		const getThemeConfig = computed(() => {
 			return themeConfig.value;
 		});
@@ -452,14 +465,20 @@ export default defineComponent({
 			onColumnsMenuBarGradualChange();
 			setDispatchThemeConfig();
 		};
-		const onTopBarGradualChange = () => {
+		const onTopBarGradualChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isTopBarColorGradual = value;
 			setGraduaFun('.layout-navbars-breadcrumb-index', getThemeConfig.value.isTopBarColorGradual, getThemeConfig.value.topBar);
+			onThemeConfigChange();
 		};
-		const onMenuBarGradualChange = () => {
+		const onMenuBarGradualChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isMenuBarColorGradual = value;
 			setGraduaFun('.layout-container .el-aside', getThemeConfig.value.isMenuBarColorGradual, getThemeConfig.value.menuBar);
+			onThemeConfigChange();
 		};
-		const onColumnsMenuBarGradualChange = () => {
+		const onColumnsMenuBarGradualChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isColumnsMenuBarColorGradual = value;
 			setGraduaFun('.layout-container .layout-columns-aside', getThemeConfig.value.isColumnsMenuBarColorGradual, getThemeConfig.value.columnsMenuBar);
+			onThemeConfigChange();
 		};
 		const setGraduaFun = (el: string, bool: boolean, color: string) => {
 			setTimeout(() => {
@@ -513,10 +532,14 @@ export default defineComponent({
 			appEle.setAttribute('style', `filter: ${cssAttr}`);
 			setLocalThemeConfig();
 		};
-		const onAddDarkChange = () => {
+		const onAddDarkChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isIsDark = value;
+			console.log(value);
+			console.log(getThemeConfig.value.isIsDark);
 			const body = document.documentElement as HTMLElement;
 			if (getThemeConfig.value.isIsDark) body.setAttribute('data-theme', 'dark');
 			else body.setAttribute('data-theme', '');
+			onThemeConfigChange();
 		};
 		const onWartermarkChange = () => {
 			getThemeConfig.value.isWartermark ? Watermark.set(getThemeConfig.value.wartermarkText) : Watermark.del();
@@ -571,26 +594,19 @@ export default defineComponent({
 				getThemeConfig.value.isDrawer = false;
 			});
 		};
-		// 一键恢复默认
 		const onResetConfigClick = () => {
 			Local.clear();
 			window.location.reload();
 		};
-		// 初始化菜单样式等
 		const initSetStyle = () => {
-			// 2、菜单 / 顶栏 --> 顶栏背景渐变
 			onTopBarGradualChange();
-			// 2、菜单 / 顶栏 --> 菜单背景渐变
 			onMenuBarGradualChange();
-			// 2、菜单 / 顶栏 --> 分栏菜单背景渐变
 			onColumnsMenuBarGradualChange();
 		};
 		onMounted(() => {
 			nextTick(() => {
-				// 判断当前布局是否不相同，不相同则初始化当前布局的样式，防止监听窗口大小改变时，布局配置logo、菜单背景等部分布局失效问题
 				if (!Local.get('frequency')) initLayoutChangeFun();
 				Local.set('frequency', 1);
-				// 监听窗口大小改变，非默认布局，设置成默认布局（适配移动端）
 				proxy.mittBus.on('layoutMobileResize', (res: any) => {
 					getThemeConfig.value.layout = res.layout;
 					getThemeConfig.value.isDrawer = false;
@@ -598,19 +614,12 @@ export default defineComponent({
 					state.isMobile = other.isMobile();
 				});
 				setTimeout(() => {
-					// 默认样式
 					onColorPickerChange();
-					// 灰色模式
 					if (getThemeConfig.value.isGrayscale) onAddFilterChange('grayscale');
-					// 色弱模式
 					if (getThemeConfig.value.isInvert) onAddFilterChange('invert');
-					// 深色模式
 					if (getThemeConfig.value.isIsDark) onAddDarkChange();
-					// 开启水印
 					onWartermarkChange();
-					// 语言国际化
 					if (Local.get('themeConfig')) proxy.$i18n.locale = Local.get('themeConfig').globalI18n;
-					// 初始化菜单样式等
 					initSetStyle();
 				}, 100);
 			});
