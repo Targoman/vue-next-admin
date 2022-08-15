@@ -1,7 +1,14 @@
 @import './index.scss';
 
-/* 页面宽度小于576px
-------------------------------- */
+.el-form-item__label {
+	padding: 0;
+	justify-content: inherit;
+	margin-inline-end: 10px;
+}
+.el-input__inner {
+	font-family: inherit;
+}
+
 @media screen and (max-width: $xs) {
 	.el-form-item__label {
 		width: 100% !important;

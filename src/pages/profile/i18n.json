@@ -1,0 +1,36 @@
+{
+	"en": {
+		"accountInfo": "Account information",
+		"personalInformation": "Personal information",
+		"updateInformation": "Update information",
+		"name": "Name",
+		"namePlaceholder": "Enter your name",
+		"email": "Email",
+		"emailPlaceholder": "Enter your Email: example@mail.com",
+		"occupation": "Job",
+		"occupationPlaceholder": "Enter your occupation",
+		"phone": "Phone",
+		"phonePlaceholder": "Enter your phone",
+		"gender": "Gender",
+		"genderPlaceholder": "Select your gender",
+		"female": "Female",
+		"male": "Male"
+	},
+	"fa": {
+		"accountInfo": "اطلاعات حساب ",
+		"personalInformation": "اطلاعات شخصی",
+		"updateInformation": "بروزرسانی اطلاعات",
+		"name": "نام",
+		"namePlaceholder": "نام خود را وارد کنید",
+		"email": "ایمیل",
+		"emailPlaceholder": "ایمیل خود را وارد کنید",
+		"occupation": "شغل",
+		"occupationPlaceholder": "شغل خود را وارد کنید",
+		"phone": "تماس",
+		"phonePlaceholder": "شماره تماس خود را وارد کنید",
+		"gender": "جنسیت",
+		"genderPlaceholder": "جنسیت خود را انتخاب کنید",
+		"female": "مونث",
+		"male": "مذکر"
+	}
+}
