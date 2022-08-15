@@ -5,10 +5,14 @@
 			:input-style="locale === 'fa' ? 'text-align: right; ' : 'text-align: left;'"
 			:placeholder="placeholder"
 			v-model="value"
-			@keyup="onChange"
+			@keyup="onKeyUp"
 		>
-			<template v-if="append" #[slot1]> {{ append }} </template>
-			<template v-if="prepend" #[slot2]> {{ prepend }} </template>
+			<template v-if="append" #[slot1]>
+				<el-button @click="onChange">{{ append }}</el-button>
+			</template>
+			<template v-if="prepend" #[slot2]>
+				<el-button @click="onChange">{{ prepend }}</el-button>
+			</template>
 		</el-input>
 	</el-form-item>
 </template>
@@ -38,10 +42,13 @@ export default defineComponent({
 		const locale = computed(() => {
 			return getLocale();
 		});
+		const onKeyUp = () => {
+			emit('keyUp', value.value);
+		};
 		const onChange = () => {
 			emit('change', value.value);
 		};
-		return { value, locale, slot1, slot2, onChange };
+		return { value, locale, slot1, slot2, onKeyUp, onChange };
 	},
 });
 </script>
