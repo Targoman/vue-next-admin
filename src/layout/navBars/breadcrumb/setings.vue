@@ -425,7 +425,7 @@ import commonFunction from '/@/utils/commonFunction';
 import other from '/@/utils/other';
 import { getLocale, makeTranslator } from '/@/i18n';
 import translations from './i18n.json';
-import Switch from '/@/components/switchButton.vue';
+import Switch from '../../../components/form/switchButton.vue';
 
 export default defineComponent({
 	name: 'layoutBreadcrumbSeting',

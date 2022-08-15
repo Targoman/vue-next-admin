@@ -69,6 +69,9 @@
 					<el-form :model="personalForm" size="default" label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
+								<base-input :label="tl('name')" :placeholder="tl('namePlaceholder')" prepend="pre"> </base-input>
+							</el-col>
+							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">
 									<el-input v-model="personalForm.name" :placeholder="tl('namePlaceholder')" clearable></el-input>
 								</el-form-item>
@@ -165,6 +168,7 @@ import { formatAxis } from '/@/utils/formatTime';
 import { recommendList } from './mock';
 import { makeTranslator } from '/@/i18n';
 import translations from './i18n.json';
+import baseInput from '/@/components/form/input.vue';
 
 interface PersonalState {
 	recommendList: any;
@@ -173,6 +177,9 @@ interface PersonalState {
 
 export default defineComponent({
 	name: 'personal',
+	components: {
+		baseInput,
+	},
 	setup() {
 		const tl = makeTranslator(translations);
 		const state = reactive<PersonalState>({
