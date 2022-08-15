@@ -69,7 +69,7 @@
 					<el-form :model="personalForm" size="default" label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<base-input :label="tl('name')" :placeholder="tl('namePlaceholder')" prepend="pre"> </base-input>
+								<base-input :label="tl('name')" :placeholder="tl('namePlaceholder')" append="app" @change="onChange"> </base-input>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">
@@ -168,7 +168,7 @@ import { formatAxis } from '/@/utils/formatTime';
 import { recommendList } from './mock';
 import { makeTranslator } from '/@/i18n';
 import translations from './i18n.json';
-import baseInput from '/@/components/form/input.vue';
+import baseInput from '../../components/form/mixedInput.vue';
 
 interface PersonalState {
 	recommendList: any;
@@ -197,9 +197,13 @@ export default defineComponent({
 		const currentTime = computed(() => {
 			return formatAxis(new Date());
 		});
+		const onChange = (value: string) => {
+			console.log(value);
+		};
 		return {
 			tl,
 			currentTime,
+			onChange,
 			...toRefs(state),
 		};
 	},
