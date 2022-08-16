@@ -1,9 +1,9 @@
 <template>
-	<mixed-input :label="label" :placeholder="placeholder" prepend="app"> </mixed-input>
+	<mixed-input :label="label" :placeholder="placeholder" :prependIcon="icon" :disabled="disabled" @mixedInputChange="onChangeIcon"> </mixed-input>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import MixedInput from '/@/components/form/mixedInput.vue';
 
 export default defineComponent({
@@ -14,7 +14,14 @@ export default defineComponent({
 		placeholder: String,
 	},
 	setup(props, { emit }) {
-		return {};
+		const icon = ref('ele-Edit');
+		const disabled = ref(true);
+		const onChangeIcon = () => {
+			disabled.value = !disabled.value;
+			if (icon.value === 'ele-Edit') icon.value = 'ele-CircleCheckFilled';
+			else icon.value = 'ele-Edit';
+		};
+		return { icon, disabled, onChangeIcon };
 	},
 });
 </script>

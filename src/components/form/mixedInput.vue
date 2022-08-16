@@ -2,16 +2,20 @@
 	<el-form-item :label="label">
 		<el-input
 			style="direction: ltr"
-			:input-style="locale === 'fa' ? 'text-align: right; ' : 'text-align: left;'"
+			:input-style="{
+				backgroundColor: disabled ? ' #a9a9a930' : '',
+				textAlign: locale === 'fa' ? 'right' : 'left',
+			}"
 			:placeholder="placeholder"
 			v-model="value"
+			:readonly="disabled"
 			@keyup="onKeyUp"
 		>
-			<template v-if="append" #[slot1]>
-				<el-button @click="onChange">{{ append }}</el-button>
+			<template v-if="append || appendIcon" #[slot1]>
+				<el-button class="px3" @click="onMixedInputChange">{{ append }} <SvgIcon v-if="appendIcon" :name="appendIcon" /></el-button>
 			</template>
-			<template v-if="prepend" #[slot2]>
-				<el-button @click="onChange">{{ prepend }}</el-button>
+			<template v-if="prepend || prependIcon" #[slot2]>
+				<el-button class="px3" @click="onMixedInputChange">{{ prepend }} <SvgIcon v-if="prependIcon" :name="prependIcon" /></el-button>
 			</template>
 		</el-input>
 	</el-form-item>
@@ -26,6 +30,9 @@ export default defineComponent({
 	props: {
 		append: String,
 		prepend: String,
+		appendIcon: String,
+		prependIcon: String,
+		disabled: Boolean,
 		label: String,
 		placeholder: String,
 	},
@@ -45,10 +52,10 @@ export default defineComponent({
 		const onKeyUp = () => {
 			emit('keyUp', value.value);
 		};
-		const onChange = () => {
-			emit('change', value.value);
+		const onMixedInputChange = () => {
+			emit('mixedInputChange', value.value);
 		};
-		return { value, locale, slot1, slot2, onKeyUp, onChange };
+		return { value, locale, slot1, slot2, onKeyUp, onMixedInputChange };
 	},
 });
 </script>
