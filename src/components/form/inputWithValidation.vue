@@ -1,6 +1,6 @@
 <template>
 	<el-form-item :label="label" :prop="prop" :rules="rule()">
-		<el-input v-model="value" :type="type"> </el-input>
+		<el-input v-model="value" :type="type" clearable> </el-input>
 	</el-form-item>
 </template>
 
@@ -28,11 +28,23 @@ export default defineComponent({
 
 		const tl = makeTranslator(translations);
 		const validateMobile = (rule: any, value: any, callback: any) => {
-			if (!validators.mobile(value)) {
-				console.log('value');
+			if (!validators.mobile(value) && value !== '') {
 				callback(new Error(tl('wrongPhoneNumber')));
 			} else {
-				console.log(value);
+				callback();
+			}
+		};
+		const validateEmail = (rule: any, value: any, callback: any) => {
+			if (!validators.email(value) && value !== '') {
+				callback(new Error(tl('wrongEmail')));
+			} else {
+				callback();
+			}
+		};
+		const validateEmailOrMobile = (rule: any, value: any, callback: any) => {
+			if (!validators.emailOrMobile(value) && value !== '') {
+				callback(new Error(tl('wrongEmailOrPhoneNumber')));
+			} else {
 				callback();
 			}
 		};
@@ -41,11 +53,11 @@ export default defineComponent({
 			else {
 				switch (props.type) {
 					case 'emailOrMobile':
-						return validators.emailOrMobile;
+						return [{ validator: validateEmailOrMobile, trigger: 'change' }];
 					case 'mobile':
-						return;
-					case 'email':
 						return [{ validator: validateMobile, trigger: 'change' }];
+					case 'email':
+						return [{ validator: validateEmail, trigger: 'change' }];
 					case 'text':
 						return [
 							{ required: true, message: tl('mustBeFilledUp'), trigger: 'change' },
