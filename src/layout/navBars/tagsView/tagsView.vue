@@ -38,11 +38,10 @@
 						v-if="!v.meta.isAffix"
 						@click.stop="closeCurrentTagsView(getThemeConfig.isShareTagsView ? v.path : v.url)"
 					/>
-					
 				</li>
-				<el-button @click="closeAll" class="layout-navbars-tagsview-ul-li" > <SvgIcon name="ele-CircleCloseFilled" color="var(--el-color-danger)"  /></el-button>
-
-				
+				<el-button v-if="state.tagsRefsIndex > 3" @click="closeAll" class="layout-navbars-tagsview-ul-li">
+					<SvgIcon name="ele-CircleCloseFilled" color="var(--el-color-danger)"
+				/></el-button>
 			</ul>
 		</el-scrollbar>
 
@@ -114,6 +113,7 @@ export default defineComponent({
 		const { proxy } = <any>getCurrentInstance();
 		const tagsRefs = ref<any[]>([]);
 		const scrollbarRef = ref();
+
 		const contextmenuRef = ref();
 		const tagsUlRef = ref();
 		const stores = useTagsViewRoutes();
@@ -138,7 +138,6 @@ export default defineComponent({
 			return themeConfig.value.tagsStyle;
 		});
 		const closeAll = () => {
-			
 			closeAllTagsView();
 		};
 
@@ -605,6 +604,7 @@ export default defineComponent({
 			refreshCurrentTagsView,
 			closeCurrentTagsView,
 			onCurrentContextmenuClick,
+			state,
 			...toRefs(state),
 		};
 	},
