@@ -6,7 +6,7 @@ const $t = makeTranslator(t);
 function validateMobile(value: string) {
 	//todo configFile or here?
 	const supportedCountries = { fa: 'fa-IR' };
-	return validator.isMobilePhone(value, Object.values(supportedCountries) as any) ? null : $t('mustBeValidMobile');
+	return validator.isMobilePhone(value, Object.values(supportedCountries) as any) ? true : false;
 }
 
 export default {

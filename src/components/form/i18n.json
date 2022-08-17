@@ -1,8 +1,10 @@
 {
 	"en": {
-		"mustBeFilledUp": "Must be filled up"
+		"mustBeFilledUp": "Must be filled up",
+		"wrongPhoneNumber": "Please input the phone number"
 	},
 	"fa": {
-		"mustBeFilledUp": "این ورودی نباید خالی باشد"
+		"mustBeFilledUp": "این ورودی نباید خالی باشد",
+		"wrongPhoneNumber": "شماره تماس معتبری وارد کنید"
 	}
 }

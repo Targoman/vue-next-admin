@@ -24,9 +24,13 @@
 <script lang="ts">
 import { computed, defineComponent, onUpdated, ref } from 'vue';
 import { getLocale } from '/@/i18n';
+import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 
 export default defineComponent({
-	name: 'input',
+	name: 'inputWithValidation',
+	components: {
+		inputWithValidation,
+	},
 	props: {
 		append: String,
 		prepend: String,

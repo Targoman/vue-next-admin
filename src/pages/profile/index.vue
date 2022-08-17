@@ -62,15 +62,14 @@
 					</el-row>
 				</el-card>
 			</el-col>
-
 			<el-col :span="24">
 				<el-card shadow="hover" class="mt15 personal-edit" :header="tl('updateInformation')">
 					<div class="personal-edit-title">{{ tl('personalInformation') }}</div>
-					<el-form :model="personalForm" size="default" label-width="40px" class="mt35 mb35">
+					<el-form :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<two-state-input :label="tl('name')" :placeholder="tl('namePlaceholder')" @twoStateConfirm="onTwoStateConfirm"> </two-state-input>
-								<input-with-validation prop="name" @change1="personalForm.name = $event" :type="text"></input-with-validation>
+								<input-with-validation prop="name" @change="personalForm.name = $event" type="email"></input-with-validation>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">

@@ -23,11 +23,19 @@ export default defineComponent({
 	setup(props, { emit }) {
 		const value = ref('');
 		watch(value, (newValue) => {
-			emit('change1', newValue);
+			emit('change', newValue);
 		});
 
 		const tl = makeTranslator(translations);
-
+		const validateMobile = (rule: any, value: any, callback: any) => {
+			if (!validators.mobile(value)) {
+				console.log('value');
+				callback(new Error(tl('wrongPhoneNumber')));
+			} else {
+				console.log(value);
+				callback();
+			}
+		};
 		const rule = () => {
 			if (props.customValidation) return props.customValidation;
 			else {
@@ -35,11 +43,14 @@ export default defineComponent({
 					case 'emailOrMobile':
 						return validators.emailOrMobile;
 					case 'mobile':
-						return validators.mobile;
+						return;
 					case 'email':
-						return validators.email;
+						return [{ validator: validateMobile, trigger: 'change' }];
 					case 'text':
-						return [{ required: true, message: tl('mustBeFilledUp'), trigger: 'change' }];
+						return [
+							{ required: true, message: tl('mustBeFilledUp'), trigger: 'change' },
+							{ min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'change' },
+						];
 					case 'iban':
 						return validators.iban;
 					default:
