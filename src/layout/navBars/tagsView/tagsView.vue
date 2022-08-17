@@ -38,9 +38,14 @@
 						v-if="!v.meta.isAffix"
 						@click.stop="closeCurrentTagsView(getThemeConfig.isShareTagsView ? v.path : v.url)"
 					/>
+					
 				</li>
+				<el-button @click="closeAll" class="layout-navbars-tagsview-ul-li" > <SvgIcon name="ele-CircleCloseFilled" color="var(--el-color-danger)"  /></el-button>
+
+				
 			</ul>
 		</el-scrollbar>
+
 		<Contextmenu :dropdown="dropdown" ref="contextmenuRef" @currentContextmenuClick="onCurrentContextmenuClick" />
 	</div>
 </template>
@@ -132,7 +137,11 @@ export default defineComponent({
 		const setTagsStyle = computed(() => {
 			return themeConfig.value.tagsStyle;
 		});
-		// 获取布局配置信息
+		const closeAll = () => {
+			
+			closeAllTagsView();
+		};
+
 		const getThemeConfig = computed(() => {
 			return themeConfig.value;
 		});
@@ -585,6 +594,7 @@ export default defineComponent({
 			onContextmenu,
 			onTagsClick,
 			tagsRefs,
+			closeAll,
 			contextmenuRef,
 			scrollbarRef,
 			tagsUlRef,
