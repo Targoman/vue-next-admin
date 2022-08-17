@@ -1,0 +1,16 @@
+{
+  "en": {
+    "mustBeValidEmailOrMobile": "Must be a valid emailOrMobile",
+    "mustBeValidMobile": "Must be a valid Mobile",
+    "mustBeValidEmail": "Must be a valid email",
+    "mustBeValidIBAN": "Must be a valid IBAN",
+    "mustBeFilledUp": "Must be filled up"
+  },
+  "fa": {
+    "mustBeValidEmailOrMobile": "ایمیل یا موبایل معتبر نیست",
+    "mustBeValidMobile": "موبایل معتبر نیست",
+    "mustBeValidEmail": "ایمیل معتبر نیست",
+    "mustBeValidIBAN": "شماره شبا معتبر نیست",
+    "mustBeFilledUp": "ورودی نباید خالی باشد"
+  }
+}

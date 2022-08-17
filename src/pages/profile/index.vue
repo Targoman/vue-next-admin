@@ -69,7 +69,8 @@
 					<el-form :model="personalForm" size="default" label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<two-state-input :label="tl('name')" :placeholder="tl('namePlaceholder')" @keyUp="onKeyUp"> </two-state-input>
+								<two-state-input :label="tl('name')" :placeholder="tl('namePlaceholder')" @twoStateConfirm="onTwoStateConfirm"> </two-state-input>
+								<input-with-validation prop="name" @change1="personalForm.name = $event" :type="text"></input-with-validation>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">
@@ -169,6 +170,7 @@ import { recommendList } from './mock';
 import { makeTranslator } from '/@/i18n';
 import translations from './i18n.json';
 import twoStateInput from '/@/components/form/twoStateInput.vue';
+import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 
 interface PersonalState {
 	recommendList: any;
@@ -178,6 +180,7 @@ interface PersonalState {
 export default defineComponent({
 	name: 'personal',
 	components: {
+		inputWithValidation,
 		twoStateInput,
 	},
 	setup() {
@@ -193,16 +196,17 @@ export default defineComponent({
 				sex: '',
 			},
 		});
+
 		const currentTime = computed(() => {
 			return formatAxis(new Date());
 		});
-		const onKeyUp = (value: string) => {
+		const onTwoStateConfirm = (value: string) => {
 			console.log('val', value);
 		};
 		return {
 			tl,
 			currentTime,
-			onKeyUp,
+			onTwoStateConfirm,
 			...toRefs(state),
 		};
 	},

@@ -16,10 +16,13 @@ export default defineComponent({
 	setup(props, { emit }) {
 		const icon = ref('ele-Edit');
 		const disabled = ref(true);
-		const onChangeIcon = () => {
+		const onChangeIcon = (value: string) => {
 			disabled.value = !disabled.value;
 			if (icon.value === 'ele-Edit') icon.value = 'ele-CircleCheckFilled';
-			else icon.value = 'ele-Edit';
+			else {
+				icon.value = 'ele-Edit';
+			}
+			emit('twoStateConfirm', value);
 		};
 		return { icon, disabled, onChangeIcon };
 	},
