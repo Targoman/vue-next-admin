@@ -68,8 +68,16 @@
 					<el-form :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<two-state-input :label="tl('name')" :placeholder="tl('namePlaceholder')" @twoStateConfirm="onTwoStateConfirm"> </two-state-input>
-								<input-with-validation prop="name" @change="personalForm.name = $event" type="emailOrMobile"></input-with-validation>
+								<!-- <two-state-input
+									type="emailOrMobile"
+									prop="name"
+									:label="tl('name')"
+									:placeholder="tl('namePlaceholder')"
+									@twoStateConfirm="onTwoStateConfirm"
+								>
+								</two-state-input> -->
+								<mixed-input append="sef" :disabled="true" placeholder="s" label="sdfgb"></mixed-input>
+								<!-- <input-with-validation prop="name" @change="personalForm.name = $event" type="emailOrMobile"></input-with-validation> -->
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">
@@ -170,6 +178,7 @@ import { makeTranslator } from '/@/i18n';
 import translations from './i18n.json';
 import twoStateInput from '/@/components/form/twoStateInput.vue';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
+import mixedInput from '/@/components/form/mixedInput.vue';
 
 interface PersonalState {
 	recommendList: any;
@@ -181,6 +190,7 @@ export default defineComponent({
 	components: {
 		inputWithValidation,
 		twoStateInput,
+		mixedInput,
 	},
 	setup() {
 		const tl = makeTranslator(translations);

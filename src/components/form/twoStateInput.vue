@@ -1,5 +1,14 @@
 <template>
-	<mixed-input :label="label" :placeholder="placeholder" :prependIcon="icon" :disabled="disabled" @mixedInputChange="onChangeIcon"> </mixed-input>
+	<mixed-input
+		:prop="prop"
+		:type="type"
+		:label="label"
+		:placeholder="placeholder"
+		:prependIcon="icon"
+		:disabled="disabled"
+		@mixedInputChange="onChangeIcon"
+	>
+	</mixed-input>
 </template>
 
 <script lang="ts">
@@ -7,11 +16,13 @@ import { defineComponent, ref } from 'vue';
 import MixedInput from '/@/components/form/mixedInput.vue';
 
 export default defineComponent({
-	name: 'input',
+	name: 'twoStateInput',
 	components: { MixedInput },
 	props: {
 		label: String,
 		placeholder: String,
+		prop: String,
+		type: String,
 	},
 	setup(props, { emit }) {
 		const icon = ref('ele-Edit');

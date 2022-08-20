@@ -1,6 +1,9 @@
 <template>
 	<el-form-item :label="label" :prop="prop" :rules="rule()">
-		<el-input v-model="value" :type="type" clearable> </el-input>
+		<el-input :style="elInputStyle" :input-style="inputStyle" :placeholder="placeholder" :readonly="readonly" v-model="value" :type="type" clearable>
+			<template v-if="append" #prepend> <slot name="prepend"></slot></template>
+			<template v-if="prepend" #append> <slot name="append"></slot></template>
+		</el-input>
 	</el-form-item>
 </template>
 
@@ -18,7 +21,15 @@ export default defineComponent({
 			default: 'text',
 		},
 		prop: String,
+		shownSlot: Boolean,
 		customValidation: Object,
+		elInputStyle: String,
+		inputStyle: String,
+		placeholder: String,
+		readonly: Boolean,
+		label: String,
+		prepend: Boolean,
+		append: Boolean,
 	},
 	setup(props, { emit }) {
 		const value = ref('');
@@ -61,7 +72,7 @@ export default defineComponent({
 					case 'text':
 						return [
 							{ required: true, message: tl('mustBeFilledUp'), trigger: 'change' },
-							{ min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'change' },
+							// { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'change' },
 						];
 					case 'iban':
 						return validators.iban;

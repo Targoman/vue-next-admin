@@ -1,24 +1,25 @@
 <template>
-	<el-form-item :label="label">
-		<el-input
-			style="direction: ltr"
-			:input-style="{
-				backgroundColor: disabled ? ' #a9a9a930' : '',
-				textAlign: locale === 'fa' ? 'right' : 'left',
-			}"
-			:placeholder="placeholder"
-			v-model="value"
-			:readonly="disabled"
-			@keyup="onKeyUp"
-		>
-			<template v-if="append || appendIcon" #[slot1]>
-				<el-button class="px3" @click="onMixedInputChange">{{ append }} <SvgIcon v-if="appendIcon" :name="appendIcon" /></el-button>
-			</template>
-			<template v-if="prepend || prependIcon" #[slot2]>
-				<el-button class="px3" @click="onMixedInputChange">{{ prepend }} <SvgIcon v-if="prependIcon" :name="prependIcon" /></el-button>
-			</template>
-		</el-input>
-	</el-form-item>
+	<input-with-validation
+		:type="type"
+		:label="label"
+		elInputStyle="direction: ltr"
+		:inputStyle="{
+			backgroundColor: disabled ? ' #a9a9a930' : '',
+			textAlign: locale === 'fa' ? 'right' : 'left',
+		}"
+		:append="append || appendIcon"
+		:prepend="prepend || prependIcon"
+		:placeholder="placeholder"
+		:readonly="disabled"
+		@change="value = $event"
+	>
+		<template v-if="append || appendIcon" #[slot1]>
+			<el-button class="px3" @click="onMixedInputChange">{{ append }} <SvgIcon v-if="appendIcon" :name="appendIcon" /></el-button>
+		</template>
+		<template v-if="prepend || prependIcon" #[slot2]>
+			<el-button class="px3" @click="onMixedInputChange">{{ prepend }} <SvgIcon v-if="prependIcon" :name="prependIcon" /></el-button>
+		</template>
+	</input-with-validation>
 </template>
 
 <script lang="ts">
@@ -27,7 +28,7 @@ import { getLocale } from '/@/i18n';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 
 export default defineComponent({
-	name: 'inputWithValidation',
+	name: 'mixedInput',
 	components: {
 		inputWithValidation,
 	},
@@ -39,6 +40,9 @@ export default defineComponent({
 		disabled: Boolean,
 		label: String,
 		placeholder: String,
+		prop: String,
+		readonly: Boolean,
+		type: String,
 	},
 	setup(_props, { emit }) {
 		const slot1 = ref(getLocale() === 'fa' ? 'prepend' : 'append');
