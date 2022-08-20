@@ -76,8 +76,8 @@
 									@twoStateConfirm="onTwoStateConfirm"
 								>
 								</two-state-input> -->
-								<mixed-input prepend="55" :required="false" placeholder="s" label="sdfgb"></mixed-input>
-								<!-- <input-with-validation prop="name" @change="personalForm.name = $event" type="emailOrMobile"></input-with-validation> -->
+								<mixed-input prop="name" type="emailOrMobile" prepend="55" :required="false" placeholder="s" label="sdfgb"></mixed-input>
+								<input-with-validation prop="name" @change="personalForm.name = $event" type="emailOrMobile"></input-with-validation>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">

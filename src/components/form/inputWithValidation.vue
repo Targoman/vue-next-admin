@@ -35,6 +35,7 @@ export default defineComponent({
 	setup(props, { emit }) {
 		const value = ref('');
 		watch(value, (newValue) => {
+			// console.log(newValue);
 			emit('change', newValue);
 		});
 
