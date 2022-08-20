@@ -8,8 +8,6 @@
 			backgroundColor: disabled ? ' #a9a9a930' : '',
 			textAlign: locale === 'fa' ? 'right' : 'left',
 		}"
-		:append="append || appendIcon"
-		:prepend="prepend || prependIcon"
 		:placeholder="placeholder"
 		:readonly="disabled"
 		@change="value = $event"

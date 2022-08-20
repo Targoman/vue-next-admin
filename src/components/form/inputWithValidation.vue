@@ -1,8 +1,8 @@
 <template>
 	<el-form-item :required="required" :label="label" :prop="prop" :rules="rule()">
 		<el-input :style="elInputStyle" :input-style="inputStyle" :placeholder="placeholder" :readonly="readonly" v-model="value" :type="type">
-			<template v-if="append" #prepend> <slot name="prepend"></slot></template>
-			<template v-if="prepend" #append> <slot name="append"></slot></template>
+			<template v-if="$slots.prepend" #prepend> <slot name="prepend"></slot></template>
+			<template v-if="$slots.append" #append> <slot name="append"></slot></template>
 		</el-input>
 	</el-form-item>
 </template>
