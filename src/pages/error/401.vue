@@ -5,7 +5,12 @@
 				<div class="left-item">
 					<div class="left-item-animation left-item-num">401</div>
 					<div class="left-item-animation left-item-title">{{ tl('accessTitle') }}</div>
-					<div class="left-item-animation left-item-msg">{{ tl('accessMsg') }}</div>
+					<el-row class="left-item-animation left-item-msg">
+						{{ tl('timerMsg.before') }}
+						<timer :enteredTime="10" :buttonOnDone="false" @timeOut="done"></timer>
+						{{ tl('timerMsg.after') }}
+					</el-row>
+					
 					<div class="left-item-animation left-item-btn">
 						<el-button type="primary" round @click="onSetAuth">{{ tl('accessBtn') }}</el-button>
 					</div>
@@ -28,10 +33,12 @@ import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
 import { Session } from '/@/utils/storage';
 import { useRouter } from 'vue-router';
 import translations from './i18n.json';
+import timer from '/@/components/timer.vue';
 import { makeTranslator } from '/@/i18n';
 
 export default defineComponent({
 	name: '401',
+	components: { timer },
 	setup() {
 		const storesThemeConfig = useThemeConfig();
 		const tl = makeTranslator(translations);
@@ -55,16 +62,18 @@ export default defineComponent({
 				else return `80px`;
 			}
 		});
-
+		const done = () => {
+			onSetAuth();
+		};
 		onUnmounted(() => {
-			onSetAuth()
-			});
+			onSetAuth();
+		});
 
 		return {
 			onSetAuth,
 			initTagViewHeight,
-			tl
-			
+			tl,
+			done,
 		};
 	},
 });

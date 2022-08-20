@@ -1,5 +1,4 @@
 import { createI18n } from 'vue-i18n';
-import { toRef, unref } from 'vue';
 import pinia from '/@/stores/index';
 import { ISO639 } from './ISO639';
 import { storeToRefs, defineStore } from 'pinia';
@@ -61,7 +60,9 @@ export function makeTranslator(translations?: any) {
 }
 
 export const rtlLanguages: Array<ISO639> = [ISO639.Persian, ISO639.Arabic, ISO639.Hebrew];
-function isRTLLang(): boolean {
+
+
+export function isRTLLang(): boolean {
 	for (const rtlLang in rtlLanguages) {
 		if (rtlLanguages[rtlLang] == getLocale()) return true;
 	}
