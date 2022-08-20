@@ -1,4 +1,4 @@
-<template>
+x<template>
 	<div class="error layout-view-bg-white" :style="{ height: `calc(100vh - ${initTagViewHeight}` }">
 		<div class="error-flex">
 			<div class="left">
