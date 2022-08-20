@@ -39,9 +39,11 @@
 						@click.stop="closeCurrentTagsView(getThemeConfig.isShareTagsView ? v.path : v.url)"
 					/>
 				</li>
-				<el-button v-if="state.tagsRefsIndex > 3" @click="closeAll" class="layout-navbars-tagsview-ul-li">
+				<el-button v-if="closableTabs > 1" @click="closeAll" class="layout-navbars-tagsview-ul-li">
 					<SvgIcon name="ele-CircleCloseFilled" color="var(--el-color-danger)"
-				/></el-button>
+				/>
+				
+				</el-button>
 			</ul>
 		</el-scrollbar>
 
@@ -138,6 +140,8 @@ export default defineComponent({
 			return themeConfig.value.tagsStyle;
 		});
 		const closeAll = () => {
+			console.log(state.tagsViewList);
+
 			closeAllTagsView();
 		};
 
@@ -498,7 +502,7 @@ export default defineComponent({
 		};
 		// 设置 tagsView 可以进行拖拽
 		const initSortable = async () => {
-			const el = <HTMLElement>document.querySelector('.layout-navbars-tagsview-ul');
+			const el = <HTMLElement>document.querySelector('.layout-navbacontextmenurs-tagsview-ul');
 			if (!el) return false;
 			state.sortable.el && state.sortable.destroy();
 			state.sortable = Sortable.create(el, {
@@ -588,8 +592,18 @@ export default defineComponent({
 				deep: true,
 			}
 		);
+
+
+		const closableTabs = ref(0)
+		watch(state,(newVal) => {
+			closableTabs.value = newVal.tagsViewList.filter(tab => tab.meta.isAffix === false).length;
+			
+
+		});
+
 		return {
 			isActive,
+			closableTabs,
 			onContextmenu,
 			onTagsClick,
 			tagsRefs,
