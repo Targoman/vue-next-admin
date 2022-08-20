@@ -2,6 +2,7 @@
 	<mixed-input
 		:prop="prop"
 		:type="type"
+		:required="required"
 		:label="label"
 		:placeholder="placeholder"
 		:prependIcon="icon"
@@ -23,6 +24,7 @@ export default defineComponent({
 		placeholder: String,
 		prop: String,
 		type: String,
+		required: Boolean,
 	},
 	setup(props, { emit }) {
 		const icon = ref('ele-Edit');

@@ -1,6 +1,6 @@
 <template>
-	<el-form-item :label="label" :prop="prop" :rules="rule()">
-		<el-input :style="elInputStyle" :input-style="inputStyle" :placeholder="placeholder" :readonly="readonly" v-model="value" :type="type" clearable>
+	<el-form-item :required="required" :label="label" :prop="prop" :rules="rule()">
+		<el-input :style="elInputStyle" :input-style="inputStyle" :placeholder="placeholder" :readonly="readonly" v-model="value" :type="type">
 			<template v-if="append" #prepend> <slot name="prepend"></slot></template>
 			<template v-if="prepend" #append> <slot name="append"></slot></template>
 		</el-input>
@@ -30,6 +30,7 @@ export default defineComponent({
 		label: String,
 		prepend: Boolean,
 		append: Boolean,
+		required: Boolean,
 	},
 	setup(props, { emit }) {
 		const value = ref('');
@@ -70,14 +71,14 @@ export default defineComponent({
 					case 'email':
 						return [{ validator: validateEmail, trigger: 'change' }];
 					case 'text':
-						return [
-							{ required: true, message: tl('mustBeFilledUp'), trigger: 'change' },
-							// { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'change' },
-						];
+						return; //[
+					// { required: true, message: tl('mustBeFilledUp'), trigger: 'change' },
+					// { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'change' },
+					// ];
 					case 'iban':
 						return validators.iban;
 					default:
-						return [{ required: true, message: tl('mustBeFilledUp'), trigger: 'change' }];
+						return; // [{ required: true, message: tl('mustBeFilledUp'), trigger: 'change' }];
 				}
 			}
 		};

@@ -1,6 +1,7 @@
 <template>
 	<input-with-validation
 		:type="type"
+		:required="required"
 		:label="label"
 		elInputStyle="direction: ltr"
 		:inputStyle="{
@@ -43,6 +44,7 @@ export default defineComponent({
 		prop: String,
 		readonly: Boolean,
 		type: String,
+		required: Boolean,
 	},
 	setup(_props, { emit }) {
 		const slot1 = ref(getLocale() === 'fa' ? 'prepend' : 'append');
