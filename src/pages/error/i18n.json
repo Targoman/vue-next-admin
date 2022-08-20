@@ -1,0 +1,26 @@
+{
+	"en": {
+		"forbiddenTitle": "Access Forbidden",
+		"forbiddenMsg":"You don’t have permission to access this page",
+		"forbiddenBtn":"Go Home",
+		"accessTitle":"Unauthorized",
+		"accessMsg":"Sorry , your request could not be processed",
+		"accessBtn":"Log in again",
+		"foundTitle":"Not Found",
+		"foundMsg":"This page doesn't exist",
+		"foundBtn":"Go Home"
+
+	},
+	"fa": {
+		"forbiddenTitle": "دسترسی غیرمجاز",
+		"forbiddenMsg":"شما اجازه دسترسی به این صفحه را ندارید",
+		"forbiddenBtn": " بازگشت به صفحه اصلی " ,
+		"accessTitle":"کاربر غیرمجاز",
+		"accessMsg":"متاسفانه درخواست شما قابل اجرا نمی باشد",
+		"accessBtn":"ورود مجدد",
+		"foundTitle":"پیدا نشد",
+		"foundMsg":"این صفحه وجود ندارد",
+		"foundBtn":" بازگشت به صفحه اصلی "
+		
+	}
+}

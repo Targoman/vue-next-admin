@@ -4,10 +4,10 @@ x<template>
 			<div class="left">
 				<div class="left-item">
 					<div class="left-item-animation left-item-num">403</div>
-					<div class="left-item-animation left-item-title">{{ $t('message.Forbidden.forbiddenTitle') }}</div>
-					<div class="left-item-animation left-item-msg">{{ $t('message.Forbidden.forbiddenMsg') }}</div>
+					<div class="left-item-animation left-item-title">{{ tl('forbiddenTitle') }}</div>
+					<div class="left-item-animation left-item-msg">{{ tl('forbiddenMsg') }}</div>
 					<div class="left-item-animation left-item-btn">
-						<el-button type="primary" round @click="onGoHome">{{ $t('message.forbidden.forbiddenBtn') }}</el-button>
+						<el-button type="primary" round @click="onGoHome">{{ tl('forbiddenBtn') }}</el-button>
 					</div>
 				</div>
 			</div>
@@ -26,10 +26,14 @@ import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
+import { makeTranslator } from '/@/i18n';
+import translations from './i18n.json';
+
 
 export default defineComponent({
 	name: '403',
 	setup() {
+		const tl = makeTranslator(translations);
 		const storesThemeConfig = useThemeConfig();
 		const storesTagsViewRoutes = useTagsViewRoutes();
 		const { themeConfig } = storeToRefs(storesThemeConfig);
@@ -51,6 +55,7 @@ export default defineComponent({
 		return {
 			onGoHome,
 			initTagViewHeight,
+			tl
 		};
 	},
 });

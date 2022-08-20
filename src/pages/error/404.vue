@@ -4,10 +4,10 @@
 			<div class="left">
 				<div class="left-item">
 					<div class="left-item-animation left-item-num">404</div>
-					<div class="left-item-animation left-item-title">{{ $t('message.notFound.foundTitle') }}</div>
-					<div class="left-item-animation left-item-msg">{{ $t('message.notFound.foundMsg') }}</div>
+					<div class="left-item-animation left-item-title">{{ tl('foundTitle') }}</div>
+					<div class="left-item-animation left-item-msg">{{ tl('foundMsg') }}</div>
 					<div class="left-item-animation left-item-btn">
-						<el-button type="primary" round @click="onGoHome">{{ $t('message.notFound.foundBtn') }}</el-button>
+						<el-button type="primary" round @click="onGoHome">{{ tl('foundBtn') }}</el-button>
 					</div>
 				</div>
 			</div>
@@ -26,11 +26,15 @@ import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
+import { makeTranslator } from '/@/i18n';
+import translations from './i18n.json';
+
 
 export default defineComponent({
 	name: '404',
 	setup() {
 		const storesThemeConfig = useThemeConfig();
+		const tl = makeTranslator(translations);
 		const storesTagsViewRoutes = useTagsViewRoutes();
 		const { themeConfig } = storeToRefs(storesThemeConfig);
 		const { isTagsViewCurrenFull } = storeToRefs(storesTagsViewRoutes);
@@ -51,6 +55,7 @@ export default defineComponent({
 		return {
 			onGoHome,
 			initTagViewHeight,
+			tl
 		};
 	},
 });
