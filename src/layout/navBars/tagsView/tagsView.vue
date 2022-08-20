@@ -39,8 +39,12 @@
 						@click.stop="closeCurrentTagsView(getThemeConfig.isShareTagsView ? v.path : v.url)"
 					/>
 				</li>
+				<el-button v-if="state.tagsRefsIndex > 3" @click="closeAll" class="layout-navbars-tagsview-ul-li">
+					<SvgIcon name="ele-CircleCloseFilled" color="var(--el-color-danger)"
+				/></el-button>
 			</ul>
 		</el-scrollbar>
+
 		<Contextmenu :dropdown="dropdown" ref="contextmenuRef" @currentContextmenuClick="onCurrentContextmenuClick" />
 	</div>
 </template>
@@ -109,6 +113,7 @@ export default defineComponent({
 		const { proxy } = <any>getCurrentInstance();
 		const tagsRefs = ref<any[]>([]);
 		const scrollbarRef = ref();
+
 		const contextmenuRef = ref();
 		const tagsUlRef = ref();
 		const stores = useTagsViewRoutes();
@@ -132,7 +137,10 @@ export default defineComponent({
 		const setTagsStyle = computed(() => {
 			return themeConfig.value.tagsStyle;
 		});
-		// 获取布局配置信息
+		const closeAll = () => {
+			closeAllTagsView();
+		};
+
 		const getThemeConfig = computed(() => {
 			return themeConfig.value;
 		});
@@ -585,6 +593,7 @@ export default defineComponent({
 			onContextmenu,
 			onTagsClick,
 			tagsRefs,
+			closeAll,
 			contextmenuRef,
 			scrollbarRef,
 			tagsUlRef,
@@ -595,6 +604,7 @@ export default defineComponent({
 			refreshCurrentTagsView,
 			closeCurrentTagsView,
 			onCurrentContextmenuClick,
+			state,
 			...toRefs(state),
 		};
 	},

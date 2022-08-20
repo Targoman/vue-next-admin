@@ -5,8 +5,16 @@
 	justify-content: inherit;
 	margin-inline-end: 10px;
 }
+.el-input .el-input--default .el-input-group .el-input-group--prepend {
+	border-radius: 8px;
+}
 .el-input__inner {
 	font-family: inherit;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+.el-input__wrapper {
+	padding: 1px;
 }
 
 @media screen and (max-width: $xs) {

@@ -106,60 +106,80 @@
 							@change="onColumnsMenuBarGradualChange"
 							:disabled="getThemeConfig.layout !== 'columns'"
 						></el-switch> -->
+						<Switch
+							:initialValue="getThemeConfig.isColumnsMenuBarColorGradual"
+							@change="onColumnsMenuBarGradualChange"
+							size="small"
+							:disabled="getThemeConfig.layout !== 'columns'"
+						></Switch>
 					</div>
-					<Switch
-						:initialValue="getThemeConfig.isColumnsMenuBarColorGradual"
-						@change="onColumnsMenuBarGradualChange"
-						size="small"
-						:disabled="getThemeConfig.layout !== 'columns'"
-					></Switch>
 				</div>
 
 				<el-divider :content-position="locale === 'fa' ? 'right' : 'left'">{{ tl('threeTitle') }}</el-divider>
 				<div class="layout-breadcrumb-seting-bar-flex" :style="{ opacity: getThemeConfig.layout === 'transverse' ? 0.5 : 1 }">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('threeIsCollapse') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch
+						<!-- <el-switch
 							v-model="getThemeConfig.isCollapse"
 							:disabled="getThemeConfig.layout === 'transverse'"
 							size="small"
 							@change="onThemeConfigChange"
-						></el-switch>
+						></el-switch> -->
+						<Switch
+							:initialValue="getThemeConfig.isCollapse"
+							@change="setIsCollapse"
+							size="small"
+							:disabled="getThemeConfig.layout === 'transverse'"
+						></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15" :style="{ opacity: getThemeConfig.layout === 'transverse' ? 0.5 : 1 }">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('threeIsUniqueOpened') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch
+						<!-- <el-switch
 							v-model="getThemeConfig.isUniqueOpened"
 							:disabled="getThemeConfig.layout === 'transverse'"
 							size="small"
 							@change="setLocalThemeConfig"
-						></el-switch>
+						></el-switch> -->
+						<Switch
+							:initialValue="getThemeConfig.isUniqueOpened"
+							@change="setIsUniqueOpened"
+							size="small"
+							:disabled="getThemeConfig.layout === 'transverse'"
+						></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('threeIsFixedHeader') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isFixedHeader" size="small" @change="onIsFixedHeaderChange"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isFixedHeader" size="small" @change="onIsFixedHeaderChange"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isFixedHeader" @change="onIsFixedHeaderChange" size="small"></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15" :style="{ opacity: getThemeConfig.layout !== 'classic' ? 0.5 : 1 }">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('threeIsClassicSplitMenu') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch
+						<!-- <el-switch
 							v-model="getThemeConfig.isClassicSplitMenu"
 							:disabled="getThemeConfig.layout !== 'classic'"
 							size="small"
 							@change="onClassicSplitMenuChange"
 						>
-						</el-switch>
+						</el-switch> -->
+						<Switch
+							:initialValue="getThemeConfig.isClassicSplitMenu"
+							:disabled="getThemeConfig.layout !== 'classic'"
+							@change="onClassicSplitMenuChange"
+							size="small"
+						></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('threeIsLockScreen') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isLockScreen" size="small" @change="setLocalThemeConfig"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isLockScreen" size="small" @change="setLocalThemeConfig"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isLockScreen" @change="setIsLockScreen" size="small"></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt11">
@@ -182,7 +202,8 @@
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsShowLogo') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isShowLogo" size="small" @change="onIsShowLogoChange"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isShowLogo" size="small" @change="onIsShowLogoChange"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isShowLogo" @change="onIsShowLogoChange" size="small"></Switch>
 					</div>
 				</div>
 				<div
@@ -191,77 +212,100 @@
 				>
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsBreadcrumb') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch
+						<!-- <el-switch
 							v-model="getThemeConfig.isBreadcrumb"
 							:disabled="getThemeConfig.layout === 'classic' || getThemeConfig.layout === 'transverse'"
 							size="small"
 							@change="onIsBreadcrumbChange"
-						></el-switch>
+						></el-switch> -->
+						<Switch
+							:initialValue="getThemeConfig.isBreadcrumb"
+							:disabled="getThemeConfig.layout === 'classic' || getThemeConfig.layout === 'transverse'"
+							@change="onIsBreadcrumbChange"
+							size="small"
+						></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsBreadcrumbIcon') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isBreadcrumbIcon" size="small" @change="setLocalThemeConfig"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isBreadcrumbIcon" size="small" @change="setLocalThemeConfig"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isBreadcrumbIcon" @change="setIsBreadcrumbIcon" size="small"></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsTagsview') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isTagsview" size="small" @change="setLocalThemeConfig"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isTagsview" size="small" @change="setLocalThemeConfig"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isTagsview" @change="setIsTagsview" size="small"></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsTagsviewIcon') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isTagsviewIcon" size="small" @change="setLocalThemeConfig"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isTagsviewIcon" size="small" @change="setLocalThemeConfig"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isTagsviewIcon" @change="setIsTagsviewIcon" size="small"></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsCacheTagsView') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isCacheTagsView" size="small" @change="setLocalThemeConfig"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isCacheTagsView" size="small" @change="setLocalThemeConfig"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isCacheTagsView" @change="setIsCacheTagsView" size="small"></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15" :style="{ opacity: isMobile ? 0.5 : 1 }">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsSortableTagsView') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch
+						<!-- <el-switch
 							v-model="getThemeConfig.isSortableTagsView"
 							:disabled="isMobile ? true : false"
 							size="small"
 							@change="onSortableTagsViewChange"
-						></el-switch>
+						></el-switch> -->
+						<Switch
+							:initialValue="getThemeConfig.isSortableTagsView"
+							:disabled="isMobile ? true : false"
+							@change="onSortableTagsViewChange"
+							size="small"
+						></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsShareTagsView') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isShareTagsView" size="small" @change="onShareTagsViewChange"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isShareTagsView" size="small" @change="onShareTagsViewChange"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isShareTagsView" @change="onShareTagsViewChange" size="small"></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsFooter') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isFooter" size="small" @change="setLocalThemeConfig"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isFooter" size="small" @change="setLocalThemeConfig"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isFooter" @change="onIsFooter" size="small"></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsGrayscale') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isGrayscale" size="small" @change="onAddFilterChange('grayscale')"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isGrayscale" size="small" @change="onAddFilterChange"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isGrayscale" @change="onAddFilterChange('grayscale')" size="small"></Switch>
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsInvert') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isInvert" size="small" @change="onAddFilterChange('invert')"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isInvert" size="small" @change="onAddFilterChange('invert')"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isInvert" @change="onAddFilterChange('invert')" size="small"></Switch>
+
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt15">
 					<div class="layout-breadcrumb-seting-bar-flex-label">{{ tl('fourIsWartermark') }}</div>
 					<div class="layout-breadcrumb-seting-bar-flex-value">
-						<el-switch v-model="getThemeConfig.isWartermark" size="small" @change="onWartermarkChange"></el-switch>
+						<!-- <el-switch v-model="getThemeConfig.isWartermark" size="small" @change="onWartermarkChange"></el-switch> -->
+						<Switch :initialValue="getThemeConfig.isWartermark" @change="onWartermarkChange" size="small"></Switch>
+
 					</div>
 				</div>
 				<div class="layout-breadcrumb-seting-bar-flex mt14">
@@ -425,7 +469,7 @@ import commonFunction from '/@/utils/commonFunction';
 import other from '/@/utils/other';
 import { getLocale, makeTranslator } from '/@/i18n';
 import translations from './i18n.json';
-import Switch from '/@/components/switchButton.vue';
+import Switch from '../../../components/form/switchButton.vue';
 
 export default defineComponent({
 	name: 'layoutBreadcrumbSeting',
@@ -493,34 +537,42 @@ export default defineComponent({
 		const onThemeConfigChange = () => {
 			setDispatchThemeConfig();
 		};
-		const onIsFixedHeaderChange = () => {
+		const onIsFixedHeaderChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isFixedHeader = value;
 			getThemeConfig.value.isFixedHeaderChange = getThemeConfig.value.isFixedHeader ? false : true;
 			setLocalThemeConfig();
+			onThemeConfigChange();
 		};
-		const onClassicSplitMenuChange = () => {
+		const onClassicSplitMenuChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isBreadcrumb = value;
 			getThemeConfig.value.isBreadcrumb = false;
 			setLocalThemeConfig();
 			proxy.mittBus.emit('getBreadcrumbIndexSetFilterRoutes');
 		};
-		const onIsShowLogoChange = () => {
+		const onIsShowLogoChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isShowLogo = value;
 			getThemeConfig.value.isShowLogoChange = getThemeConfig.value.isShowLogo ? false : true;
 			setLocalThemeConfig();
 		};
-		const onIsBreadcrumbChange = () => {
+		const onIsBreadcrumbChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isBreadcrumb = value;
 			if (getThemeConfig.value.layout === 'classic') {
 				getThemeConfig.value.isClassicSplitMenu = false;
 			}
 			setLocalThemeConfig();
 		};
-		const onSortableTagsViewChange = () => {
+		const onSortableTagsViewChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isSortableTagsView = value;
 			proxy.mittBus.emit('openOrCloseSortable');
 			setLocalThemeConfig();
 		};
-		const onShareTagsViewChange = () => {
+		const onShareTagsViewChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isShareTagsView = value;
 			proxy.mittBus.emit('openShareTagsView');
 			setLocalThemeConfig();
 		};
-		const onAddFilterChange = (attr: string) => {
+		const onAddFilterChange = (attr: string, value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isShareTagsView = value;
 			if (attr === 'grayscale') {
 				if (getThemeConfig.value.isGrayscale) getThemeConfig.value.isInvert = false;
 			} else {
@@ -528,20 +580,58 @@ export default defineComponent({
 			}
 			const cssAttr =
 				attr === 'grayscale' ? `grayscale(${getThemeConfig.value.isGrayscale ? 1 : 0})` : `invert(${getThemeConfig.value.isInvert ? '80%' : '0%'})`;
+
 			const appEle: any = document.body;
 			appEle.setAttribute('style', `filter: ${cssAttr}`);
 			setLocalThemeConfig();
 		};
 		const onAddDarkChange = (value?: boolean) => {
 			if (typeof value == 'boolean') getThemeConfig.value.isIsDark = value;
-			console.log(value);
-			console.log(getThemeConfig.value.isIsDark);
 			const body = document.documentElement as HTMLElement;
 			if (getThemeConfig.value.isIsDark) body.setAttribute('data-theme', 'dark');
 			else body.setAttribute('data-theme', '');
 			onThemeConfigChange();
 		};
-		const onWartermarkChange = () => {
+		const setIsLockScreen = (value: boolean) => {
+			getThemeConfig.value.isCacheTagsView = value;
+			onThemeConfigChange();
+		};
+
+		const onIsFooter = (value: boolean) => {
+			getThemeConfig.value.isFooter = value;
+			onThemeConfigChange();
+		};
+		const setIsCacheTagsView = (value: boolean) => {
+			getThemeConfig.value.isLockScreen = value;
+			onThemeConfigChange();
+		};
+
+		const setIsTagsview = (value: boolean) => {
+			getThemeConfig.value.isTagsview = value;
+			onThemeConfigChange();
+		};
+
+		const setIsCollapse = (value: boolean) => {
+			getThemeConfig.value.isCollapse = value;
+			onThemeConfigChange();
+		};
+
+		const setIsBreadcrumbIcon = (value: boolean) => {
+			getThemeConfig.value.isBreadcrumbIcon = value;
+			onThemeConfigChange();
+		};
+		const setIsTagsviewIcon = (value: boolean) => {
+			getThemeConfig.value.isTagsviewIcon = value;
+			onThemeConfigChange();
+		};
+
+		const setIsUniqueOpened = (value: boolean) => {
+			getThemeConfig.value.isUniqueOpened = value;
+			onThemeConfigChange();
+		};
+
+		const onWartermarkChange = (value?: boolean) => {
+			if (typeof value == 'boolean') getThemeConfig.value.isWartermark = value;
 			getThemeConfig.value.isWartermark ? Watermark.set(getThemeConfig.value.wartermarkText) : Watermark.del();
 			setLocalThemeConfig();
 		};
@@ -631,22 +721,30 @@ export default defineComponent({
 			locale,
 			tl,
 			openDrawer,
+			setIsCollapse,
+			setIsBreadcrumbIcon,
 			onColorPickerChange,
+			onIsFooter,
 			onBgColorPickerChange,
 			onTopBarGradualChange,
 			onMenuBarGradualChange,
 			onColumnsMenuBarGradualChange,
 			onThemeConfigChange,
+			setIsUniqueOpened,
+			setIsCacheTagsView,
 			onIsFixedHeaderChange,
+			setIsTagsview,
 			onIsShowLogoChange,
 			getThemeConfig,
 			onDrawerClose,
+			setIsTagsviewIcon,
 			onAddFilterChange,
 			onAddDarkChange,
 			onWartermarkChange,
 			onWartermarkTextInput,
 			onSetLayout,
 			setLocalThemeConfig,
+			setIsLockScreen,
 			onClassicSplitMenuChange,
 			onIsBreadcrumbChange,
 			onSortableTagsViewChange,
