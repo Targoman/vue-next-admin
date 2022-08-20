@@ -62,12 +62,15 @@
 					</el-row>
 				</el-card>
 			</el-col>
-
 			<el-col :span="24">
 				<el-card shadow="hover" class="mt15 personal-edit" :header="tl('updateInformation')">
 					<div class="personal-edit-title">{{ tl('personalInformation') }}</div>
-					<el-form :model="personalForm" size="default" label-width="40px" class="mt35 mb35">
+					<el-form :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
+							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
+								<two-state-input :label="tl('name')" :placeholder="tl('namePlaceholder')" @twoStateConfirm="onTwoStateConfirm"> </two-state-input>
+								<input-with-validation prop="name" @change="personalForm.name = $event" type="emailOrMobile"></input-with-validation>
+							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">
 									<el-input v-model="personalForm.name" :placeholder="tl('namePlaceholder')" clearable></el-input>
@@ -165,6 +168,8 @@ import { formatAxis } from '/@/utils/formatTime';
 import { recommendList } from './mock';
 import { makeTranslator } from '/@/i18n';
 import translations from './i18n.json';
+import twoStateInput from '/@/components/form/twoStateInput.vue';
+import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 
 interface PersonalState {
 	recommendList: any;
@@ -173,6 +178,10 @@ interface PersonalState {
 
 export default defineComponent({
 	name: 'personal',
+	components: {
+		inputWithValidation,
+		twoStateInput,
+	},
 	setup() {
 		const tl = makeTranslator(translations);
 		const state = reactive<PersonalState>({
@@ -186,13 +195,17 @@ export default defineComponent({
 				sex: '',
 			},
 		});
-		// 当前时间提示语
+
 		const currentTime = computed(() => {
 			return formatAxis(new Date());
 		});
+		const onTwoStateConfirm = (value: string) => {
+			console.log('val', value);
+		};
 		return {
 			tl,
 			currentTime,
+			onTwoStateConfirm,
 			...toRefs(state),
 		};
 	},

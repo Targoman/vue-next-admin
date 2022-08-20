@@ -1,0 +1,14 @@
+{
+	"en": {
+		"mustBeFilledUp": "Must be filled up",
+		"wrongPhoneNumber": "Please input valid phone number",
+		"wrongEmail": "Please input valid Email",
+		"wrongEmailOrPhoneNumber": "Please input valid Email or phone number"
+	},
+	"fa": {
+		"mustBeFilledUp": "این ورودی نباید خالی باشد",
+		"wrongPhoneNumber": "شماره تلفن معتبری وارد کنید",
+		"wrongEmail": "ایمیل معتبری وارد کنید",
+		"wrongEmailOrPhoneNumber": "ایمیل یا شماره تلفن معتبری وارد کنید"
+	}
+}
