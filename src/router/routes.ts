@@ -10,6 +10,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 		meta: {
 			isKeepAlive: true,
 		},
+		
 		children: [
 			{
 				path: '/dashboard',
