@@ -6,7 +6,7 @@
 		"name": "Name",
 		"namePlaceholder": "Enter your name",
 		"email": "Email",
-		"emailPlaceholder": "Enter your Email: example@mail.com",
+		"emailPlaceholder": "Enter your Email",
 		"occupation": "Job",
 		"occupationPlaceholder": "Enter your occupation",
 		"phone": "Phone",

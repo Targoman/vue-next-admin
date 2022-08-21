@@ -1,6 +1,6 @@
 <template>
 	<el-form-item :required="required" :label="label" :prop="prop" :rules="rule()">
-		<el-input :style="elInputStyle" :input-style="inputStyle" :placeholder="placeholder" :disabled="disabled" v-model="value" :type="type">
+		<el-input clearable :style="elInputStyle" :input-style="inputStyle" :placeholder="placeholder" :disabled="disabled" v-model="value" :type="type">
 			<template v-if="$slots.prefix" #prefix> <slot name="prefix"></slot></template>
 			<template v-if="$slots.suffix" #suffix> <slot name="suffix"></slot></template>
 		</el-input>
@@ -35,7 +35,7 @@ export default defineComponent({
 		const value = ref('');
 		watch(value, (newValue) => {
 			// console.log(newValue);
-			emit('change', newValue);
+			if (typeof newValue === 'string') emit('inputChange', newValue);
 		});
 
 		const tl = makeTranslator(translations);

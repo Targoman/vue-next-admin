@@ -1,6 +1,14 @@
 <template>
 	<el-row>
-		<input-with-validation :type="type" :required="required" :label="label" :placeholder="placeholder" :disabled="disabled" @change="value = $event">
+		<input-with-validation
+			:type="type"
+			:required="required"
+			:label="label"
+			:placeholder="placeholder"
+			:disabled="disabled"
+			:prop="prop"
+			@inputChange="onMixedInputChange"
+		>
 			<template v-if="$slots.prefix" #prefix
 				><el-button
 					@click="onMixedInputChange"
@@ -40,7 +48,10 @@ export default defineComponent({
 		const onKeyUp = () => {
 			emit('keyUp', value.value);
 		};
-		const onMixedInputChange = () => {
+		const onMixedInputChange = (val: string) => {
+			console.log('mix', val);
+
+			value.value = val;
 			emit('mixedInputChange', value.value);
 		};
 		return { value, onKeyUp, onMixedInputChange, isRTLLang, alert };
