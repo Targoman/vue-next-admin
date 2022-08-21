@@ -34,7 +34,6 @@ export default defineComponent({
 	setup(props, { emit }) {
 		const value = ref('');
 		watch(value, (newValue) => {
-			// console.log(newValue);
 			if (typeof newValue === 'string') emit('inputChange', newValue);
 		});
 

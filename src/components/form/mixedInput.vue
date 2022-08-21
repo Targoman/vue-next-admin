@@ -11,7 +11,7 @@
 		>
 			<template v-if="$slots.prefix" #prefix
 				><el-button
-					@click="onMixedInputChange"
+					@click="onMixedInputClick"
 					:style="isRTLLang() ? 'border-left: 1px solid #bfbfbf' : 'border-right: 1px solid #bfbfbf'"
 					class="m0 button button-inactive"
 				>
@@ -48,13 +48,14 @@ export default defineComponent({
 		const onKeyUp = () => {
 			emit('keyUp', value.value);
 		};
+		const onMixedInputClick = () => {
+			emit('mixedInputClick', value.value);
+		};
 		const onMixedInputChange = (val: string) => {
-			console.log('mix', val);
-
 			value.value = val;
 			emit('mixedInputChange', value.value);
 		};
-		return { value, onKeyUp, onMixedInputChange, isRTLLang, alert };
+		return { value, onKeyUp, onMixedInputChange, onMixedInputClick, isRTLLang, alert };
 	},
 });
 </script>

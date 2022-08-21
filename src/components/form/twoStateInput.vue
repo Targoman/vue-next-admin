@@ -6,7 +6,7 @@
 		:label="label"
 		:placeholder="placeholder"
 		:disabled="disableStatus"
-		@mixedInputChange="onChangeIcon"
+		@mixedInputClick="onTwoStateConfirm"
 	>
 		<template #prefix><SvgIcon :name="icon" /></template>
 	</mixed-input>
@@ -29,15 +29,19 @@ export default defineComponent({
 	setup(props, { emit }) {
 		const icon = ref('ele-Edit');
 		const disableStatus = ref(true);
-		const onChangeIcon = (value: string) => {
+		const onTwoStateConfirm = (value: string) => {
 			disableStatus.value = !disableStatus.value;
+			onChangeIcon();
+			console.log(value);
+			emit('twoStateConfirm', value);
+		};
+		const onChangeIcon = () => {
 			if (icon.value === 'ele-Edit') icon.value = 'ele-CircleCheckFilled';
 			else {
 				icon.value = 'ele-Edit';
 			}
-			emit('twoStateConfirm', value);
 		};
-		return { icon, disableStatus, onChangeIcon };
+		return { icon, disableStatus, onTwoStateConfirm };
 	},
 });
 </script>

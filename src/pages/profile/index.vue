@@ -65,27 +65,29 @@
 			<el-col :span="24">
 				<el-card shadow="hover" class="mt15 personal-edit" :header="tl('updateInformation')">
 					<div class="personal-edit-title">{{ tl('personalInformation') }}</div>
-					<el-form :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
+					<el-form @validate="validate" :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<!-- <two-state-input
-									type="emailOrMobile"
+								<two-state-input
+									type="mobile"
 									prop="name"
 									:label="tl('name')"
 									:placeholder="tl('namePlaceholder')"
-									@twoStateConfirm="onTwoStateConfirm"
+									@twoStateConfirm="personalForm.name = $event"
 								>
-								</two-state-input> -->
+								</two-state-input>
+							</el-col>
+							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<mixed-input
 									@mixedInputChange="personalForm.name = $event"
 									prop="name"
 									type="emailOrMobile"
-									prepend="55"
 									:required="false"
 									placeholder="s"
 									label="mixed"
 								></mixed-input>
 							</el-col>
+
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<input-with-validation prop="name" @inputChange="personalForm.name = $event" type="emailOrMobile"></input-with-validation>
 							</el-col>
@@ -189,6 +191,7 @@ import translations from './i18n.json';
 import twoStateInput from '/@/components/form/twoStateInput.vue';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 import mixedInput from '/@/components/form/mixedInput.vue';
+import { FormItemProp } from 'element-plus';
 
 interface PersonalState {
 	recommendList: any;
@@ -219,13 +222,13 @@ export default defineComponent({
 		const currentTime = computed(() => {
 			return formatAxis(new Date());
 		});
-		const onTwoStateConfirm = (value: string) => {
-			console.log('val', value);
+		const validate = (prop: FormItemProp, isValid: boolean, message: string) => {
+			console.log('val', prop, isValid, message);
 		};
 		return {
 			tl,
 			currentTime,
-			onTwoStateConfirm,
+			validate,
 			...toRefs(state),
 		};
 	},
