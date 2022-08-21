@@ -44,7 +44,11 @@
 			</el-col>
 
 			<el-col :xs="24" :sm="8" class="pl15 personal-info">
-				<el-card shadow="hover" :header="tl('accountInfo')">d </el-card>
+				<el-card shadow="hover" :header="tl('accountInfo')"
+					><the-form :model="personalForm">
+						<input-with-validation prop="name" @inputChange="personalForm.name = $event" type="emailOrMobile"></input-with-validation
+					></the-form>
+				</el-card>
 			</el-col>
 
 			<el-col :span="24">
@@ -191,7 +195,7 @@ import translations from './i18n.json';
 import twoStateInput from '/@/components/form/twoStateInput.vue';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 import mixedInput from '/@/components/form/mixedInput.vue';
-import { FormItemProp } from 'element-plus';
+import theForm from '/@/components/form/form.vue';
 
 interface PersonalState {
 	recommendList: any;
@@ -201,6 +205,7 @@ interface PersonalState {
 export default defineComponent({
 	name: 'personal',
 	components: {
+		theForm,
 		inputWithValidation,
 		twoStateInput,
 		mixedInput,
@@ -222,13 +227,11 @@ export default defineComponent({
 		const currentTime = computed(() => {
 			return formatAxis(new Date());
 		});
-		const validate = (prop: FormItemProp, isValid: boolean, message: string) => {
-			console.log('val', prop, isValid, message);
-		};
+
 		return {
 			tl,
 			currentTime,
-			validate,
+
 			...toRefs(state),
 		};
 	},
