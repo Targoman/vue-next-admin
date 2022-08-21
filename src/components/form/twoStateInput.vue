@@ -5,10 +5,10 @@
 		:required="required"
 		:label="label"
 		:placeholder="placeholder"
-		:prependIcon="icon"
-		:disabled="disabled"
+		:disabled="disableStatus"
 		@mixedInputChange="onChangeIcon"
 	>
+		<template #prefix><SvgIcon :name="icon" /></template>
 	</mixed-input>
 </template>
 
@@ -28,16 +28,16 @@ export default defineComponent({
 	},
 	setup(props, { emit }) {
 		const icon = ref('ele-Edit');
-		const disabled = ref(true);
+		const disableStatus = ref(true);
 		const onChangeIcon = (value: string) => {
-			disabled.value = !disabled.value;
+			disableStatus.value = !disableStatus.value;
 			if (icon.value === 'ele-Edit') icon.value = 'ele-CircleCheckFilled';
 			else {
 				icon.value = 'ele-Edit';
 			}
 			emit('twoStateConfirm', value);
 		};
-		return { icon, disabled, onChangeIcon };
+		return { icon, disableStatus, onChangeIcon };
 	},
 });
 </script>

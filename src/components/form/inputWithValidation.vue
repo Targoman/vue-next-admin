@@ -1,8 +1,8 @@
 <template>
 	<el-form-item :required="required" :label="label" :prop="prop" :rules="rule()">
-		<el-input :style="elInputStyle" :input-style="inputStyle" :placeholder="placeholder" :readonly="readonly" v-model="value" :type="type">
-			<template v-if="$slots.prepend" #prepend> <slot name="prepend"></slot></template>
-			<template v-if="$slots.append" #append> <slot name="append"></slot></template>
+		<el-input :style="elInputStyle" :input-style="inputStyle" :placeholder="placeholder" :disabled="disabled" v-model="value" :type="type">
+			<template v-if="$slots.prefix" #prefix> <slot name="prefix"></slot></template>
+			<template v-if="$slots.suffix" #suffix> <slot name="suffix"></slot></template>
 		</el-input>
 	</el-form-item>
 </template>
@@ -21,12 +21,11 @@ export default defineComponent({
 			default: 'text',
 		},
 		prop: String,
-		shownSlot: Boolean,
 		customValidation: Object,
 		elInputStyle: String,
 		inputStyle: String,
 		placeholder: String,
-		readonly: Boolean,
+		disabled: Boolean,
 		label: String,
 		prepend: Boolean,
 		append: Boolean,

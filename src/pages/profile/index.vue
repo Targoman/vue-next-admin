@@ -68,14 +68,14 @@
 					<el-form :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<!-- <two-state-input
+								<two-state-input
 									type="emailOrMobile"
 									prop="name"
 									:label="tl('name')"
 									:placeholder="tl('namePlaceholder')"
 									@twoStateConfirm="onTwoStateConfirm"
 								>
-								</two-state-input> -->
+								</two-state-input>
 								<mixed-input prop="name" type="emailOrMobile" prepend="55" :required="false" placeholder="s" label="sdfgb"></mixed-input>
 								<input-with-validation prop="name" @change="personalForm.name = $event" type="emailOrMobile"></input-with-validation>
 							</el-col>
