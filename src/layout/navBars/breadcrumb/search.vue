@@ -1,6 +1,6 @@
 <template>
 	<div class="layout-search-dialog">
-		<el-dialog v-model="isShowSearch" width="300px" destroy-on-close :modal="false" fullscreen :show-close="false">
+		<el-dialog v-model="isShowSearch" width="0px" destroy-on-close  :fullscreen="false" :show-close="false">
 			<el-autocomplete
 				v-model="menuQuery"
 				:fetch-suggestions="menuSearch"
