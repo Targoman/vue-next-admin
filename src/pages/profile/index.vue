@@ -43,12 +43,7 @@
 			</el-col>
 
 			<el-col :xs="24" :sm="8" class="pl15 personal-info">
-				<el-card shadow="hover" :header="tl('accountInfo')"
-					><the-form :model="personalForm" @formChange="test" v-slot="info">
-						{{ info }}
-						<input-with-validation prop="name" @inputChange="personalForm.name = $event" type="emailOrMobile"></input-with-validation
-					></the-form>
-				</el-card>
+				<el-card shadow="hover" :header="tl('accountInfo')"><the-form :model="personalForm"></the-form> </el-card>
 			</el-col>
 
 			<el-col :span="24">
@@ -227,6 +222,7 @@ export default defineComponent({
 				sex: '',
 			},
 		});
+		const formObject = {};
 
 		const currentTime = computed(() => {
 			return formatAxis(new Date());
