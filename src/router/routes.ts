@@ -294,7 +294,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				],
 			},
 			{
-				path: 'ticketing',
+				path: '/ticketing',
 				name: 'ticketing',
 				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/ticketing/faq',
