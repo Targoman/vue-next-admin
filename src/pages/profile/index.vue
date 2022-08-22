@@ -44,7 +44,8 @@
 
 			<el-col :xs="24" :sm="8" class="pl15 personal-info">
 				<el-card shadow="hover" :header="tl('accountInfo')"
-					><the-form :model="personalForm">
+					><the-form :model="personalForm" @formChange="test" v-slot="info">
+						{{ info }}
 						<input-with-validation prop="name" @inputChange="personalForm.name = $event" type="emailOrMobile"></input-with-validation
 					></the-form>
 				</el-card>
@@ -230,11 +231,15 @@ export default defineComponent({
 		const currentTime = computed(() => {
 			return formatAxis(new Date());
 		});
+		const test = (Object: { prop: string; isValid: boolean }) => {
+			console.log(Object);
+			// state.personalForm[Object.prop] =
+		};
 
 		return {
 			tl,
 			currentTime,
-
+			test,
 			...toRefs(state),
 		};
 	},

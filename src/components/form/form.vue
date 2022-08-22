@@ -1,9 +1,11 @@
 <template>
-	<el-form @validate="validate" :model="model" size="default" status-icon label-width="40px"><slot /></el-form>
+	<el-form @validate="validate" :model="modelV" size="default" status-icon label-width="40px"
+		><slot :info="validationInformations"
+	/></el-form>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { FormItemProp } from 'element-plus';
 
 export default defineComponent({
@@ -12,11 +14,15 @@ export default defineComponent({
 	props: {
 		model: Object,
 	},
-	setup(_props, { emit }) {
+	setup(props, { emit }) {
+		const modelV = ref(props.model);
+		const validationInformations = ref();
 		const validate = (prop: FormItemProp, isValid: boolean, message: string) => {
-			console.log('val', prop, isValid, message);
+			validationInformations.value = { prop, isValid, message };
+			console.log('val', validationInformations.value);
+			if (isValid) emit('formChange', { prop, isValid });
 		};
-		return { validate };
+		return { validate, modelV, validationInformations };
 	},
 });
 </script>

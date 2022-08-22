@@ -32,7 +32,6 @@ export default defineComponent({
 		const onTwoStateConfirm = (value: string) => {
 			disableStatus.value = !disableStatus.value;
 			onChangeIcon();
-			console.log(value);
 			emit('twoStateConfirm', value);
 		};
 		const onChangeIcon = () => {
