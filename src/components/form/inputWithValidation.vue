@@ -1,6 +1,14 @@
 <template>
-	<el-form-item :required="required" :label="label" :prop="prop" :rules="rule()">
-		<el-input clearable :style="elInputStyle" :input-style="inputStyle" :placeholder="placeholder" :disabled="disabled" v-model="value" :type="type">
+	<el-form-item :size="size" :required="required" :label="label" :prop="prop" :rules="rule()">
+		<el-input
+			clearable
+			:style="elInputStyle"
+			:input-style="inputStyle"
+			:placeholder="placeholder"
+			:disabled="disabled"
+			v-model="value"
+			:type="type"
+		>
 			<template v-if="$slots.prefix" #prefix> <slot name="prefix"></slot></template>
 			<template v-if="$slots.suffix" #suffix> <slot name="suffix"></slot></template>
 		</el-input>
@@ -27,6 +35,10 @@ export default defineComponent({
 		placeholder: String,
 		disabled: Boolean,
 		label: String,
+		size: {
+			type: String,
+			default: 'default',
+		},
 		prepend: Boolean,
 		append: Boolean,
 		required: Boolean,
