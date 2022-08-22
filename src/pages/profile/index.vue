@@ -1,7 +1,6 @@
 <template>
 	<div class="personal">
 		<el-row>
-			<!-- 个人信息 -->
 			<el-col :xs="24" :sm="16">
 				<el-card shadow="hover" :header="tl('personalInformation')">
 					<div class="personal-user">
@@ -59,7 +58,9 @@
 								<SvgIcon :name="v.icon" :size="70" :style="{ color: v.iconColor }" />
 								<div class="personal-recommend-auto">
 									<div>{{ v.title }}</div>
-									<div class="personal-recommend-msg">{{ v.msg }}</div>
+									<div class="personal-recommend-msg">
+										{{ v.msg }}
+									</div>
 								</div>
 							</div>
 						</el-col>
@@ -68,7 +69,9 @@
 			</el-col>
 			<el-col :span="24">
 				<el-card shadow="hover" class="mt15 personal-edit" :header="tl('updateInformation')">
-					<div class="personal-edit-title">{{ tl('personalInformation') }}</div>
+					<div class="personal-edit-title">
+						{{ tl('personalInformation') }}
+					</div>
 					<el-form @validate="validate" :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
