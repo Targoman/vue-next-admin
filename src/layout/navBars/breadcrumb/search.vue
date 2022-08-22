@@ -1,6 +1,6 @@
 <template>
 	<div class="layout-search-dialog">
-		<el-dialog v-model="isShowSearch" width="300px" destroy-on-close :modal="false" fullscreen :show-close="false">
+		<el-dialog v-model="isShowSearch" width="0px" destroy-on-close :modal="true" :fullscreen="false" :show-close="false" top="250vh">
 			<el-autocomplete
 				v-model="menuQuery"
 				:fetch-suggestions="menuSearch"
@@ -8,6 +8,7 @@
 				ref="layoutMenuAutocompleteRef"
 				@select="onHandleSelect"
 				@blur="onSearchBlur"
+				popper-class="سلام"
 			>
 				<template #prefix>
 					<el-icon class="el-input__icon">
@@ -136,7 +137,7 @@ export default defineComponent({
 	:deep(.el-autocomplete) {
 		width: 560px;
 		position: absolute;
-		top: 100px;
+		top: -150px;
 		left: 50%;
 		transform: translateX(-50%);
 	}

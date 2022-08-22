@@ -1,6 +1,10 @@
 @import 'mixins/index.scss';
 
 /* Button ------------------------------- */
+.el-button {
+	font-family: inherit;
+}
+
 .el-button i.el-icon,
 .el-button i.iconfont,
 .el-button i.fa,

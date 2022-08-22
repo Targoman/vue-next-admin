@@ -102,9 +102,11 @@ export default {
 			layoutIfameView: 'IfameView',
 		},
 		staticRoutes: {
-			signIn: 'signIn',
-			notFound: 'notFound',
-			noPower: 'noPower',
+			signIn: 'SignIn',
+			notFound: 'NotFound',
+			unauthorized: 'Unauthorized',
+			forbidden: 'Forbidden',
+
 		},
 		user: {
 			title0: 'Component size',
@@ -248,8 +250,10 @@ export default {
 		},
 		staticRoutes: {
 			signIn: '登录',
-			notFound: '找不到此页面',
-			noPower: '没有权限',
+			notFound: 'پیدا نشد',
+			unauthorized: 'غیرمجاز',
+			forbidden: 'ممنوع',
+
 		},
 		user: {
 			title0: '组件大小',

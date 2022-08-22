@@ -10,6 +10,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 		meta: {
 			isKeepAlive: true,
 		},
+		
 		children: [
 			{
 				path: '/dashboard',
@@ -35,7 +36,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
-					isAffix: true,
+					isAffix: false,
 					isIframe: false,
 					roles: ['admin', 'common'],
 					icon: 'iconfont icon-shouye',
@@ -293,7 +294,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				],
 			},
 			{
-				path: 'ticketing',
+				path: '/ticketing',
 				name: 'ticketing',
 				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/ticketing/faq',
@@ -1416,7 +1417,7 @@ export const notFoundAndNoPower = [
 	{
 		path: '/:path(.*)*',
 		name: 'notFound',
-		component: () => import('/@/views/error/404.vue'),
+		component: () => import('/@/pages/error/404.vue'),
 		meta: {
 			title: 'staticRoutes.notFound',
 			isHide: false,
@@ -1424,10 +1425,19 @@ export const notFoundAndNoPower = [
 	},
 	{
 		path: '/401',
-		name: 'noPower',
-		component: () => import('/@/views/error/401.vue'),
+		name: 'unauthorized',
+		component: () => import('/@/pages/error/401.vue'),
 		meta: {
-			title: 'staticRoutes.noPower',
+			title: 'staticRoutes.unauthorized',
+			isHide: false,
+		},
+	},
+	{
+		path: '/403',
+		name: 'forbidden',
+		component: () => import('/@/pages/error/403.vue'),
+		meta: {
+			title: 'staticRoutes.forbidden',
 			isHide: false,
 		},
 	},
