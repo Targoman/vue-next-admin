@@ -19,8 +19,11 @@ export default defineComponent({
 	},
 	setup(props, { emit }) {
 		// const validate = (prop: FormItemProp, isValid: boolean, message: string) => {
-		// 	if (isValid) emit('formChange', { prop, isValid });
+		// 	console.log(prop, isValid);
+
+		//
 		// };
+
 		const model = reactive(props.model as any);
 
 		const inputs = props.formObject.map((item: any) => {
@@ -48,8 +51,12 @@ export default defineComponent({
 			{
 				model,
 				statusIcon: true,
-				onValidate: (prop: FormItemProp, isValid: boolean, message: string) => {
-					console.log(prop, isValid, message, model[prop as string]);
+				onValidate: (prop: any, isValid: boolean, message: string) => {
+					if (isValid) {
+						// console.log({ name: prop, value: model[prop as string] });
+
+						emit('formChange', model);
+					}
 				},
 			},
 			inputs

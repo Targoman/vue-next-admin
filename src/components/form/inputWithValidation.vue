@@ -76,11 +76,11 @@ export default defineComponent({
 			else {
 				switch (props.type) {
 					case 'emailOrMobile':
-						return [{ validator: validateEmailOrMobile, trigger: 'change' }];
+						return [{ validator: validateEmailOrMobile, trigger: ['change', 'blur'] }];
 					case 'mobile':
-						return [{ validator: validateMobile, trigger: 'change' }];
+						return [{ validator: validateMobile, trigger: ['change', 'blur'] }];
 					case 'email':
-						return [{ validator: validateEmail, trigger: 'change' }];
+						return [{ validator: validateEmail, trigger: ['change', 'blur'] }];
 					case 'text':
 						return; //[
 					// { required: true, message: tl('mustBeFilledUp'), trigger: 'change' },

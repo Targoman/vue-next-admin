@@ -44,7 +44,7 @@
 
 			<el-col :xs="24" :sm="8" class="pl15 personal-info">
 				<el-card shadow="hover" :header="tl('accountInfo')"
-					><the-form :model="formObject.profileFormStates" :formObject="formObject.inputs"></the-form>
+					><the-form @formChange="test" :model="formObject.profileFormStates" :formObject="formObject.inputs"></the-form>
 				</el-card>
 			</el-col>
 
@@ -242,7 +242,9 @@ export default defineComponent({
 		const currentTime = computed(() => {
 			return formatAxis(new Date());
 		});
-		const test = (Object: { prop: string; isValid: boolean }) => {
+		const test = (Object: any) => {
+			formObject.profileFormStates = Object;
+			state.personalForm = Object;
 			console.log(Object);
 			// state.personalForm[Object.prop] =
 		};
