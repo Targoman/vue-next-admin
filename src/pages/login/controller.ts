@@ -38,7 +38,7 @@ export async function submit(emailOrMobile: string, password: string) {
 			jwt.set(response.data.result);
 			Session.set('token', Math.random().toString(36).substr(0));
 			Cookies.set('userName', emailOrMobile);
-			router.push('home');
+			router.push('dashboard');
 		});
 	} catch (error) {
 		alert('wrongPass');

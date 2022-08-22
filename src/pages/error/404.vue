@@ -3,17 +3,17 @@
 		<div class="error-flex">
 			<div class="left">
 				<div class="left-item">
-					<div class="left-item-animation left-item-num">401</div>
-					<div class="left-item-animation left-item-title">{{ $t('message.noAccess.accessTitle') }}</div>
-					<div class="left-item-animation left-item-msg">{{ $t('message.noAccess.accessMsg') }}</div>
+					<div class="left-item-animation left-item-num">404</div>
+					<div class="left-item-animation left-item-title">{{ tl('foundTitle') }}</div>
+					<div class="left-item-animation left-item-msg">{{ tl('foundMsg') }}</div>
 					<div class="left-item-animation left-item-btn">
-						<el-button type="primary" round @click="onSetAuth">{{ $t('message.noAccess.accessBtn') }}</el-button>
+						<el-button type="primary" round @click="onGoHome">{{ tl('foundBtn') }}</el-button>
 					</div>
 				</div>
 			</div>
 			<div class="right">
 				<img
-					src="https://img-blog.csdnimg.cn/3333f265772a4fa89287993500ecbf96.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbHl0LXRvcA==,size_16,color_FFFFFF,t_70,g_se,x_16"
+					src="https://img-blog.csdnimg.cn/9eb1d85a417f4ed1ba7107f149ce3da1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbHl0LXRvcA==,size_16,color_FFFFFF,t_70,g_se,x_16"
 				/>
 			</div>
 		</div>
@@ -22,24 +22,25 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
-import { Session } from '/@/utils/storage';
+import { makeTranslator } from '/@/i18n';
+import translations from './i18n.json';
+
 
 export default defineComponent({
-	name: '401',
+	name: '404',
 	setup() {
 		const storesThemeConfig = useThemeConfig();
+		const tl = makeTranslator(translations);
 		const storesTagsViewRoutes = useTagsViewRoutes();
 		const { themeConfig } = storeToRefs(storesThemeConfig);
 		const { isTagsViewCurrenFull } = storeToRefs(storesTagsViewRoutes);
-		const onSetAuth = () => {
-			// https://gitee.com/lyt-top/vue-next-admin/issues/I5C3JS
-			// 清除缓存/token等
-			Session.clear();
-			// 使用 reload 时，不需要调用 resetRoute() 重置路由
-			window.location.reload();
+		const router = useRouter();
+		const onGoHome = () => {
+			router.push('/');
 		};
 		// 设置主内容的高度
 		const initTagViewHeight = computed(() => {
@@ -52,8 +53,9 @@ export default defineComponent({
 			}
 		});
 		return {
-			onSetAuth,
+			onGoHome,
 			initTagViewHeight,
+			tl
 		};
 	},
 });

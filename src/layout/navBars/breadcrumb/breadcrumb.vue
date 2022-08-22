@@ -14,7 +14,7 @@
 						<div v-if="!v.meta.tagsViewName">{{ $t(v.meta.title) }}</div>
 						<div v-else>{{ v.meta.tagsViewName }}</div>
 					</span>
-					<a v-else @click.prevent="onBreadcrumbClick(v)">
+					<a v-else-if="v.meta.title !== 'dashboard'" @click.prevent="onBreadcrumbClick(v)">
 						<SvgIcon :name="v.meta.icon" class="layout-navbars-breadcrumb-iconfont" v-if="themeConfig.isBreadcrumbIcon" />{{ $t(v.meta.title) }}
 					</a>
 				</el-breadcrumb-item>
@@ -158,6 +158,11 @@ export default defineComponent({
 		&:hover {
 			color: var(--el-color-primary) !important;
 		}
+	}
+	.el-breadcrumb {
+		font-size: 14px;
+		line-height: 1;
+		display: flex;
 	}
 }
 </style>

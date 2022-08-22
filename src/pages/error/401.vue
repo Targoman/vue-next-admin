@@ -3,17 +3,22 @@
 		<div class="error-flex">
 			<div class="left">
 				<div class="left-item">
-					<div class="left-item-animation left-item-num">403</div>
-					<div class="left-item-animation left-item-title">{{ $t('message.Forbidden.forbiddenTitle') }}</div>
-					<div class="left-item-animation left-item-msg">{{ $t('message.Forbidden.forbiddenMsg') }}</div>
+					<div class="left-item-animation left-item-num">401</div>
+					<div class="left-item-animation left-item-title">{{ tl('accessTitle') }}</div>
+					<el-row class="left-item-animation left-item-msg">
+						{{ tl('timerMsg.before') }}
+						<timer :enteredTime="10" :buttonOnDone="false" @timeOut="done"></timer>
+						{{ tl('timerMsg.after') }}
+					</el-row>
+					
 					<div class="left-item-animation left-item-btn">
-						<el-button type="primary" round @click="onGoHome">{{ $t('message.forbidden.forbiddenBtn') }}</el-button>
+						<el-button type="primary" round @click="onSetAuth">{{ tl('accessBtn') }}</el-button>
 					</div>
 				</div>
 			</div>
 			<div class="right">
 				<img
-					src="https://img-blog.csdnimg.cn/9eb1d85a417f4ed1ba7107f149ce3da1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbHl0LXRvcA==,size_16,color_FFFFFF,t_70,g_se,x_16"
+					src="https://img-blog.csdnimg.cn/3333f265772a4fa89287993500ecbf96.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbHl0LXRvcA==,size_16,color_FFFFFF,t_70,g_se,x_16"
 				/>
 			</div>
 		</div>
@@ -21,22 +26,31 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { defineComponent, computed, onUnmounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
+import { Session } from '/@/utils/storage';
+import { useRouter } from 'vue-router';
+import translations from './i18n.json';
+import timer from '/@/components/timer.vue';
+import { makeTranslator } from '/@/i18n';
 
 export default defineComponent({
-	name: '403',
+	name: '401',
+	components: { timer },
 	setup() {
 		const storesThemeConfig = useThemeConfig();
+		const tl = makeTranslator(translations);
 		const storesTagsViewRoutes = useTagsViewRoutes();
 		const { themeConfig } = storeToRefs(storesThemeConfig);
 		const { isTagsViewCurrenFull } = storeToRefs(storesTagsViewRoutes);
 		const router = useRouter();
-		const onGoHome = () => {
-			router.push('/');
+		const onSetAuth = () => {
+			router.push('login');
+			Session.clear();
+			// 使用 reload 时，不需要调用 resetRoute() 重置路由
+			// window.location.reload();
 		};
 		// 设置主内容的高度
 		const initTagViewHeight = computed(() => {
@@ -48,9 +62,18 @@ export default defineComponent({
 				else return `80px`;
 			}
 		});
+		const done = () => {
+			onSetAuth();
+		};
+		onUnmounted(() => {
+			onSetAuth();
+		});
+
 		return {
-			onGoHome,
+			onSetAuth,
 			initTagViewHeight,
+			tl,
+			done,
 		};
 	},
 });
