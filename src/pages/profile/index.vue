@@ -1,7 +1,6 @@
 <template>
 	<div class="personal">
 		<el-row>
-			<!-- 个人信息 -->
 			<el-col :xs="24" :sm="16">
 				<el-card shadow="hover" :header="tl('personalInformation')">
 					<div class="personal-user">
@@ -44,7 +43,11 @@
 			</el-col>
 
 			<el-col :xs="24" :sm="8" class="pl15 personal-info">
-				<el-card shadow="hover" :header="tl('accountInfo')">d </el-card>
+				<el-card shadow="hover" :header="tl('accountInfo')"
+					><the-form :model="personalForm">
+						<input-with-validation prop="name" @inputChange="personalForm.name = $event" type="emailOrMobile"></input-with-validation
+					></the-form>
+				</el-card>
 			</el-col>
 
 			<el-col :span="24">
@@ -55,7 +58,9 @@
 								<SvgIcon :name="v.icon" :size="70" :style="{ color: v.iconColor }" />
 								<div class="personal-recommend-auto">
 									<div>{{ v.title }}</div>
-									<div class="personal-recommend-msg">{{ v.msg }}</div>
+									<div class="personal-recommend-msg">
+										{{ v.msg }}
+									</div>
 								</div>
 							</div>
 						</el-col>
@@ -64,12 +69,34 @@
 			</el-col>
 			<el-col :span="24">
 				<el-card shadow="hover" class="mt15 personal-edit" :header="tl('updateInformation')">
-					<div class="personal-edit-title">{{ tl('personalInformation') }}</div>
-					<el-form :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
+					<div class="personal-edit-title">
+						{{ tl('personalInformation') }}
+					</div>
+					<el-form @validate="validate" :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<two-state-input :label="tl('name')" :placeholder="tl('namePlaceholder')" @twoStateConfirm="onTwoStateConfirm"> </two-state-input>
-								<input-with-validation prop="name" @change="personalForm.name = $event" type="emailOrMobile"></input-with-validation>
+								<two-state-input
+									type="mobile"
+									prop="name"
+									:label="tl('name')"
+									:placeholder="tl('namePlaceholder')"
+									@twoStateConfirm="personalForm.name = $event"
+								>
+								</two-state-input>
+							</el-col>
+							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
+								<mixed-input
+									@mixedInputChange="personalForm.name = $event"
+									prop="name"
+									type="emailOrMobile"
+									:required="false"
+									placeholder="s"
+									label="mixed"
+								></mixed-input>
+							</el-col>
+
+							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
+								<input-with-validation prop="name" @inputChange="personalForm.name = $event" type="emailOrMobile"></input-with-validation>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">
@@ -170,6 +197,8 @@ import { makeTranslator } from '/@/i18n';
 import translations from './i18n.json';
 import twoStateInput from '/@/components/form/twoStateInput.vue';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
+import mixedInput from '/@/components/form/mixedInput.vue';
+import theForm from '/@/components/form/form.vue';
 
 interface PersonalState {
 	recommendList: any;
@@ -179,8 +208,10 @@ interface PersonalState {
 export default defineComponent({
 	name: 'personal',
 	components: {
+		theForm,
 		inputWithValidation,
 		twoStateInput,
+		mixedInput,
 	},
 	setup() {
 		const tl = makeTranslator(translations);
@@ -199,13 +230,11 @@ export default defineComponent({
 		const currentTime = computed(() => {
 			return formatAxis(new Date());
 		});
-		const onTwoStateConfirm = (value: string) => {
-			console.log('val', value);
-		};
+
 		return {
 			tl,
 			currentTime,
-			onTwoStateConfirm,
+
 			...toRefs(state),
 		};
 	},

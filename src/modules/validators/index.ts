@@ -12,7 +12,11 @@ function validateMobile(value: string) {
 export default {
 	email: (value: string) => validator.isEmail(value),
 	mobile: validateMobile,
-	emailOrMobile: (value: string) => validator.isEmail(value) || validateMobile(value),
+	emailOrMobile: (value: string) => {
+		console.log(value);
+
+		return validator.isEmail(value) || validateMobile(value);
+	},
 
 	notEmpty: (value: string) => (value.length > 0 ? null : $t('mustBeFilledUp')),
 	iban(value: string) {

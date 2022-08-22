@@ -1,6 +1,9 @@
 <template>
-	<el-form-item :label="label" :prop="prop" :rules="rule()">
-		<el-input v-model="value" :type="type" clearable> </el-input>
+	<el-form-item :required="required" :label="label" :prop="prop" :rules="rule()">
+		<el-input clearable :style="elInputStyle" :input-style="inputStyle" :placeholder="placeholder" :disabled="disabled" v-model="value" :type="type">
+			<template v-if="$slots.prefix" #prefix> <slot name="prefix"></slot></template>
+			<template v-if="$slots.suffix" #suffix> <slot name="suffix"></slot></template>
+		</el-input>
 	</el-form-item>
 </template>
 
@@ -19,11 +22,19 @@ export default defineComponent({
 		},
 		prop: String,
 		customValidation: Object,
+		elInputStyle: String,
+		inputStyle: String,
+		placeholder: String,
+		disabled: Boolean,
+		label: String,
+		prepend: Boolean,
+		append: Boolean,
+		required: Boolean,
 	},
 	setup(props, { emit }) {
 		const value = ref('');
 		watch(value, (newValue) => {
-			emit('change', newValue);
+			if (typeof newValue === 'string') emit('inputChange', newValue);
 		});
 
 		const tl = makeTranslator(translations);
@@ -59,14 +70,14 @@ export default defineComponent({
 					case 'email':
 						return [{ validator: validateEmail, trigger: 'change' }];
 					case 'text':
-						return [
-							{ required: true, message: tl('mustBeFilledUp'), trigger: 'change' },
-							{ min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'change' },
-						];
+						return; //[
+					// { required: true, message: tl('mustBeFilledUp'), trigger: 'change' },
+					// { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'change' },
+					// ];
 					case 'iban':
 						return validators.iban;
 					default:
-						return [{ required: true, message: tl('mustBeFilledUp'), trigger: 'change' }];
+						return; // [{ required: true, message: tl('mustBeFilledUp'), trigger: 'change' }];
 				}
 			}
 		};
