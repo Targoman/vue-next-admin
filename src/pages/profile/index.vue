@@ -97,9 +97,6 @@
 								<input-with-validation prop="name" @inputChange="personalForm.name = $event" type="emailOrMobile"></input-with-validation>
 							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-								<the-form :model="formObject.profileFormStates" :formObject="formObject.inputs"></the-form>
-							</el-col>
-							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">
 									<el-input v-model="personalForm.name" :placeholder="tl('namePlaceholder')" clearable></el-input>
 								</el-form-item>
@@ -245,6 +242,15 @@ export default defineComponent({
 						required: false,
 						placeholder: 's',
 						label: 'mixed',
+					},
+				},
+				{
+					type: Inputs.twoStateInput,
+					props: {
+						type: 'mobile',
+						prop: 'name',
+						label: tl('name'),
+						placeholder: tl('namePlaceholder'),
 					},
 				},
 			],

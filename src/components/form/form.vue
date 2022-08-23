@@ -1,9 +1,11 @@
 <script lang="ts">
-import { defineComponent, ref, h, reactive } from 'vue';
+import { defineComponent, ref, h, reactive, mergeProps, getCurrentInstance, computed } from 'vue';
 import { FormItemProp, ElForm } from 'element-plus';
 import twoStateInput from '/@/components/form/twoStateInput.vue';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 import mixedInput from '/@/components/form/mixedInput.vue';
+import { provide } from 'vue';
+
 export default defineComponent({
 	name: 'form',
 	components: {},
@@ -18,14 +20,13 @@ export default defineComponent({
 		},
 	},
 	setup(props, { emit }) {
-		// const validate = (prop: FormItemProp, isValid: boolean, message: string) => {
-		// 	console.log(prop, isValid);
-
-		//
-		// };
-
+		const twoStateInputValidation = ref(false);
+		// using provide because props is not reactive using render function
+		provide(
+			'username',
+			computed(() => twoStateInputValidation.value)
+		);
 		const model = reactive(props.model as any);
-
 		const inputs = props.formObject.map((item: any) => {
 			const properties = item.props;
 
@@ -46,18 +47,28 @@ export default defineComponent({
 					});
 
 				case 'twoStateInput':
-					return;
+					// merge props using mergeProps
+					const merged = mergeProps(properties, {
+						isValid: twoStateInputValidation.value,
+						onMixedInputChange: (val: string) => {
+							model[properties.prop] = val;
+						},
+						onTwoStateConfirm: (val: string) => {},
+					});
+
+					return h(twoStateInput, merged);
 			}
 
 			return h(item.type, properties);
 		});
-
 		const vNode = h(
 			ElForm,
 			{
 				model,
 				statusIcon: true,
 				onValidate: (prop: any, isValid: boolean, message: string) => {
+					twoStateInputValidation.value = isValid;
+
 					if (isValid) {
 						emit('formChange', model);
 					}
