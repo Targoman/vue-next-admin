@@ -237,6 +237,16 @@ export default defineComponent({
 						type: 'emailOrMobile',
 					},
 				},
+				{
+					type: Inputs.mixedInput,
+					props: {
+						prop: 'name',
+						type: 'emailOrMobile',
+						required: false,
+						placeholder: 's',
+						label: 'mixed',
+					},
+				},
 			],
 		};
 		const currentTime = computed(() => {

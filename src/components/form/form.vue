@@ -28,17 +28,23 @@ export default defineComponent({
 
 		const inputs = props.formObject.map((item: any) => {
 			const properties = item.props;
+
 			switch (item.type) {
 				case 'inputWithValidation':
 					return h(inputWithValidation, {
-						prop: properties.prop,
-						type: properties.type,
+						...properties,
 						onInputChange: (val: string) => {
 							model[properties.prop] = val;
 						},
 					});
 				case 'mixedInput':
-					return;
+					return h(mixedInput, {
+						...properties,
+						onMixedInputChange: (val: string) => {
+							model[properties.prop] = val;
+						},
+					});
+
 				case 'twoStateInput':
 					return;
 			}
@@ -53,8 +59,6 @@ export default defineComponent({
 				statusIcon: true,
 				onValidate: (prop: any, isValid: boolean, message: string) => {
 					if (isValid) {
-						// console.log({ name: prop, value: model[prop as string] });
-
 						emit('formChange', model);
 					}
 				},
