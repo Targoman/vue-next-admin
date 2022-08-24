@@ -706,7 +706,7 @@ export default defineComponent({
 				display: none;
 			}
 			.layout-icon-three {
-				display: block;
+				display: contents;
 			}
 			&:hover {
 				background: none !important;
@@ -736,7 +736,7 @@ export default defineComponent({
 				display: none;
 			}
 			.layout-icon-three {
-				display: block;
+				display: contents;
 			}
 			&:hover {
 				@extend .tags-style-five-svg;
