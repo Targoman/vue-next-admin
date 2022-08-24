@@ -1,11 +1,10 @@
 <script lang="ts">
-import { defineComponent, ref, h, reactive, mergeProps, getCurrentInstance, computed } from 'vue';
+import { defineComponent, ref, h, reactive, mergeProps, getCurrentInstance, computed, provide } from 'vue';
 import { FormItemProp, ElForm } from 'element-plus';
 import twoStateInput from '/@/components/form/twoStateInput.vue';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 import mixedInput from '/@/components/form/mixedInput.vue';
-import { provide } from 'vue';
-
+import select from './select.vue';
 export default defineComponent({
 	name: 'form',
 	components: {},
@@ -48,8 +47,6 @@ export default defineComponent({
 					});
 
 				case 'twoStateInput':
-					console.log(slots, slots.default());
-
 					// merge props using mergeProps
 					const merged = mergeProps(properties, {
 						isValid: twoStateInputValidation.value,
@@ -60,9 +57,16 @@ export default defineComponent({
 					});
 
 					return h(twoStateInput, merged);
-			}
+				case 'select':
+					return h(select, {
+						...properties,
+						onSelected: (val: string) => {
+							console.log(val);
 
-			return h(item.type, properties);
+							// model[properties.prop] = val;
+						},
+					});
+			}
 		});
 		const vNode = h(
 			ElForm,
@@ -77,37 +81,9 @@ export default defineComponent({
 					}
 				},
 			},
-			slots.prepend ? h('div', slots.prepend()) : '',
+			slots.prepend ? h('div', slots.prepend()) : null,
 			inputs,
-			slots.append ? h('div', slots.append()) : ''
-
-			// [
-			// h(inputWithValidation, {
-			// 	prop: 'name',
-			// 	type: 'emailOrMobile',
-			// 	onInputChange: (val: string) => {
-			// 		model.name = val;
-			// 	},
-			// })
-			// 	h(mixedInput, {
-			// 		prop: 'email',
-			// 		type: 'email',
-			// 		placeholder: 's',
-			// 		label: 'mixed',
-			// 		onMixedInputChange: (val: string) => {
-			// 			model.email = val;
-			// 		},
-			// 	}),
-			// 	h(twoStateInput, {
-			// 		prop: 'name',
-			// 		type: 'mobile',
-			// 		placeholder: 's',
-			// 		label: 'twoStateInput',
-			// 		onTwoStateChange: (val: string) => {
-			// 			model.name = val;
-			// 		},
-			// 	}),
-			// ]
+			slots.append ? h('div', slots.append()) : null
 		);
 		return () => vNode;
 	},

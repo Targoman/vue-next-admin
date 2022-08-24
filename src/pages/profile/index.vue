@@ -237,6 +237,19 @@ export default defineComponent({
 			},
 			inputs: [
 				{
+					type: Inputs.select,
+					props: {
+						label: 'name',
+						options: [
+							{
+								label: 'option1',
+								value: 'option1',
+							},
+							{ label: 'optio2', value: 'option122' },
+						],
+					},
+				},
+				{
 					type: Inputs.inputWithValidation,
 					props: {
 						prop: 'name',
