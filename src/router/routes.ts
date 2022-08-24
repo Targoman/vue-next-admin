@@ -87,6 +87,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							roles: ['admin', 'common'],
 							icon: '',
 						},
+						
 					},
 					{
 						path: '/wallet/transfers',
