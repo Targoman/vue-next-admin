@@ -39,6 +39,7 @@ export default defineComponent({
 						},
 					});
 				case 'mixedInput':
+					// merge props using spread operator (...)
 					return h(mixedInput, {
 						...properties,
 						onMixedInputChange: (val: string) => {

@@ -70,7 +70,7 @@
 					<div class="personal-edit-title">
 						{{ tl('personalInformation') }}
 					</div>
-					<el-form @validate="validate" :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
+					<el-form :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<two-state-input
