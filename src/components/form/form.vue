@@ -19,7 +19,7 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	setup(props, { emit }) {
+	setup(props, { emit, slots }) {
 		const twoStateInputValidation = ref(false);
 		// using provide because props is not reactive using render function
 		provide(
@@ -48,6 +48,8 @@ export default defineComponent({
 					});
 
 				case 'twoStateInput':
+					console.log(slots, slots.default());
+
 					// merge props using mergeProps
 					const merged = mergeProps(properties, {
 						isValid: twoStateInputValidation.value,
@@ -75,7 +77,10 @@ export default defineComponent({
 					}
 				},
 			},
-			inputs
+			slots.prepend ? h('div', slots.prepend()) : '',
+			inputs,
+			slots.append ? h('div', slots.append()) : ''
+
 			// [
 			// h(inputWithValidation, {
 			// 	prop: 'name',
