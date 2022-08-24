@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { computed, defineComponent, inject, ref, toRef, toRefs, watch } from 'vue';
 import MixedInput from '/@/components/form/mixedInput.vue';
 
 export default defineComponent({
@@ -25,19 +25,28 @@ export default defineComponent({
 		prop: String,
 		type: String,
 		required: Boolean,
+		isValid: Boolean,
 	},
 	setup(props, { emit }) {
+		const isValid = inject('username') as { value: boolean };
+		watch(isValid, () => {
+			isValid.value;
+		});
 		const icon = ref('ele-Edit');
 		const disableStatus = ref(true);
 		const onTwoStateConfirm = (value: string) => {
-			disableStatus.value = !disableStatus.value;
-			onChangeIcon();
-			console.log(value);
-			emit('twoStateConfirm', value);
+			if (icon.value === 'ele-Edit') {
+				icon.value = 'ele-CircleCheckFilled';
+				disableStatus.value = false;
+			} else if (isValid.value) {
+				icon.value = 'ele-Edit';
+				disableStatus.value = true;
+				emit('twoStateConfirm', value);
+			}
 		};
 		const onChangeIcon = () => {
 			if (icon.value === 'ele-Edit') icon.value = 'ele-CircleCheckFilled';
-			else {
+			else if (isValid.value) {
 				icon.value = 'ele-Edit';
 			}
 		};

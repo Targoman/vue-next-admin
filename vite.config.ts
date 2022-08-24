@@ -2,7 +2,6 @@ import vue from '@vitejs/plugin-vue';
 import path, { resolve } from 'path';
 import { defineConfig, loadEnv, ConfigEnv } from 'vite';
 import vueI18n from '@intlify/vite-plugin-vue-i18n';
-
 const pathResolve = (dir: string): any => {
 	return resolve(__dirname, '.', dir);
 };

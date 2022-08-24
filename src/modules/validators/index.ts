@@ -13,8 +13,6 @@ export default {
 	email: (value: string) => validator.isEmail(value),
 	mobile: validateMobile,
 	emailOrMobile: (value: string) => {
-		console.log(value);
-
 		return validator.isEmail(value) || validateMobile(value);
 	},
 

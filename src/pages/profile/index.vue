@@ -44,9 +44,7 @@
 
 			<el-col :xs="24" :sm="8" class="pl15 personal-info">
 				<el-card shadow="hover" :header="tl('accountInfo')"
-					><the-form :model="personalForm">
-						<input-with-validation prop="name" @inputChange="personalForm.name = $event" type="emailOrMobile"></input-with-validation
-					></the-form>
+					><the-form @formChange="test" :model="formObject.profileFormStates" :formObject="formObject.inputs"></the-form>
 				</el-card>
 			</el-col>
 
@@ -72,7 +70,7 @@
 					<div class="personal-edit-title">
 						{{ tl('personalInformation') }}
 					</div>
-					<el-form @validate="validate" :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
+					<el-form :model="personalForm" size="default" status-icon label-width="40px" class="mt35 mb35">
 						<el-row :gutter="35">
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<two-state-input
@@ -199,7 +197,7 @@ import twoStateInput from '/@/components/form/twoStateInput.vue';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 import mixedInput from '/@/components/form/mixedInput.vue';
 import theForm from '/@/components/form/form.vue';
-
+import { Inputs } from '/@/components/form/type';
 interface PersonalState {
 	recommendList: any;
 	personalForm: any;
@@ -226,15 +224,52 @@ export default defineComponent({
 				sex: '',
 			},
 		});
-
+		const formObject = {
+			profileFormStates: { name: '', email: '', autograph: '', occupation: '', phone: '', sex: '' },
+			inputs: [
+				{
+					type: Inputs.inputWithValidation,
+					props: {
+						prop: 'name',
+						type: 'emailOrMobile',
+					},
+				},
+				{
+					type: Inputs.mixedInput,
+					props: {
+						prop: 'name',
+						type: 'emailOrMobile',
+						required: false,
+						placeholder: 's',
+						label: 'mixed',
+					},
+				},
+				{
+					type: Inputs.twoStateInput,
+					props: {
+						type: 'mobile',
+						prop: 'name',
+						label: tl('name'),
+						placeholder: tl('namePlaceholder'),
+					},
+				},
+			],
+		};
 		const currentTime = computed(() => {
 			return formatAxis(new Date());
 		});
+		const test = (Object: any) => {
+			formObject.profileFormStates = Object;
+			state.personalForm = Object;
+			console.log(Object);
+			// state.personalForm[Object.prop] =
+		};
 
 		return {
 			tl,
 			currentTime,
-
+			test,
+			formObject,
 			...toRefs(state),
 		};
 	},
