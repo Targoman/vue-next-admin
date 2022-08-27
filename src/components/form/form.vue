@@ -4,6 +4,7 @@ import { FormItemProp, ElForm } from 'element-plus';
 import twoStateInput from '/@/components/form/twoStateInput.vue';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 import mixedInput from '/@/components/form/mixedInput.vue';
+import checkboxInput from '/@/components/form/checkboxInput.vue';
 import { provide } from 'vue';
 
 export default defineComponent({
@@ -56,8 +57,14 @@ export default defineComponent({
 						},
 						onTwoStateConfirm: (val: string) => {},
 					});
-
 					return h(twoStateInput, merged);
+				case 'checkboxInput':
+					return h(checkboxInput, {
+						...properties,
+						oncheckboxInput: (val: string) => {
+							model[properties.prop] = val;
+						},
+					});
 			}
 
 			return h(item.type, properties);

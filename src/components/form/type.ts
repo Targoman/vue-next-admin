@@ -2,6 +2,7 @@ export enum Inputs {
 	'inputWithValidation' = 'inputWithValidation',
 	'mixedInput' = 'mixedInput',
 	'twoStateInput' = 'twoStateInput',
+	'checkboxInput' = 'checkboxInput'
 }
 // export interface inputProperties {
 // 	props: {
