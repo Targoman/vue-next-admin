@@ -10,13 +10,12 @@ import { useThemeConfig } from '/@/stores/themeConfig';
 import { Session } from '/@/utils/storage';
 import { staticRoutes, rxLangPath } from './routes';
 import { useUserInfo } from '/@/stores/userInfo';
-import { initFrontEndControlRoutes} from '/@/router/frontEnd';
+import { initFrontEndControlRoutes } from '/@/router/frontEnd';
 import { initBackEndControlRoutes } from '/@/router/backEnd';
 
 const storesThemeConfig = useThemeConfig(pinia);
 const { themeConfig } = storeToRefs(storesThemeConfig);
 const { isRequestRoutes } = themeConfig.value;
-
 
 export const router = createRouter({
 	history: createWebHistory(),
@@ -56,22 +55,25 @@ export function formatTwoStageRoutes(arr: any) {
 	});
 	return newArr;
 }
+let userRole: string | null = null;
+useUserInfo()
+	.getUserInfo()
+	.then((values: any) => {
+		userRole = values.roles.toString();
+	});
 
-const storesUserInfo = useUserInfo();
-const { userInfos } = storeToRefs(storesUserInfo);
-const userRole = () => 	(<any>userInfos).value;
-
-console.log(userRole());
-
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to: any, from, next) => {
 	NProgress.configure({ showSpinner: false });
 	NProgress.start();
 	jwt.getJwtFromLocalAndCheck();
 	const localJWT = jwt.getJwt();
 
-	console.log(to.meta.roles);
+	if (!to.meta.roles?.includes(userRole) && typeof to.meta.roles !== 'undefined') {
+		console.log(true);
+		router.push('403');
+	}
 
-	if (to.path === '/login' && !localJWT ) {
+	if (to.path === '/login' && !localJWT) {
 		next();
 	} else {
 		if (!localJWT) {
@@ -94,7 +96,6 @@ router.beforeEach(async (to, from, next) => {
 				next();
 			}
 		}
-		
 	}
 
 	_fixUrl(to.fullPath);

@@ -22,10 +22,6 @@ export default defineComponent({
 		},
 	},
 	setup(props, { emit, slots }) {
-		// setInterval(() => {
-		// 	console.log(props.label);
-		// }, 1000);
-
 		const twoStateInputValidation = ref(false);
 
 		// using provide because props is not reactive using render function

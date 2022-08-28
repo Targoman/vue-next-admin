@@ -10,7 +10,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 		meta: {
 			isKeepAlive: true,
 		},
-		
+
 		children: [
 			{
 				path: '/dashboard',
@@ -69,7 +69,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							isKeepAlive: true,
 							isAffix: false,
 							isIframe: false,
-							roles: ['admin', 'common'],
+							roles: ['admin'],
 							icon: '',
 						},
 					},
@@ -87,7 +87,6 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							roles: ['admin', 'common'],
 							icon: '',
 						},
-						
 					},
 					{
 						path: '/wallet/transfers',
