@@ -1,6 +1,6 @@
 <template>
 	<el-form-item :label="label">
-		<el-select v-model="selectedValue" :placeholder="placeholder">
+		<el-select v-model="selectedValue" :placeholder="placeholder" allow-create filterable>
 			<el-option v-for="option in options" :key="option.value" :label="option.label" :value="option.value" />
 		</el-select>
 	</el-form-item>
@@ -14,12 +14,14 @@ export default defineComponent({
 	props: {
 		label: String,
 		placeholder: String,
+		prop: String,
 		options: String,
 	},
 	setup(props, { emit }) {
 		const selectedValue = ref();
+
 		watch(selectedValue, () => {
-			emit('selected', selectedValue.value);
+			emit('selected', { name: props.prop, value: selectedValue.value });
 		});
 		return { selectedValue };
 	},

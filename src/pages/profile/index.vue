@@ -44,7 +44,7 @@
 
 			<el-col :xs="24" :sm="8" class="pl15 personal-info">
 				<el-card shadow="hover" :header="tl('accountInfo')"
-					><the-form @formChange="test" :model="formObject.profileFormStates" :formObject="formObject.inputs"
+					><the-form @formChange="test" :test="tl('female')" :model="formObject.profileFormStates" :formObject="testFunction()"
 						>xxx <template #prepend>sd</template></the-form
 					>
 				</el-card>
@@ -194,7 +194,7 @@
 </template>
 
 <script lang="ts">
-import { toRefs, reactive, computed, defineComponent } from 'vue';
+import { toRefs, reactive, computed, defineComponent, ref } from 'vue';
 import { formatAxis } from '/@/utils/formatTime';
 import { recommendList } from './mock';
 import { makeTranslator } from '/@/i18n';
@@ -221,6 +221,61 @@ export default defineComponent({
 	},
 	setup() {
 		const tl = makeTranslator(translations);
+		const testFunction = () => [
+			{
+				type: Inputs.select,
+				props: {
+					label: tl('female'),
+					prop: 'sex',
+					options: [
+						{
+							label: tl('male'),
+							value: 'male',
+						},
+						{ label: tl('female'), value: 'female' },
+					],
+				},
+			},
+			{
+				type: Inputs.inputWithValidation,
+				props: {
+					prop: 'name',
+					type: 'emailOrMobile',
+				},
+			},
+			{
+				type: Inputs.mixedInput,
+				props: {
+					prop: 'name',
+					type: 'emailOrMobile',
+					required: false,
+					placeholder: 's',
+					label: 'mixed',
+				},
+			},
+			{
+				type: Inputs.twoStateInput,
+				props: {
+					type: 'mobile',
+					prop: 'name',
+					label: tl('name'),
+					placeholder: tl('namePlaceholder'),
+				},
+			},
+			{
+				type: Inputs.checkboxInput,
+				props: {
+					label: 'form checkbox',
+					name: 'status',
+					options: [
+						{
+							label: 'Online',
+						},
+						{ label: 'offline' },
+					],
+				},
+			},
+		];
 		const state = reactive<PersonalState>({
 			recommendList,
 			personalForm: {
@@ -230,7 +285,7 @@ export default defineComponent({
 				occupation: '',
 				phone: '',
 				sex: '',
-				checkbox:[],
+				status: [],
 			},
 		});
 		const options = [
@@ -240,7 +295,7 @@ export default defineComponent({
 			},
 			{ label: 'offline', name: 'type' },
 		];
-		const formObject = {
+		const formObject = reactive({
 			profileFormStates: {
 				name: '',
 				email: '',
@@ -248,56 +303,10 @@ export default defineComponent({
 				occupation: '',
 				phone: '',
 				sex: '',
+				status: [],
 			},
-			inputs: [
-				{
-					type: Inputs.select,
-					props: {
-						label: 'name',
-						options: [
-							{
-								label: 'option1',
-								value: 'option1',
-							},
-							{ label: 'optio2', value: 'option122' },
-						],
-					},
-				},
-				{
-					type: Inputs.inputWithValidation,
-					props: {
-						prop: 'name',
-						type: 'emailOrMobile',
-					},
-				},
-				{
-					type: Inputs.mixedInput,
-					props: {
-						prop: 'name',
-						type: 'emailOrMobile',
-						required: false,
-						placeholder: 's',
-						label: 'mixed',
-					},
-				},
-				{
-					type: Inputs.twoStateInput,
-					props: {
-						type: 'mobile',
-						prop: 'name',
-						label: tl('name'),
-						placeholder: tl('namePlaceholder'),
-					},
-				},
-				// {
-				// 	type: Inputs.checkboxInput,
-				// 	props: {
-				// 		label: 'Online',
-				// 		name: 'type',
-				// 	},
-				// },
-			],
-		};
+			inputs: 'a',
+		});
 		const currentTime = computed(() => {
 			return formatAxis(new Date());
 		});
@@ -305,15 +314,16 @@ export default defineComponent({
 			formObject.profileFormStates = Object;
 			state.personalForm = Object;
 			console.log(Object);
-			// state.personalForm[Object.prop] =
 		};
 
 		return {
 			tl,
 			currentTime,
 			test,
+			testFunction,
 			formObject,
 			options,
+			Inputs,
 			...toRefs(state),
 		};
 	},
