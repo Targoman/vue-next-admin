@@ -44,7 +44,9 @@
 
 			<el-col :xs="24" :sm="8" class="pl15 personal-info">
 				<el-card shadow="hover" :header="tl('accountInfo')"
-					><the-form @formChange="test" :model="formObject.profileFormStates" :formObject="formObject.inputs"></the-form>
+					><the-form @formChange="test" :model="formObject.profileFormStates" :formObject="formObject.inputs"
+						>xxx <template #prepend>sd</template></the-form
+					>
 				</el-card>
 			</el-col>
 
@@ -239,8 +241,28 @@ export default defineComponent({
 			{ label: 'offline', name: 'type' },
 		];
 		const formObject = {
-			profileFormStates: { name: '', email: '', autograph: '', occupation: '', phone: '', sex: '' },
+			profileFormStates: {
+				name: '',
+				email: '',
+				autograph: '',
+				occupation: '',
+				phone: '',
+				sex: '',
+			},
 			inputs: [
+				{
+					type: Inputs.select,
+					props: {
+						label: 'name',
+						options: [
+							{
+								label: 'option1',
+								value: 'option1',
+							},
+							{ label: 'optio2', value: 'option122' },
+						],
+					},
+				},
 				{
 					type: Inputs.inputWithValidation,
 					props: {
