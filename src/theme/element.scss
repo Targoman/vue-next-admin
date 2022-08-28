@@ -167,6 +167,10 @@
 	}
 }
 
+.el-menu-item,.el-sub-menu__title{
+	padding-inline-start: calc(var(--el-menu-base-level-padding) + var(--el-menu-level) * var(--el-menu-level-padding));
+}
+
 /* Tabs ------------------------------- */
 .el-tabs__nav-wrap::after {
 	height: 1px !important;

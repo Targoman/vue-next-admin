@@ -1,4 +1,4 @@
-import validator from 'validator';
+import validator from 'validator/';
 import { makeTranslator } from '/@/i18n';
 import t from './i18n.json';
 const $t = makeTranslator(t);
@@ -15,7 +15,6 @@ export default {
 	emailOrMobile: (value: string) => {
 		return validator.isEmail(value) || validateMobile(value);
 	},
-
 	notEmpty: (value: string) => (value.length > 0 ? null : $t('mustBeFilledUp')),
 	iban(value: string) {
 		if (validator.isIBAN(value)) {

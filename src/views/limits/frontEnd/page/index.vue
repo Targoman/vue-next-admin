@@ -45,12 +45,16 @@ export default defineComponent({
 		// 用户权限改变时
 		const onRadioChange = async () => {
 			// 模拟数据
+
 			frontEndsResetRoute();
 			Cookies.set('userName', state.userAuth);
 			// 模拟切换不同权限用户
 			await storesUserInfo.setUserInfos();
 			await setAddRoute();
 			setFilterMenuAndCacheTagsViewRoutes();
+	
+		
+			
 		};
 		// 页面加载时
 		onMounted(() => {
