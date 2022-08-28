@@ -1,18 +1,18 @@
 <template>
 	<el-form-item :label="label">
-		<el-checkbox-group @change="checkboxChange" v-model="options.props">
-			<el-checkbox v-for="value in options" :key="value" :label="value.label" :name="value.name"/>
+		<el-checkbox-group @change="checkboxChange" v-model="selected">
+			<el-checkbox v-for="value in options" :key="value" :label="value.label" :name="value.name" />
 		</el-checkbox-group>
 	</el-form-item>
 </template>
 
 <script lang="ts">
-import { defineComponent,ref} from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
 	name: 'checkboxInput',
 	props: {
-        options:Object,
+		options: Object,
 		label: String,
 		name: String,
 		disabled: {
@@ -20,17 +20,14 @@ export default defineComponent({
 		},
 	},
 	setup(props, { emit }) {
-		const options = ref(
-			props.options
-		);
-        console.log(options.value);
-        
+		const options = ref(props.options);
+		const selected = ref([]);
+
 		const checkboxChange = (value: string) => {
-			emit('checkboxChange',value);
-		
+			emit('checkboxChange', value);
 		};
 
-		return { options, checkboxChange };
+		return { options, checkboxChange, selected };
 	},
 });
 </script>
