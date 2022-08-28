@@ -1,7 +1,7 @@
 <template>
-	<el-form-item :label="label">
+	<el-form-item :label="label" :prop="name">
 		<el-checkbox-group @change="checkboxChange" v-model="selected">
-			<el-checkbox v-for="value in options" :key="value" :label="value.label" :name="value.name" />
+			<el-checkbox v-for="value in options" :key="value" :label="value.label" :name="name" />
 		</el-checkbox-group>
 	</el-form-item>
 </template>
@@ -23,8 +23,8 @@ export default defineComponent({
 		const options = ref(props.options);
 		const selected = ref([]);
 
-		const checkboxChange = (value: string) => {
-			emit('checkboxChange', value);
+		const checkboxChange = (values: string[]) => {
+			emit('checkboxChange', { name: props.name, values: values });
 		};
 
 		return { options, checkboxChange, selected };

@@ -230,7 +230,7 @@ export default defineComponent({
 				occupation: '',
 				phone: '',
 				sex: '',
-				checkbox:[],
+				status: [],
 			},
 		});
 		const options = [
@@ -248,6 +248,7 @@ export default defineComponent({
 				occupation: '',
 				phone: '',
 				sex: '',
+				status: [],
 			},
 			inputs: [
 				{
@@ -289,13 +290,19 @@ export default defineComponent({
 						placeholder: tl('namePlaceholder'),
 					},
 				},
-				// {
-				// 	type: Inputs.checkboxInput,
-				// 	props: {
-				// 		label: 'Online',
-				// 		name: 'type',
-				// 	},
-				// },
+				{
+					type: Inputs.checkboxInput,
+					props: {
+						label: 'form checkbox',
+						name: 'status',
+						options: [
+							{
+								label: 'Online',
+							},
+							{ label: 'offline' },
+						],
+					},
+				},
 			],
 		};
 		const currentTime = computed(() => {
@@ -305,7 +312,6 @@ export default defineComponent({
 			formObject.profileFormStates = Object;
 			state.personalForm = Object;
 			console.log(Object);
-			// state.personalForm[Object.prop] =
 		};
 
 		return {

@@ -58,7 +58,7 @@ export default defineComponent({
 						onTwoStateConfirm: (val: string) => {},
 					});
 					return h(twoStateInput, merged);
-          case 'select':
+				case 'select':
 					return h(select, {
 						...properties,
 						onSelected: (val: string) => {
@@ -66,14 +66,14 @@ export default defineComponent({
 							// model[properties.prop] = val;
 						},
 					});
-          case 'checkboxInput':
+				case 'checkboxInput':
 					return h(checkboxInput, {
 						...properties,
-						oncheckboxInput: (val: string) => {
-							model[properties.prop] = val;
+						onCheckboxChange: (object: { name: string; values: string[] }) => {
+							model[object.name] = object.values;
+							emit('formChange', model);
 						},
 					});
-
 			}
 		});
 		const vNode = h(
@@ -83,18 +83,19 @@ export default defineComponent({
 				statusIcon: true,
 				onValidate: (prop: any, isValid: boolean, message: string) => {
 					twoStateInputValidation.value = isValid;
-
+					// console.log(prop, isValid, message);
 					if (isValid) {
 						emit('formChange', model);
 					}
 				},
 			},
-			slots.prepend ? h('div', slots.prepend()) : null,
-			inputs,
-			slots.append ? h('div', slots.append()) : null
+			// slots.prepend ? h('div', slots.prepend()) : null,
+			inputs
+			// slots.append ? h('div', slots.append()) : null
 		);
 		return () => vNode;
 	},
 });
 </script>
+
 <style lang="scss" scoped></style>
