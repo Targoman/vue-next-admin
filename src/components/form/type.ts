@@ -3,6 +3,7 @@ export enum Inputs {
 	'mixedInput' = 'mixedInput',
 	'twoStateInput' = 'twoStateInput',
 	'select' = 'select',
+	'checkboxInput' = 'checkboxInput'
 }
 // export interface inputProperties {
 // 	props: {

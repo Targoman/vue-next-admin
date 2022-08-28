@@ -5,6 +5,8 @@ import twoStateInput from '/@/components/form/twoStateInput.vue';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 import mixedInput from '/@/components/form/mixedInput.vue';
 import select from './select.vue';
+import checkboxInput from '/@/components/form/checkboxInput.vue';
+
 export default defineComponent({
 	name: 'form',
 	components: {},
@@ -55,17 +57,23 @@ export default defineComponent({
 						},
 						onTwoStateConfirm: (val: string) => {},
 					});
-
 					return h(twoStateInput, merged);
-				case 'select':
+          case 'select':
 					return h(select, {
 						...properties,
 						onSelected: (val: string) => {
 							console.log(val);
-
 							// model[properties.prop] = val;
 						},
 					});
+          case 'checkboxInput':
+					return h(checkboxInput, {
+						...properties,
+						oncheckboxInput: (val: string) => {
+							model[properties.prop] = val;
+						},
+					});
+
 			}
 		});
 		const vNode = h(

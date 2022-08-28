@@ -98,6 +98,10 @@
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<input-with-validation prop="name" @inputChange="personalForm.name = $event" type="emailOrMobile"></input-with-validation>
 							</el-col>
+							<el-col>
+								<checkboxInput label="checkbox" name="type" :options="options" @checkboxChange="personalForm.checkbox = $event"></checkboxInput>
+							</el-col>
+
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">
 									<el-input v-model="personalForm.name" :placeholder="tl('namePlaceholder')" clearable></el-input>
@@ -198,6 +202,7 @@ import translations from './i18n.json';
 import twoStateInput from '/@/components/form/twoStateInput.vue';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 import mixedInput from '/@/components/form/mixedInput.vue';
+import checkboxInput from '/@/components/form/checkboxInput.vue';
 import theForm from '/@/components/form/form.vue';
 import { Inputs } from '/@/components/form/type';
 interface PersonalState {
@@ -212,6 +217,7 @@ export default defineComponent({
 		inputWithValidation,
 		twoStateInput,
 		mixedInput,
+		checkboxInput,
 	},
 	setup() {
 		const tl = makeTranslator(translations);
@@ -224,8 +230,16 @@ export default defineComponent({
 				occupation: '',
 				phone: '',
 				sex: '',
+				checkbox:[],
 			},
 		});
+		const options = [
+			{
+				label: 'Online',
+				name: 'type',
+			},
+			{ label: 'offline', name: 'type' },
+		];
 		const formObject = {
 			profileFormStates: {
 				name: '',
@@ -275,6 +289,13 @@ export default defineComponent({
 						placeholder: tl('namePlaceholder'),
 					},
 				},
+				// {
+				// 	type: Inputs.checkboxInput,
+				// 	props: {
+				// 		label: 'Online',
+				// 		name: 'type',
+				// 	},
+				// },
 			],
 		};
 		const currentTime = computed(() => {
@@ -292,6 +313,7 @@ export default defineComponent({
 			currentTime,
 			test,
 			formObject,
+			options,
 			...toRefs(state),
 		};
 	},
