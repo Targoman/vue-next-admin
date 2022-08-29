@@ -12,12 +12,13 @@ export default defineComponent({
 		initialValue: {
 			type: Boolean,
 		},
-        size: {
+		size: {
 			type: String,
 		},
-        disabled: {
+		disabled: {
 			type: String,
 		},
+		name: String,
 	},
 	setup(props, { emit }) {
 		const locale = computed(() => {
@@ -25,13 +26,14 @@ export default defineComponent({
 		});
 		const value = ref(props.initialValue);
 		const change = () => {
-			emit('change',value.value);
+			if (props.name) emit('change', { name: props.name, value: value.value });
+			else emit('change', value.value);
 		};
 
 		return {
 			value,
 			locale,
-            change
+			change,
 		};
 	},
 });
