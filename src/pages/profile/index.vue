@@ -101,7 +101,9 @@
 							<el-col>
 								<checkboxInput label="checkbox" name="type" :options="options" @checkboxChange="personalForm.checkbox = $event"></checkboxInput>
 							</el-col>
-
+							<el-col>
+								<radioInput label="radioInput" :resource="resource"></radioInput>
+							</el-col>
 							<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
 								<el-form-item :label="tl('name')">
 									<el-input v-model="personalForm.name" :placeholder="tl('namePlaceholder')" clearable></el-input>
@@ -203,6 +205,7 @@ import twoStateInput from '/@/components/form/twoStateInput.vue';
 import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 import mixedInput from '/@/components/form/mixedInput.vue';
 import checkboxInput from '/@/components/form/checkboxInput.vue';
+import radioInput from '/@/components/form/radioInput.vue';
 import theForm from '/@/components/form/form.vue';
 import { Inputs } from '/@/components/form/type';
 interface PersonalState {
@@ -217,6 +220,7 @@ export default defineComponent({
 		inputWithValidation,
 		twoStateInput,
 		mixedInput,
+		radioInput,
 		checkboxInput,
 	},
 	setup() {
@@ -295,6 +299,13 @@ export default defineComponent({
 			},
 			{ label: 'offline', name: 'type' },
 		];
+		const resource = [
+			{
+				label: 'مرد',
+			},
+			{ label: 'زن' },
+		];
+
 		const formObject = reactive({
 			profileFormStates: {
 				name: '',
@@ -323,6 +334,7 @@ export default defineComponent({
 			testFunction,
 			formObject,
 			options,
+			resource,
 			Inputs,
 			...toRefs(state),
 		};
