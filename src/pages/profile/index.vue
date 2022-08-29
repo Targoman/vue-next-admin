@@ -279,6 +279,19 @@ export default defineComponent({
 					],
 				},
 			},
+			{
+				type: Inputs.radioInput,
+				props: {
+					label: 'form radio',
+					name: 'sex',
+					resource: [
+						{
+							label: 'male',
+						},
+						{ label: 'female' },
+					],
+				},
+			},
 		];
 		const state = reactive<PersonalState>({
 			recommendList,

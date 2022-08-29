@@ -6,6 +6,7 @@ import inputWithValidation from '/@/components/form/inputWithValidation.vue';
 import mixedInput from '/@/components/form/mixedInput.vue';
 import select from './select.vue';
 import checkboxInput from '/@/components/form/checkboxInput.vue';
+import radioInput from '/@/components/form/radioInput.vue';
 
 export default defineComponent({
 	name: 'form',
@@ -74,6 +75,14 @@ export default defineComponent({
 							...properties,
 							onCheckboxChange: (object: { name: string; values: string[] }) => {
 								model[object.name] = object.values;
+								emit('formChange', model);
+							},
+						});
+					case 'radioInput':
+						return h(radioInput, {
+							...properties,
+							onRadioChange: (object: { name: string; value: string | number }) => {
+								model[object.name] = object.value;
 								emit('formChange', model);
 							},
 						});

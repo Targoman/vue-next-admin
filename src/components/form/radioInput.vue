@@ -17,13 +17,14 @@ export default defineComponent({
 		disabled: {
 			type: String,
 		},
+		name: String,
 	},
 	setup(props, { emit }) {
 		const resource = ref(props.resource);
 		const selectedRadio = ref([]);
 
-		const radioInput = (value: string) => {
-			emit('radioInput', value);
+		const radioInput = () => {
+			emit('radioChange', { name: props.name, value: selectedRadio.value });
 		};
 
 		return { resource, radioInput, selectedRadio };

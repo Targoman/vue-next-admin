@@ -63,7 +63,7 @@ useUserInfo()
 	});
 
 router.beforeEach(async (to: any, from, next) => {
-	NProgress.configure({ showSpinner: false });
+	NProgress.configure({ showSpinner: true });
 	NProgress.start();
 	jwt.getJwtFromLocalAndCheck();
 	const localJWT = jwt.getJwt();
